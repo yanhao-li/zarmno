@@ -12,8 +12,12 @@
  */
 
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
 import NavBar from 'components/NavBar';
+import styled from 'styled-components';
+
+const AppDiv = styled.div`
+  height: 100%;
+`;
 
 export default class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -23,10 +27,10 @@ export default class App extends React.PureComponent { // eslint-disable-line re
 
   render() {
     return (
-      <div>
-          <NavBar />
-          {React.Children.toArray(this.props.children)}
-      </div>
+      <AppDiv>
+        <NavBar />
+        {React.Children.toArray(this.props.children)}
+      </AppDiv>
     );
   }
 }
