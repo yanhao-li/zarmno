@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-import Jumbotron from 'components/HomePageJumbotron'
+import Jumbotron from './Jumbotron'
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
