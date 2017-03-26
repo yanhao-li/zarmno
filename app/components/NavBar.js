@@ -18,7 +18,7 @@ const NavBar = () => (
     <a className="navbar-brand" href="www.google.com">Test</a>
     <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div className="navbar-nav">
-        <a className="nav-item nav-link" href="www.google.com">Login</a>
+        <a className="nav-item nav-link" href="www.google.com">Log in</a>
         <a className="nav-item nav-link" href="www.google.com">Sign up</a>
       </div>
     </div>
