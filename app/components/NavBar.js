@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router';
 
 const StyledNav = styled.nav`
   position: absolute;
@@ -15,11 +16,11 @@ const NavBar = () => (
     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <a className="navbar-brand" href="www.google.com">Test</a>
+    <Link className="navbar-brand" to="/">Test</Link>
     <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div className="navbar-nav">
-        <a className="nav-item nav-link" href="www.google.com">Log in</a>
-        <a className="nav-item nav-link" href="www.google.com">Sign up</a>
+        <Link className="nav-item nav-link" to="/auth">Sign up</Link>
+        <Link className="nav-item nav-link" to="/auth">Log in</Link>
       </div>
     </div>
   </StyledNav>
