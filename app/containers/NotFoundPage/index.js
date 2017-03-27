@@ -11,15 +11,24 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import styled from 'styled-components';
 
 import messages from './messages';
+
+const NotFoundHeader = styled.h1`
+    position: relative;
+    display: block;
+    padding: 60px 0 0 0;
+    box-sizing: border-box;
+`;
+
 
 export default class NotFound extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
+      <NotFoundHeader>
         <FormattedMessage {...messages.header} />
-      </h1>
+      </NotFoundHeader>
     );
   }
 }

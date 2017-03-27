@@ -27,23 +27,38 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
-      //getComponent is asynchronous and only called when needed.
+      // getComponent is asynchronous and only called when needed.
       getComponent(nextState, cb) {
-          //importModules is a array of Promise objects, in this case, the parameters of resolve function of Promise is components imported.
-          //thus the array of components will be the parameters of then() function.
+          // importModules is a array of Promise objects, in this case, the parameters of resolve function of Promise is components imported.
+          // thus the array of components will be the parameters of then() function.
         const importModules = Promise.all([
           import('containers/HomePage'),
         ]);
 
+        /* renderRoute = function(componentModule){
+            return cb(null, componentModule.default)
+        }
+        */
         const renderRoute = loadModule(cb);
 
         importModules.then(([component]) => {
+            // renderRoute(component) = cb(null, componentModule.default)
           renderRoute(component);
         });
 
         importModules.catch(errorLoading);
       },
-    }, {
+    },
+    {
+      path: '/auth',
+      name: 'authentication',
+      getComponent(nextState, cb) {
+        import('containers/Authentication')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

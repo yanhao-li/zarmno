@@ -63,10 +63,9 @@ const history = syncHistoryWithStore(browserHistory, store, {
 // Set up the router, wrapping all Routes in the App component #Index route
 const rootRoute = {
   component: App,
-  //childRoutes is An array of child routes, same as children in JSX route configs.
+  // childRoutes is An array of child routes, same as children in JSX route configs.
   childRoutes: createRoutes(store),
 };
-console.log(rootRoute.childRoutes);
 
 const render = (messages) => {
   ReactDOM.render(
@@ -74,8 +73,8 @@ const render = (messages) => {
       <LanguageProvider messages={messages}>
         <Router
           history={history}
-          //Index route
-          //routes: Alias for children. which are One or many <Route>s or PlainRoutes. When the history changes, <Router> will match a branch of its routes, and render their configured components, with child route components nested inside the parents.
+          // Index route
+          // routes: Alias for children. which are One or many <Route>s or PlainRoutes. When the history changes, <Router> will match a branch of its routes, and render their configured components, with child route components nested inside the parents.
           routes={rootRoute}
           render={
             // Scroll to top when going to a new page, imitating default browser
