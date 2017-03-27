@@ -9,8 +9,15 @@ const errorLoading = (err) => {
 };
 
 const loadModule = (cb) => (componentModule) => {
+    // call back signature: cb(err, component)
   cb(null, componentModule.default);
 };
+/* loadModule = function(cb){
+    return function(componentModule){
+        return cb(null, componentModule.default)
+    }
+}
+*/
 
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
@@ -20,7 +27,10 @@ export default function createRoutes(store) {
     {
       path: '/',
       name: 'home',
+      //getComponent is asynchronous and only called when needed.
       getComponent(nextState, cb) {
+          //importModules is a array of Promise objects, in this case, the parameters of resolve function of Promise is components imported.
+          //thus the array of components will be the parameters of then() function.
         const importModules = Promise.all([
           import('containers/HomePage'),
         ]);
