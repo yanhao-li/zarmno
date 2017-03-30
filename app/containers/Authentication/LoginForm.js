@@ -5,41 +5,42 @@ export default class LoginForm extends React.PureComponent {
     super(props);
     this.state = {
       email: '',
-      password: ''
-    }
+      password: '',
+    };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
   }
 
   render() {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="form-group">
-          <label className="control-label">Email</label>
+          <label className="control-label" htmlFor="email">Email</label>
           <input
             type="text"
             value={this.state.email}
-            onChange = {this.onChange}
+            onChange={this.onChange}
             name="email"
-            className="form-control" />
+            className="form-control"
+          />
         </div>
         <div className="form-group">
-          <label className="control-label">Password</label>
+          <label className="control-label" htmlFor="password">Password</label>
           <input
             type="password"
             value={this.state.password}
-            onChange = {this.onChange}
+            onChange={this.onChange}
             name="password"
-            className="form-control" />
+            className="form-control"
+          />
         </div>
         <div className="form-group">
           <button className="btn btn-primary">

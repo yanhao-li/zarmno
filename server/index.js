@@ -2,7 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
-const bodyParser =require('body-parser');
+const bodyParser = require('body-parser');
 
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
@@ -13,7 +13,7 @@ const users = require('./routes/users');
 const app = express();
 
 app.use(bodyParser.json());
-//The function users is executed for any type of HTTP request on the /api/users
+// The function users is executed for any type of HTTP request on the /api/users
 app.use('/api/users', users);
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
