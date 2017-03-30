@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 export default class SignUpForm extends React.PureComponent {
   constructor(props) {
@@ -6,7 +7,9 @@ export default class SignUpForm extends React.PureComponent {
     this.state = {
       email: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      errors: {},
+      isLoading: false
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -18,41 +21,52 @@ export default class SignUpForm extends React.PureComponent {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.userSignupRequest(this.state);
+    this.setState({ errors: {}, isLoading: true });
+    this.props.userSignupRequest(this.state).then(
+      () => {}, (err) => this.setState({ errors: err.response.data, isLoading: false })
+    );
   }
 
   render() {
+    const { errors } = this.state;
+
     return (
       <form onSubmit={this.onSubmit}>
-        <div className="form-group">
-          <label className="control-label">Email</label>
+        <div className={classnames("form-group", { 'has-danger': errors.email })}>
+          <label className="form-control-label">Email</label>
           <input
             type="text"
             value={this.state.email}
             onChange = {this.onChange}
             name="email"
-            className="form-control" />
+            className="form-control"
+          />
+          { errors.email && <span className="form-control-feedback">{ errors.email }</span> }
         </div>
-        <div className="form-group">
-          <label className="control-label">Password</label>
+
+        <div className={classnames("form-group", { 'has-danger': errors.password })}>
+          <label className="form-control-label">Password</label>
           <input
             type="password"
             value={this.state.password}
             onChange = {this.onChange}
             name="password"
             className="form-control" />
+          { errors.password && <span className="form-control-feedback">{ errors.password }</span> }
         </div>
-        <div className="form-group">
-          <label className="control-label">passwordConfirmation</label>
+
+        <div className={classnames("form-group", { 'has-danger': errors.passwordConfirmation })}>
+          <label className="form-control-label">passwordConfirmation</label>
           <input
             type="password"
             value={this.state.passwordConfirmation}
             onChange = {this.onChange}
             name="passwordConfirmation"
             className="form-control" />
+          { errors.passwordConfirmation && <span className="form-control-feedback">{ errors.passwordConfirmation }</span> }
         </div>
         <div className="form-group">
-          <button className="btn btn-primary">
+          <button disabled={this.state.isLoading}  className="btn btn-primary">
                 Sign up
           </button>
         </div>
