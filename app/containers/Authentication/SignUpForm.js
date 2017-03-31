@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import TextFieldGroup from 'components/common/TextFieldGroup';
 import validateInput from '../../../server/shared/validations/signup';
 
@@ -26,7 +27,9 @@ export default class SignUpForm extends React.PureComponent {
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.userSignupRequest(this.state).then(
-        () => {}, (err) => this.setState({ errors: err.response.data, isLoading: false })
+        () => {
+          browserHistory.push('/');
+        }, (err) => this.setState({ errors: err.response.data, isLoading: false })
       );
     }
   }
