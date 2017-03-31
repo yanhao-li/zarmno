@@ -1,8 +1,9 @@
 import React from 'react';
 import TextFieldGroup from 'components/common/TextFieldGroup';
+import { browserHistory } from 'react-router';
 import validateInput from '../../../server/shared/validations/login';
 import { connect } from 'react-redux';
-import { login } from './actions/login';
+import { login } from './actions/loginAction';
 
 class LoginForm extends React.PureComponent {
   constructor(props) {
@@ -36,8 +37,8 @@ class LoginForm extends React.PureComponent {
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.login(this.state).then(
-        (res) => this.context.router.push('/'),
-        (err) => this.setState({ errors: err.response.data, isLoading: false })
+        (res) => {browserHistory.push('/');
+      }, (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
       );
     }
   }
@@ -47,6 +48,8 @@ class LoginForm extends React.PureComponent {
 
     return (
       <form onSubmit={this.onSubmit}>
+
+        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
         <TextFieldGroup className="form-group"
           name="email"
           label="Email"

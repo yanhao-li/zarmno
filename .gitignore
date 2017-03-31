@@ -4,6 +4,9 @@ build
 node_modules
 stats.json
 
+# Classified
+server/config.js
+
 # Cruft
 .DS_Store
 npm-debug.log

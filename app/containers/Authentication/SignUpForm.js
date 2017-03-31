@@ -29,7 +29,7 @@ export default class SignUpForm extends React.PureComponent {
       this.props.userSignupRequest(this.state).then(
         () => {
           browserHistory.push('/');
-        }, (err) => this.setState({ errors: err.response.data, isLoading: false })
+        }, (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
       );
     }
   }
