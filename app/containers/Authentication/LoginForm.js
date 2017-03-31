@@ -1,15 +1,31 @@
 import React from 'react';
+import TextFieldGroup from 'components/common/TextFieldGroup';
+import validateInput from '../../../server/shared/validations/login';
+import { connect } from 'react-redux';
+import { login } from './actions/login';
 
-export default class LoginForm extends React.PureComponent {
+class LoginForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
+      errors: {},
+      isLoading: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+
+    if (!isValid) {
+      this.setState({ errors });
+    }
+
+    return isValid;
+    }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -17,33 +33,40 @@ export default class LoginForm extends React.PureComponent {
 
   onSubmit(e) {
     e.preventDefault();
+    if (this.isValid()) {
+      this.setState({ errors: {}, isLoading: true });
+      this.props.login(this.state).then(
+        (res) => this.context.router.push('/'),
+        (err) => this.setState({ errors: err.response.data, isLoading: false })
+      );
+    }
   }
 
   render() {
+    const { errors, email, password, isLoading } = this.state;
+
     return (
       <form onSubmit={this.onSubmit}>
+        <TextFieldGroup className="form-group"
+          name="email"
+          label="Email"
+          value={email}
+          error={errors.email}
+          onChange={this.onChange}
+          type="text"
+        />
+
+        <TextFieldGroup className="form-group"
+          name="password"
+          label="Password"
+          value={password}
+          error={errors.password}
+          onChange={this.onChange}
+          type="password"
+        />
+
         <div className="form-group">
-          <label className="control-label" htmlFor="email">Email</label>
-          <input
-            type="text"
-            value={this.state.email}
-            onChange={this.onChange}
-            name="email"
-            className="form-control"
-          />
-        </div>
-        <div className="form-group">
-          <label className="control-label" htmlFor="password">Password</label>
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.onChange}
-            name="password"
-            className="form-control"
-          />
-        </div>
-        <div className="form-group">
-          <button className="btn btn-primary">
+          <button disabled={isLoading} className="btn btn-primary">
                 Log in
           </button>
         </div>
@@ -51,3 +74,13 @@ export default class LoginForm extends React.PureComponent {
     );
   }
 }
+
+LoginForm.propTypes = {
+  login: React.PropTypes.func.isRequired
+}
+
+LoginForm.contextType = {
+  router: React.PropTypes.object.isRequired
+}
+
+export default connect(null, { login })(LoginForm);
