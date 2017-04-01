@@ -8,7 +8,6 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-import authReducer from 'containers/Authentication/reducer';
 
 
 const sagaMiddleware = createSagaMiddleware();

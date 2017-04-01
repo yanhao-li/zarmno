@@ -1,8 +1,8 @@
 import React from 'react';
-import TextFieldGroup from 'components/common/TextFieldGroup';
 import { browserHistory } from 'react-router';
-import validateInput from '../../../server/shared/validations/login';
 import { connect } from 'react-redux';
+import TextFieldGroup from 'components/common/TextFieldGroup';
+import validateInput from '../../../server/shared/validations/login';
 import { login } from './actions/loginAction';
 
 class LoginForm extends React.PureComponent {
@@ -12,21 +12,12 @@ class LoginForm extends React.PureComponent {
       email: '',
       password: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-
-    if (!isValid) {
-      this.setState({ errors });
-    }
-
-    return isValid;
-    }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -37,10 +28,20 @@ class LoginForm extends React.PureComponent {
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.login(this.state).then(
-        (res) => {browserHistory.push('/')},
+        () => { browserHistory.push('/'); },
         (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
       );
     }
+  }
+
+  isValid() {
+    const { errors, isValid } = validateInput(this.state);
+
+    if (!isValid) {
+      this.setState({ errors });
+    }
+
+    return isValid;
   }
 
   render() {
@@ -50,7 +51,8 @@ class LoginForm extends React.PureComponent {
       <form onSubmit={this.onSubmit}>
 
         { errors.form && <div className="alert alert-danger">{errors.form}</div> }
-        <TextFieldGroup className="form-group"
+        <TextFieldGroup
+          className="form-group"
           name="email"
           label="Email"
           value={email}
@@ -59,7 +61,8 @@ class LoginForm extends React.PureComponent {
           type="text"
         />
 
-        <TextFieldGroup className="form-group"
+        <TextFieldGroup
+          className="form-group"
           name="password"
           label="Password"
           value={password}
@@ -79,11 +82,11 @@ class LoginForm extends React.PureComponent {
 }
 
 LoginForm.propTypes = {
-  login: React.PropTypes.func.isRequired
-}
+  login: React.PropTypes.func.isRequired,
+};
 
 LoginForm.contextType = {
-  router: React.PropTypes.object.isRequired
-}
+  router: React.PropTypes.object.isRequired,
+};
 
 export default connect(null, { login })(LoginForm);

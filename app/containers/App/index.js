@@ -25,12 +25,15 @@ const AppDiv = styled.div`
 `;
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    children: React.PropTypes.node,
+    loadUserFromToken: React.PropTypes.func,
+  };
+
   componentWillMount() {
     this.props.loadUserFromToken();
   }
-  static propTypes = {
-    children: React.PropTypes.node,
-  };
 
   render() {
     return (
