@@ -6,6 +6,7 @@ stats.json
 
 # Classified
 server/config.js
+knexfile.js
 
 # Cruft
 .DS_Store
