@@ -19,9 +19,6 @@ import 'sanitize.css/sanitize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'material-design-lite/material.min.css';
 import 'material-design-lite';
-import setAuthorizationToken from 'utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from 'containers/Authentication/actions/loginAction';
 
 // Import root app
 import App from 'containers/App';
@@ -70,10 +67,6 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
-if (localStorage.jwtToken) {
-  setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)))
-}
 
 const render = (messages) => {
   ReactDOM.render(
