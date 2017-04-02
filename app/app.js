@@ -19,8 +19,8 @@ import 'sanitize.css/sanitize.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'material-design-lite/material.min.css';
-import 'material-design-lite';
+import 'materialize-css/bin/materialize.css';
+import 'materialize-css/bin/materialize.js';
 
 // Import root app
 import App from 'containers/App';

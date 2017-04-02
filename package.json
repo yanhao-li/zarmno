@@ -228,7 +228,7 @@
     "jsonwebtoken": "^7.3.0",
     "jwt-decode": "^2.2.0",
     "lodash": "4.17.2",
-    "material-design-lite": "^1.3.0",
+    "materialize-css": "^0.98.1",
     "minimist": "1.2.0",
     "mysql": "^2.13.0",
     "react": "15.4.1",

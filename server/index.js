@@ -12,6 +12,7 @@ const resolve = require('path').resolve;
 const signup = require('./routes/signup');
 const login = require('./routes/login');
 const restaurant = require('./routes/restaurant');
+const dishes = require('./routes/dishes');
 const models = require('./models');
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/api/signup', signup);
 app.use('/api/login', login);
 app.use('/api/restaurant', restaurant);
+app.use('/api/dishes', dishes);
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
