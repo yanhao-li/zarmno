@@ -11,6 +11,7 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const signup = require('./routes/signup');
 const login = require('./routes/login');
+const restaurant = require('./routes/restaurant');
 const models = require('./models');
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
 app.use('/api/signup', signup);
 app.use('/api/login', login);
+app.use('/api/restaurant', restaurant);
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);

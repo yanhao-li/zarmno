@@ -59,6 +59,15 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/restaurant',
+      name: 'restaurant',
+      getComponent(nextState, cb){
+        import('containers/Restaurant')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
