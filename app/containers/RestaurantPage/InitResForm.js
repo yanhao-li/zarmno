@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import TextFieldGroup from 'components/common/TextFieldGroup';
+import { connect } from 'react-redux';
 
 class InitResForm extends React.PureComponent{
   constructor(props){
@@ -10,6 +11,7 @@ class InitResForm extends React.PureComponent{
       location: '',
       errors: {},
       isLoading: false,
+      restaurantId: this.props.restaurantId,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -23,8 +25,9 @@ class InitResForm extends React.PureComponent{
     e.preventDefault();
     this.setState({errors: {}, isLoading: true});
     this.props.registerRes(this.state).then(
-      () => {
-        browserHistory.push('/menu');
+      (res) => {
+        const restaurantId = res.data;
+        browserHistory.push('/menu/' + restaurantId);
       }, (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
     );
   }
@@ -68,4 +71,10 @@ InitResForm.propTypes = {
   registerRes: React.PropTypes.func.isRequired,
 };
 
-export default InitResForm;
+function mapStateToProps(state){
+  return{
+    currentUserId: state.get('auth').user.id
+  }
+}
+
+export default connect(mapStateToProps)(InitResForm);

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 const MdlCard = styled.div`
   margin: 10px;
@@ -80,5 +81,10 @@ CreateMenuForm.propTypes = {
   addDishes: React.PropTypes.func.isRequired,
 };
 
+function mapStateToProps(state){
+  return{
+    currentUserId: state.get('auth').user.id
+  }
+}
 
-export default CreateMenuForm;
+export default connect(mapStateToProps)(CreateMenuForm);

@@ -3,10 +3,9 @@ const models = require('../models');
 const router = express.Router();
 
 router.post('/', (req, res) => {
-  const { dishesName, dishesDescription } = req.body;
-  console.log(dishesName);
+  const { dishesName, dishesDescription, RestaurantId } = req.body;
 
-  models.Dish.build({ name: dishesName, discription: dishesDescription }).save()
+  models.Dish.build({ name: dishesName, discription: dishesDescription, RestaurantId: RestaurantId }).save()
     .then(() => res.json({ success: true }))
     .catch((err) => res.status(500).json({ errors: err }));
 });

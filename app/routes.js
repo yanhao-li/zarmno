@@ -68,7 +68,7 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/menu',
+      path: '/menu(/:id)',
       name: 'menu',
       getComponent(nextState, cb){
         import('containers/MenuPage')

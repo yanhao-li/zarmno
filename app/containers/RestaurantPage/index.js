@@ -23,4 +23,4 @@ RestaurantPage.propTypes = {
   registerRes: React.PropTypes.func.isRequired,
 }
 
-export default connect(null, { registerRes })(Restaurant);
+export default connect(null, { registerRes })(RestaurantPage);
