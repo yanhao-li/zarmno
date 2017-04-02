@@ -11,6 +11,7 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const signup = require('./routes/signup');
 const login = require('./routes/login');
+const models = require('./models');
 const app = express();
 
 app.use(bodyParser.json());
@@ -35,6 +36,8 @@ const prettyHost = customHost || 'localhost';
 const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
+models.sequelize.sync()
+
 app.listen(port, host, (err) => {
   if (err) {
     return logger.error(err.message);

@@ -1,7 +1,7 @@
 const express = require('express');
 const validateInput = require('../shared/validations/signup');
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const models = require('../models');
 const router = express.Router();
 
 // when a post is made to the homepage
@@ -12,11 +12,9 @@ router.post('/', (req, res) => {
     const { email, password } = req.body;
     const passwordDigest = bcrypt.hashSync(password, 10);
 
-    User.forge({
-      email, passwordDigest,
-    }, { hasTimestamps: true }).save()
+    models.User.build({ email: email, passwordDigest: passwordDigest}).save()
       .then(() => res.json({ success: true }))
-      .catch((err) => res.status(500).json({ error: err }));
+      .catch((err) => res.status(500).json({ errors: err }));
   } else {
     res.status(400).json(errors);
   }

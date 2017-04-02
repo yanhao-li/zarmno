@@ -1,22 +1,22 @@
 const express = require('express');
-const User = require('../models/user');
+const models = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', function(req, res){
   const { email, password } = req.body;
 
-  User.query({
-    where: { email },
-  }).fetch().then((user) => {
+  models.User.findOne({
+    where: { email: email },
+  }).then(function(user){
     if (user) {
-      if (bcrypt.compareSync(password, user.get('password_digest'))) {
+      if (bcrypt.compareSync(password, user.passwordDigest)) {
         const token = jwt.sign({
-          id: user.get('id'),
-          email: user.get('email'),
+          id: user.id,
+          email: user.email,
         }, config.jwtsecret);
         res.json({ token });
       } else {
