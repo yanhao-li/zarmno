@@ -35,6 +35,10 @@ router.post('/', function(req, res, next) {
     if (!user) {
       res.status(401).json({errors: { form: 'username or password incorrect' }});
     }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.json(user);
+    })
   })(req, res, next)
 });
 
