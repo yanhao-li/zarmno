@@ -4,15 +4,15 @@ const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const session = require('express-session');
+const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
-const signup = require('./routes/signup');
-const login = require('./routes/login');
+const user = require('./routes/user');
+const session = require('./routes/session');
 const restaurant = require('./routes/restaurant');
 const dishes = require('./routes/dishes');
 const models = require('./models');
@@ -23,8 +23,10 @@ const secretKey = require('./config/secretKeys');
 
 const app = express();
 
+// If you need a backend, e.g. an API, add your custom backend-specific middleware here
+// app.use('/api', myApi);
 app.use(cookieParser());
-app.use(session({
+app.use(expressSession({
   secret: secretKey.sessionSecret,
   resave: false,
   saveUninitialized: true,
@@ -33,18 +35,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 enablePassport();
 
 app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
-app.use('/api/signup', signup);
-app.use('/api/login', login);
+app.use('/api/session', session);
+app.use('/api/user', user);
 app.use('/api/restaurant', restaurant);
 app.use('/api/dishes', dishes);
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
@@ -60,7 +59,7 @@ const prettyHost = customHost || 'localhost';
 const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
-models.sequelize.sync()
+models.sequelize.sync();
 
 app.listen(port, host, (err) => {
   if (err) {

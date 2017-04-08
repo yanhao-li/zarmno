@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const db = require('../models');
 const router = express.Router();
 
-// when a post is made to the homepage
 
+//User Register: Create a user
 router.post('/', (req, res) => {
   const { errors, isValid } = validateInput(req.body);
   if (isValid) {

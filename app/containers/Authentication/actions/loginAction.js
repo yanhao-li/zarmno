@@ -11,5 +11,5 @@ export function setCurrentUser(user) {
 }
 
 export function login(data) {
-  return () => axios.post('/api/login', data)
+  return () => axios.post('/api/session', data)
 }
