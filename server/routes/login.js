@@ -29,8 +29,14 @@ const router = express.Router();
 //   });
 // });
 
-router.post('/', passport.authenticate('local'), function(req, res) {
-  res.json(req.user);
+router.post('/', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) {
+      res.status(401).json({errors: { form: 'username or password incorrect' }});
+    }
+  })(req, res, next)
 });
+
 
 module.exports = router;
