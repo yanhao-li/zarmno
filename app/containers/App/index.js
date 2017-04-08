@@ -48,12 +48,12 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
 function mapDispatchToProps(dispatch) {
   return {
     loadUserFromToken: () => {
-      const token = localStorage.getItem('jwtToken');
-      if (!token || token === '') {
-        return;
-      }
-      setAuthorizationToken(token);
-      dispatch(setCurrentUser(jwtDecode(token)));
+      // const token = localStorage.getItem('jwtToken');
+      // if (!token || token === '') {
+      //   return;
+      // }
+      // setAuthorizationToken(token);
+      // dispatch(setCurrentUser(jwtDecode(token)));
     },
   };
 }

@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
+process.noDeprecation = true;
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign({ // Compile into js/build.js

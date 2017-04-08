@@ -5,7 +5,7 @@ node_modules
 stats.json
 
 # Classified
-server/config.js
+server/config
 knexfile.js
 
 # Cruft

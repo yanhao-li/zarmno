@@ -3,7 +3,9 @@
 const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
-
+const passport = require('passport');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -14,7 +16,25 @@ const login = require('./routes/login');
 const restaurant = require('./routes/restaurant');
 const dishes = require('./routes/dishes');
 const models = require('./models');
+const enablePassport = require('./config/passport');
+const secretKey = require('./config/secretKeys');
+
+
+
 const app = express();
+
+app.use(cookieParser());
+app.use(session({
+  secret: secretKey.sessionSecret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+enablePassport();
 
 app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
