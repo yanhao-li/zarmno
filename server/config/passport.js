@@ -1,6 +1,7 @@
-var LocalStrategy = require('passport-local').Strategy;
-var passport = require('passport');
-var db = require('../models');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+const db = require('../models');
+const passport = require('passport');
 
 module.exports = function() {
   passport.serializeUser(function(user, done) {
@@ -13,26 +14,29 @@ module.exports = function() {
     });
   });
 
-  passport.use('local-signup', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true
-  },
-  function(req, email, password, done) {
-      process.nextTick(function() {
-        User.findOne({where: {email: email}}).then(function(user){
-          if (user) {
-             return done(null, false, {errors: 'Email already existed'})
+  passport.use(new LocalStrategy(
+    {
+      usernameField: 'email',
+      passwordField: 'password'
+    },
+    function(email, password, done){
+      db.User.findOne({
+        where: { email: email },
+      }).then(function(user){
+        if (user) {
+          if (bcrypt.compareSync(password, user.passwordDigest)) {
+            return done(null, user)
           } else {
-            const passwordDigest = db.User.generateHash(password)
-            db.User.build({ email: email, passwordDigest: passwordDigest}).save()
-              .then(() => res.json({ success: true }))
-              .catch((err) => res.status(500).json({ errors: err }));
+            return done(null, false, { errors: { form: 'username or password incorrect' } });
           }
-        });
-      })
-  }
-))
+        } else {
+          return done(null, false, { errors: { form: 'username or password incorrect' } });
+        }
+      }, function(err) {
+        return done(err);
+      });
+    }
+  ));
 
 
 }
