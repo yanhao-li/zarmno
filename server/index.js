@@ -13,11 +13,26 @@ const signup = require('./routes/signup');
 const login = require('./routes/login');
 const restaurant = require('./routes/restaurant');
 const dishes = require('./routes/dishes');
-const models = require('./models');
+const db = require('./models');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const secret = require('./config/secretKey');
 const app = express();
 
+// require('./config/passport')(passport);
+
+app.use(cookieParser);
 app.use(bodyParser.json());
-// The function users is executed for any type of HTTP request on the /api/users
+app.use(session({
+  secret: secret.sessionsecret,
+  cookie: {},
+  resave: false,
+  saveUninitialized: true
+}));
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+//routes
 app.use('/api/signup', signup);
 app.use('/api/login', login);
 app.use('/api/restaurant', restaurant);
@@ -40,23 +55,23 @@ const prettyHost = customHost || 'localhost';
 const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
-models.sequelize.sync()
-
-app.listen(port, host, (err) => {
-  if (err) {
-    return logger.error(err.message);
-  }
-
-  // Connect to ngrok in dev mode
-  if (ngrok) {
-    ngrok.connect(port, (innerErr, url) => {
-      if (innerErr) {
-        return logger.error(innerErr);
+db.sequelize.sync().then(function(){
+    app.listen(port, host, (err) => {
+      if (err) {
+        return logger.error(err.message);
       }
 
-      logger.appStarted(port, prettyHost, url);
+      // Connect to ngrok in dev mode
+      if (ngrok) {
+        ngrok.connect(port, (innerErr, url) => {
+          if (innerErr) {
+            return logger.error(innerErr);
+          }
+
+          logger.appStarted(port, prettyHost, url);
+        });
+      } else {
+        logger.appStarted(port, prettyHost);
+      }
     });
-  } else {
-    logger.appStarted(port, prettyHost);
-  }
-});
+})

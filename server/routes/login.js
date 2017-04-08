@@ -2,7 +2,7 @@ const express = require('express');
 const models = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const config = require('../config');
+const secret = require('../config/secretKey');
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.post('/', function(req, res){
         const token = jwt.sign({
           id: user.id,
           email: user.email,
-        }, config.jwtsecret);
+        }, secret.jwtsecret);
         res.json({ token });
       } else {
         res.status(401).json({ errors: { form: 'username or password incorrect' } });
