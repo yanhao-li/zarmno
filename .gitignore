@@ -5,8 +5,6 @@ node_modules
 stats.json
 
 # Classified
-server/config
-knexfile.js
 
 # Cruft
 .DS_Store
