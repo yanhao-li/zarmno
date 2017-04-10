@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from 'containers/Authentication/actions/logoutAction.js';
+import { logout } from 'containers/Authentication/actions/authActions.js';
 
 const StyledNav = styled.nav`
   position: absolute;

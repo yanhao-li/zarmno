@@ -16,7 +16,7 @@ import NavBar from 'components/NavBar';
 import styled from 'styled-components';
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from 'containers/Authentication/actions/loginAction';
+import { setCurrentUser } from 'containers/Authentication/actions/authActions';
 import { connect } from 'react-redux';
 
 

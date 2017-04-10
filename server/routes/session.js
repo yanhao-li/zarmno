@@ -17,10 +17,15 @@ router.post('/', function(req, res, next) {
     //Create the session
     req.login(user, function(err) {
       if (err) { return next(err); }
-      return res.json(user);
+      return res.json({user: user});
     })
   })(req, res, next)
 });
 
+router.delete('/', function(req, res) {
+  if (req.user){
+    req.logout();
+  }
+});
 
 module.exports = router;

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import TextFieldGroup from 'components/common/TextFieldGroup';
 import validateInput from '../../../server/shared/validations/login';
-import { login } from './actions/loginAction';
+import { login } from './actions/authActions';
 
 class LoginForm extends React.PureComponent {
   constructor(props) {
