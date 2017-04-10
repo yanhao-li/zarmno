@@ -5,7 +5,6 @@ const logger = require('./logger');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const expressSession = require('express-session');
-const cookieParser = require('cookie-parser');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -25,17 +24,16 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.use(cookieParser());
 app.use(expressSession({
   secret: secretKey.sessionSecret,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { secure: false },
+  maxAge: 20000
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 enablePassport();
+app.use(passport.initialize());
 
 app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
@@ -50,6 +48,8 @@ setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
+
+app.use(passport.session());
 
 // get the intended host and port number, use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;

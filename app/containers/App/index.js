@@ -13,11 +13,8 @@
 
 import React from 'react';
 import NavBar from 'components/NavBar';
+import Footer from 'components/Footer';
 import styled from 'styled-components';
-import setAuthorizationToken from 'utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from 'containers/Authentication/actions/authActions';
-import { connect } from 'react-redux';
 
 
 const AppDiv = styled.div`
@@ -28,34 +25,17 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
 
   static propTypes = {
     children: React.PropTypes.node,
-    loadUserFromToken: React.PropTypes.func,
   };
-
-  componentWillMount() {
-    this.props.loadUserFromToken();
-  }
 
   render() {
     return (
       <AppDiv>
         <NavBar />
         {React.Children.toArray(this.props.children)}
+        <Footer />
       </AppDiv>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loadUserFromToken: () => {
-      // const token = localStorage.getItem('jwtToken');
-      // if (!token || token === '') {
-      //   return;
-      // }
-      // setAuthorizationToken(token);
-      // dispatch(setCurrentUser(jwtDecode(token)));
-    },
-  };
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

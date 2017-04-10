@@ -9,8 +9,12 @@ module.exports = function() {
   });
 
   passport.deserializeUser(function(id, done) {
-    db.User.findById(id, function(err, user) {
-      done(err, user);
+    db.User.findById(id)
+    .then(function(user) {
+      done(null, user);
+    })
+    .catch(function(err) {
+      done(err);
     });
   });
 

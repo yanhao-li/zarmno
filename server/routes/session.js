@@ -1,7 +1,5 @@
 const express = require('express');
 const db = require('../models');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const secretKey = require('../config/secretKeys');
 const passport = require('passport')
 
