@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
+const passport  = require('passport');
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
@@ -19,6 +20,7 @@ const addDevMiddlewares = (app, webpackConfig) => {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
+  app.use(passport.session());
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead

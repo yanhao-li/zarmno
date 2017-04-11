@@ -24,3 +24,14 @@ export function logout() {
     );
  }
 }
+
+export function getAuth() {
+  return (dispatch) => {
+    return axios.get('/api/session').then(
+      res => {
+        console.log("res");
+        dispatch(setCurrentUser(res.data.user));
+      }
+    )
+  }
+}

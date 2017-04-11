@@ -23,7 +23,14 @@ router.post('/', function(req, res, next) {
 router.delete('/', function(req, res) {
   if (req.user){
     req.logout();
+    req.session.destroy();
   }
+});
+
+router.get('/', function(req, res) {
+    if (req.user) {
+        res.json({user: user});
+    }
 });
 
 module.exports = router;

@@ -15,6 +15,8 @@ import React from 'react';
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
 import styled from 'styled-components';
+import { getAuth, setCurrentUser } from 'containers/Authentication/actions/authActions';
+import { connect } from 'react-redux';
 
 
 const AppDiv = styled.div`
@@ -27,6 +29,11 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
     children: React.PropTypes.node,
   };
 
+  componentWillMount() {
+    this.props.getAuth();
+  }
+
+
   render() {
     return (
       <AppDiv>
@@ -38,4 +45,4 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
   }
 }
 
-export default App;
+export default connect(null, { getAuth })(App);
