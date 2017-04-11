@@ -3,8 +3,6 @@
 const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const expressSession = require('express-session');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -15,26 +13,12 @@ const session = require('./routes/session');
 const restaurant = require('./routes/restaurant');
 const dishes = require('./routes/dishes');
 const models = require('./models');
-const enablePassport = require('./config/passport');
-const secretKey = require('./config/secretKeys');
-
 
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.use(expressSession({
-  secret: secretKey.sessionSecret,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false },
-  maxAge: 20000
-}));
-
-enablePassport();
-
-app.use(passport.initialize());
 
 app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
@@ -42,6 +26,8 @@ app.use('/api/session', session);
 app.use('/api/user', user);
 app.use('/api/restaurant', restaurant);
 app.use('/api/dishes', dishes);
+
+
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

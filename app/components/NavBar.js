@@ -24,7 +24,7 @@ class NavBar extends React.PureComponent{
 
     const userLinks = (
       <div className="navbar-nav">
-        <span className="navbar-text">Welcome { this.props.auth.user.email }</span>
+        <span className="navbar-text">Welcome { this.props.auth.user.id }</span>
         <Link className="nav-item nav-link" to="/restaurant">My Favorites</Link>
         <a className="nav-item nav-link" href="#" onClick={this.logout.bind(this)}>Log out</a>
       </div>

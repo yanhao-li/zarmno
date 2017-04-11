@@ -1,4 +1,6 @@
 import axios from 'axios';
+import setAuthorizationToken from 'utils/setAuthorizationToken';
+import jwtDecode from 'jwt-decode';
 
 export function setCurrentUser(user) {
   return {
@@ -11,7 +13,10 @@ export function login(data) {
   return (dispatch) => {
     return axios.post('/api/session', data).then(
       res => {
-        dispatch(setCurrentUser(res.data.user));
+        const token = res.data.token;
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
+        dispatch(setCurrentUser(jwtDecode(token)));
       }
     )
   };
@@ -19,9 +24,9 @@ export function login(data) {
 
 export function logout() {
   return (dispatch) => {
-    return axios.delete('/api/session').then(
-          dispatch(setCurrentUser({}))
-    );
+    localStorage.removeItem('jwtToken');
+    setAuthorizationToken(false);
+    dispatch(setCurrentUser({}));
  }
 }
 
@@ -29,7 +34,6 @@ export function getAuth() {
   return (dispatch) => {
     return axios.get('/api/session').then(
       res => {
-        console.log("res");
         dispatch(setCurrentUser(res.data.user));
       }
     )

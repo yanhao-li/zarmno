@@ -17,11 +17,15 @@ import Footer from 'components/Footer';
 import styled from 'styled-components';
 import { getAuth, setCurrentUser } from 'containers/Authentication/actions/authActions';
 import { connect } from 'react-redux';
+import setAuthorizationToken from 'utils/setAuthorizationToken';
+import jwtDecode from 'jwt-decode';
 
 
 const AppDiv = styled.div`
   height: 100%;
 `;
+
+
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -29,10 +33,22 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
     children: React.PropTypes.node,
   };
 
-  componentWillMount() {
-    this.props.getAuth();
+  componentWillMount(){
+    if (localStorage.jwtToken) {
+      const token = localStorage.getItem('jwtToken');
+      if (token) {
+        let user = {}
+        try {
+          user = jwtDecode(token);
+        }
+        catch(e){
+          console.log(e);
+        }
+        setAuthorizationToken(token);
+        this.props.dispatch(setCurrentUser(user));
+      }
+    }
   }
-
 
   render() {
     return (
@@ -45,4 +61,5 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
   }
 }
 
-export default connect(null, { getAuth })(App);
+
+export default connect()(App);

@@ -1,36 +1,38 @@
 const express = require('express');
 const db = require('../models');
 const secretKey = require('../config/secretKeys');
-const passport = require('passport')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-
-router.post('/', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) {
-      return res.status(401).json({errors: { form: 'username or password incorrect' }});
-    }
-    //Create the session
-    req.login(user, function(err) {
-      if (err) { return next(err); }
-      return res.json({user: user});
+router.post('/', function(req, res) {
+  const { email, password } = req.body;
+  db.User.findOne({where: {email: email}}).then(
+    function(user){
+      if (bcrypt.compareSync(password, user.passwordDigest)){
+        const token = jwt.sign({
+          id: user.id,
+          email: user.email
+        }, secretKey.jwtSecret);
+        res.json({ token });
+      } else {
+        res.status(401).json({ errors: { form: 'email or password incorrect' } });
+      }
     })
-  })(req, res, next)
+    .catch(
+      function(err){
+        res.status(401).json({ errors: { form: 'email or password incorrect' } });
+      }
+    );
 });
 
 router.delete('/', function(req, res) {
-  if (req.user){
-    req.logout();
-    req.session.destroy();
-  }
+  
 });
 
 router.get('/', function(req, res) {
-    if (req.user) {
-        res.json({user: user});
-    }
+
 });
 
 module.exports = router;
