@@ -13,7 +13,6 @@
 
 import React from 'react';
 import NavBar from 'components/NavBar';
-import Footer from 'components/Footer';
 import styled from 'styled-components';
 import { getAuth, setCurrentUser } from 'containers/Authentication/actions/authActions';
 import { connect } from 'react-redux';
@@ -55,7 +54,6 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
       <AppDiv>
         <NavBar />
         {React.Children.toArray(this.props.children)}
-        <Footer />
       </AppDiv>
     );
   }
