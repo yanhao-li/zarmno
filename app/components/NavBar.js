@@ -25,11 +25,11 @@ class NavBar extends React.PureComponent {
   }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
-
+    const { isAuthenticated, user} = this.props.auth;
+    let link
     const userLinks = (
       <ul className="navbar-nav">
-        <li className="nav-item"><Link className="nav-link" to="/restaurant">{ this.props.auth.user.email }</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/profile">{ this.props.auth.user.email }</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/restaurant">My Favorites</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
       </ul>
@@ -42,6 +42,22 @@ class NavBar extends React.PureComponent {
       </ul>
     );
 
+    const businessLinks = (
+      <ul className="navbar-nav">
+        <li className="nav-item"><Link className="nav-link" to="/profile">{ this.props.auth.user.email }</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/restaurant">My restaurant</Link></li>
+        <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
+      </ul>
+    );
+
+    if(!isAuthenticated){
+      link = guestLinks;
+    } else if(user.role === "customer"){
+      link = userLinks;
+    } else if(user.role === "business"){
+      link = businessLinks;
+    }
+
     return (
       <StyledNav className="navbar navbar-toggleable-md navbar-light bg-faded">
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +65,7 @@ class NavBar extends React.PureComponent {
         </button>
         <Link className="navbar-brand" to="/">Test</Link>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-          { isAuthenticated ? userLinks : guestLinks }
+          {link}
         </div>
       </StyledNav>
     );
