@@ -17,10 +17,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 import 'jquery';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'materialize-css/bin/materialize.css';
-import 'materialize-css/bin/materialize.js';
+// import 'materialize-css/bin/materialize.css';
+// import 'materialize-css/bin/materialize.js';
 
 // Import root app
 import App from 'containers/App';

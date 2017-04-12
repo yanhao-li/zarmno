@@ -28,7 +28,6 @@ app.use('/api/restaurant', restaurant);
 app.use('/api/dishes', dishes);
 
 
-
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),

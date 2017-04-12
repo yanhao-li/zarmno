@@ -5,14 +5,14 @@ const db = require('../models');
 const router = express.Router();
 
 
-//User Register: Create a user
+// User Register: Create a user
 router.post('/', (req, res) => {
   const { errors, isValid } = validateInput(req.body);
   if (isValid) {
     const { email, password } = req.body;
     const passwordDigest = bcrypt.hashSync(password, 10);
 
-    db.User.build({ email: email, passwordDigest: passwordDigest}).save()
+    db.User.build({ email, passwordDigest }).save()
       .then(() => res.json({ success: true }))
       .catch((err) => res.status(500).json({ errors: err }));
   } else {

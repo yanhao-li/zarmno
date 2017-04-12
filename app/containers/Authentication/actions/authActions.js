@@ -10,16 +10,14 @@ export function setCurrentUser(user) {
 }
 
 export function login(data) {
-  return (dispatch) => {
-    return axios.post('/api/session', data).then(
-      res => {
+  return (dispatch) => axios.post('/api/session', data).then(
+      (res) => {
         const token = res.data.token;
         localStorage.setItem('jwtToken', token);
         setAuthorizationToken(token);
         dispatch(setCurrentUser(jwtDecode(token)));
       }
-    )
-  };
+    );
 }
 
 export function logout() {
@@ -27,15 +25,13 @@ export function logout() {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
- }
+  };
 }
 
 export function getAuth() {
-  return (dispatch) => {
-    return axios.get('/api/session').then(
-      res => {
+  return (dispatch) => axios.get('/api/session').then(
+      (res) => {
         dispatch(setCurrentUser(res.data.user));
       }
-    )
-  }
+    );
 }

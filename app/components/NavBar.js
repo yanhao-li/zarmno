@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from 'containers/Authentication/actions/authActions.js';
+import { logout } from 'containers/Authentication/actions/authActions';
 
 const StyledNav = styled.nav`
   position: absolute;
@@ -11,9 +11,14 @@ const StyledNav = styled.nav`
   height: 60px;
   width: 100%;
   z-index: 100;
+  box-shadow: none;
 `;
 
-class NavBar extends React.PureComponent{
+class NavBar extends React.PureComponent {
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
   logout(e) {
     e.preventDefault();
     this.props.logout();
@@ -23,21 +28,21 @@ class NavBar extends React.PureComponent{
     const { isAuthenticated } = this.props.auth;
 
     const userLinks = (
-      <div className="navbar-nav">
-        <span className="navbar-text">Welcome { this.props.auth.user.id }</span>
-        <Link className="nav-item nav-link" to="/restaurant">My Favorites</Link>
-        <a className="nav-item nav-link" href="#" onClick={this.logout.bind(this)}>Log out</a>
-      </div>
+      <ul className="navbar-nav">
+        <li className="nav-item"><Link className="nav-link" to="/restaurant">{ this.props.auth.user.email }</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/restaurant">My Favorites</Link></li>
+        <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
+      </ul>
     );
 
     const guestLinks = (
-      <div className="navbar-nav">
-        <Link className="nav-item nav-link" to="/auth">Sign up</Link>
-        <Link className="nav-item nav-link" to="/auth">Log in</Link>
-      </div>
+      <ul className="navbar-nav">
+        <li className="nav-item"><Link className="nav-link" to="/signup">Sign up</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/login">Log in</Link></li>
+      </ul>
     );
 
-    return(
+    return (
       <StyledNav className="navbar navbar-toggleable-md navbar-light bg-faded">
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -53,13 +58,13 @@ class NavBar extends React.PureComponent{
 
 NavBar.propTypes = {
   auth: React.PropTypes.object.isRequired,
-  logout: React.PropTypes.func.isRequired
-}
+  logout: React.PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
-    auth: state.get('auth')
-  }
+    auth: state.get('auth'),
+  };
 }
 
 export default connect(mapStateToProps, { logout })(NavBar);

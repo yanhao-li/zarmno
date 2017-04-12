@@ -50,18 +50,27 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/auth',
+      path: 'login',
       name: 'authentication',
       getComponent(nextState, cb) {
-        import('containers/Authentication')
+        import('containers/Authentication/LoginForm')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
     },
     {
-      path: '/restaurant',
+      path: 'signup',
+      name: 'authentication',
+      getComponent(nextState, cb) {
+        import('containers/Authentication/SignUpForm')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
+      path: 'restaurant',
       name: 'restaurant',
-      getComponent(nextState, cb){
+      getComponent(nextState, cb) {
         import('containers/RestaurantPage')
           .then(loadModule(cb))
           .catch(errorLoading);
@@ -70,7 +79,7 @@ export default function createRoutes(store) {
     {
       path: '/menu(/:id)',
       name: 'menu',
-      getComponent(nextState, cb){
+      getComponent(nextState, cb) {
         import('containers/MenuPage')
           .then(loadModule(cb))
           .catch(errorLoading);

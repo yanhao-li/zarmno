@@ -14,7 +14,7 @@
 import React from 'react';
 import NavBar from 'components/NavBar';
 import styled from 'styled-components';
-import { getAuth, setCurrentUser } from 'containers/Authentication/actions/authActions';
+import { setCurrentUser } from 'containers/Authentication/actions/authActions';
 import { connect } from 'react-redux';
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
@@ -25,23 +25,21 @@ const AppDiv = styled.div`
 `;
 
 
-
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
     children: React.PropTypes.node,
   };
 
-  componentWillMount(){
+  componentWillMount() {
     if (localStorage.jwtToken) {
       const token = localStorage.getItem('jwtToken');
       if (token) {
-        let user = {}
+        let user = {};
         try {
           user = jwtDecode(token);
-        }
-        catch(e){
-          console.log(e);
+        } catch (e) {
+          throw new Error('invalid Token');
         }
         setAuthorizationToken(token);
         this.props.dispatch(setCurrentUser(user));
@@ -58,6 +56,10 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
     );
   }
 }
+
+App.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
 
 
 export default connect()(App);

@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 import TextFieldGroup from 'components/common/TextFieldGroup';
 import { connect } from 'react-redux';
 
-class InitResForm extends React.PureComponent{
-  constructor(props){
+class InitResForm extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
       restaurantName: '',
@@ -17,25 +17,25 @@ class InitResForm extends React.PureComponent{
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e){
-    this.setState({ [e.target.name]: e.target.value })
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e){
+  onSubmit(e) {
     e.preventDefault();
-    this.setState({errors: {}, isLoading: true});
+    this.setState({ errors: {}, isLoading: true });
     this.props.registerRes(this.state).then(
       (res) => {
         const restaurantId = res.data;
-        browserHistory.push('/menu/' + restaurantId);
+        browserHistory.push(`/menu/${restaurantId}`);
       }, (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
     );
   }
 
-  render(){
-    const { errors, restaurantName, location, isLoading } = this.state;
+  render() {
+    const { errors, isLoading } = this.state;
 
-    return(
+    return (
       <form onSubmit={this.onSubmit}>
         <TextFieldGroup
           className="form-group"
@@ -69,12 +69,13 @@ class InitResForm extends React.PureComponent{
 
 InitResForm.propTypes = {
   registerRes: React.PropTypes.func.isRequired,
+  restaurantId: React.PropTypes.number,
 };
 
-function mapStateToProps(state){
-  return{
-    currentUserId: state.get('auth').user.id
-  }
+function mapStateToProps(state) {
+  return {
+    currentUserId: state.get('auth').user.id,
+  };
 }
 
 export default connect(mapStateToProps)(InitResForm);
