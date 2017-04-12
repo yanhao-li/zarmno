@@ -19,7 +19,7 @@ class SignUpForm extends React.PureComponent {
       passwordConfirmation: '',
       errors: {},
       isLoading: false,
-      role: 'customer'
+      role: 'customer',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,13 +31,13 @@ class SignUpForm extends React.PureComponent {
   }
 
   onClick(e) {
-    this.setState({role: e.target.name})
+    this.setState({ role: e.target.name });
   }
 
   onSubmit(e) {
     e.preventDefault();
     if (this.isValid()) {
-      this.setState({errors: {}, isLoading: true });
+      this.setState({ errors: {}, isLoading: true });
       userSignupRequest(this.state).then(
         () => {
           browserHistory.push('/');
@@ -86,21 +86,25 @@ class SignUpForm extends React.PureComponent {
             type="password"
           />
           <div className="form-group">
-            <button disabled={this.state.isLoading}
-                    type="submit"
-                    className="btn btn-primary"
-                    name="customer"
-                    onClick={this.onClick}>
-                    Sign up as Customer
+            <button
+              disabled={this.state.isLoading}
+              type="submit"
+              className="btn btn-primary"
+              name="customer"
+              onClick={this.onClick}
+            >
+              Sign up as Customer
             </button>
           </div>
           <div className="form-group">
-            <button disabled={this.state.isLoading}
-                    type="submit"
-                    className="btn btn-secondary"
-                    name="business"
-                    onClick={this.onClick}>
-                    Sign up as Business Owner
+            <button
+              disabled={this.state.isLoading}
+              type="submit"
+              className="btn btn-secondary"
+              name="business"
+              onClick={this.onClick}
+            >
+              Sign up as Business Owner
             </button>
           </div>
         </form>

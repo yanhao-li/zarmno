@@ -25,8 +25,8 @@ class NavBar extends React.PureComponent {
   }
 
   render() {
-    const { isAuthenticated, user} = this.props.auth;
-    let link
+    const { isAuthenticated, user } = this.props.auth;
+    let link;
     const userLinks = (
       <ul className="navbar-nav">
         <li className="nav-item"><Link className="nav-link" to="/profile">{ this.props.auth.user.email }</Link></li>
@@ -50,11 +50,11 @@ class NavBar extends React.PureComponent {
       </ul>
     );
 
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
       link = guestLinks;
-    } else if(user.role === "customer"){
+    } else if (user.role === 'customer') {
       link = userLinks;
-    } else if(user.role === "business"){
+    } else if (user.role === 'business') {
       link = businessLinks;
     }
 
