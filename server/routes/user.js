@@ -9,10 +9,10 @@ const router = express.Router();
 router.post('/', (req, res) => {
   const { errors, isValid } = validateInput(req.body);
   if (isValid) {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
     const passwordDigest = bcrypt.hashSync(password, 10);
 
-    db.User.build({ email, passwordDigest }).save()
+    db.User.build({ email, passwordDigest, role }).save()
       .then(() => res.json({ success: true }))
       .catch((err) => res.status(500).json({ errors: err }));
   } else {
