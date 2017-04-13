@@ -7,7 +7,7 @@ import { userSignupRequest } from './actions/signupActions';
 
 const AuthContainer = styled.div`
     box-sizing: border-box;
-    padding-top: 200px;
+    padding-top: 50px;
 `;
 
 class SignUpForm extends React.PureComponent {

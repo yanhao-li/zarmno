@@ -7,10 +7,10 @@ import videooverlay from './movie-overlay.png';
 
 const JumbotronDiv = styled.div`
   box-sizing: border-box;
-  height: 100%;
+  height: calc(100% - 60px);
   width: 100%;
   margin: 0;
-  padding: 60px 0 0 0;
+  padding: 0;
   background-color: transparent;
 `;
 

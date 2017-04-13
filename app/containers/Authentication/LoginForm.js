@@ -9,7 +9,7 @@ import { login } from './actions/authActions';
 
 const AuthContainer = styled.div`
     box-sizing: border-box;
-    padding-top: 200px;
+    padding-top: 50px;
 `;
 
 class LoginForm extends React.PureComponent {

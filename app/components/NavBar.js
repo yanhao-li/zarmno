@@ -5,13 +5,10 @@ import { connect } from 'react-redux';
 import { logout } from 'containers/Authentication/actions/authActions';
 
 const StyledNav = styled.nav`
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   height: 60px;
   width: 100%;
   z-index: 100;
-  box-shadow: none;
 `;
 
 class NavBar extends React.PureComponent {
