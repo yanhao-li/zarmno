@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getRestaurantsList } from './actions';
+import Modal from 'components/Modal';
+import CreateResForm from './components/CreateResForm';
 
 class RestaurantList extends React.PureComponent{
   constructor(props){
@@ -53,7 +55,10 @@ class RestaurantList extends React.PureComponent{
       <div>
         { title }
         { restaurantsList }
-        <button className="btn btn-primary">Claim a New Restaurant Page</button>
+        <button className="btn btn-primary" data-toggle="modal" data-target="#myModal">Claim a New Restaurant Page</button>
+        <Modal title="Claim a new restaurant" close="close" submit="submit">
+          <CreateResForm />
+        </Modal>
       </div>
     )
   }

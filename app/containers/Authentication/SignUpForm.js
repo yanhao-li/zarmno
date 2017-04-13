@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import TextFieldGroup from 'components/common/TextFieldGroup';
+import TextFieldGroup from 'components/TextFieldGroup';
 import styled from 'styled-components';
 import validateInput from '../../../server/shared/validations/signup';
 import { userSignupRequest } from './actions/signupActions';
