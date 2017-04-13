@@ -19,6 +19,12 @@ const loadModule = (cb) => (componentModule) => {
 }
 */
 
+function requireAuth (nextState, replace, callback) {
+  const token = localStorage.getItem('jwtToken');
+  if (!token) replace('/login');
+  return callback()
+}
+
 export default function createRoutes(store) {
   // Create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store); // eslint-disable-line no-unused-vars
@@ -70,6 +76,7 @@ export default function createRoutes(store) {
     {
       path: 'restaurant',
       name: 'restaurantList',
+      onEnter: requireAuth,
       getComponent(nextState, cb) {
         import('containers/Restaurant/RestaurantList')
           .then(loadModule(cb))

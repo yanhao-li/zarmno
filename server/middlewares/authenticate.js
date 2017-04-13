@@ -21,6 +21,7 @@ module.exports = function(req, res, next) {
         }).then(function(user){
            req.currentUser = user;
            next();
+           return null;
         }).catch(function(err){
           res.status(404).json({ error: 'No such user' });
         });

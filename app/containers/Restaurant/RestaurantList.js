@@ -30,9 +30,30 @@ class RestaurantList extends React.PureComponent{
     } else {
       title = (<h1>Please log in to see the page</h1>)
     }
+
+    let restaurantsList;
+    if (this.state.restaurants.length > 0) {
+      restaurantsList=(
+        <ul>
+          {this.state.restaurants.map(restaurant =>
+            (<li key={restaurant.id}> <a href="#">{restaurant.name}</a></li>
+            )
+          )}
+        </ul>
+      )
+    } else {
+      restaurantsList=(
+        <div>
+          <span>You have no restaurants, claim one</span>
+          <br />
+        </div>
+      )
+    }
     return(
       <div>
         { title }
+        { restaurantsList }
+        <button className="btn btn-primary">Claim a New Restaurant Page</button>
       </div>
     )
   }

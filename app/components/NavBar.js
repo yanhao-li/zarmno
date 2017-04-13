@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from 'containers/Authentication/actions/authActions';
+import { browserHistory } from 'react-router';
 
 const StyledNav = styled.nav`
   position: relative;
@@ -19,6 +20,7 @@ class NavBar extends React.PureComponent {
   logout(e) {
     e.preventDefault();
     this.props.logout();
+    browserHistory.push('/');
   }
 
   render() {
