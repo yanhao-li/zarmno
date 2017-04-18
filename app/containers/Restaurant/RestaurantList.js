@@ -1,15 +1,57 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getRestaurantsList } from './actions';
-import Modal from 'components/Modal';
+import Modal from 'react-modal';
 import CreateResForm from './components/CreateResForm';
+
+const ModalStyle={
+  overlay : {
+    backgroundColor   : 'rgba(0, 0, 0, 0.75)'
+  },
+  content : {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px'
+  }
+}
 
 class RestaurantList extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
+      modalIsOpen: false,
       restaurants: [],
     };
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.fetchRestaurants = this.fetchRestaurants.bind(this);
+  }
+
+  openModal(){
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal(){
+    this.setState({modalIsOpen: false});
+  }
+
+  fetchRestaurants(){
+    getRestaurantsList().then(
+      res => {
+        this.setState({
+          restaurants: res.data.restaurants
+        })
+      }
+    )
   }
 
   componentWillMount(){
@@ -55,9 +97,16 @@ class RestaurantList extends React.PureComponent{
       <div>
         { title }
         { restaurantsList }
-        <button className="btn btn-primary" data-toggle="modal" data-target="#myModal">Claim a New Restaurant Page</button>
-        <Modal title="Claim a new restaurant" close="close" submit="submit">
-          <CreateResForm />
+        <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
+        <Modal
+          isOpen = {this.state.modalIsOpen}
+          onRequestClose = {this.closeModal}
+          contentLabel = "Create New Restaurant Label"
+          className="modal-dialog"
+          style={ModalStyle}
+          shouldCloseOnOverlayClick={false}
+        >
+          <CreateResForm closeModal = {this.closeModal} fetchRestaurants = {this.fetchRestaurants}/>
         </Modal>
       </div>
     )

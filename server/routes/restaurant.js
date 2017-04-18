@@ -4,8 +4,9 @@ const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
 
 router.post('/', authenticate, (req, res) => {
-  const { restaurantName, location, currentUserId } = req.body;
-  db.Restaurant.build({ name: restaurantName, location, UserId: currentUserId }).save()
+  const { restaurantName, location } = req.body;
+  const ownerId = req.currentUser.id;
+  db.Restaurant.build({ name: restaurantName, location: location, owner_id: ownerId }).save()
     .then((x) => { res.json(x.get('id')); })
     .catch((err) => res.status(500).json({ errors: err }));
 });

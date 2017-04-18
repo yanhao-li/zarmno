@@ -83,15 +83,15 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     },
-    {
-      path: '/menu(/:id)',
-      name: 'menu',
-      getComponent(nextState, cb) {
-        import('containers/MenuPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
-      },
-    },
+    // {
+    //   path: '/menu(/:id)',
+    //   name: 'menu',
+    //   getComponent(nextState, cb) {
+    //     import('containers/MenuPage')
+    //       .then(loadModule(cb))
+    //       .catch(errorLoading);
+    //   },
+    // },
     {
       path: '*',
       name: 'notfound',

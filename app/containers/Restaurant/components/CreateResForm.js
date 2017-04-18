@@ -1,5 +1,7 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
+import { registerRes } from '../actions';
+import { browserHistory } from 'react-router';
 
 class CreateResForm extends React.PureComponent{
   constructor(props){
@@ -7,13 +9,26 @@ class CreateResForm extends React.PureComponent{
     this.state = {
       errors: {},
       restaurantName: "",
-      location: ""
+      location: "",
+      isLoading: false
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.setState({errors: {}, isLoading: true});
+    registerRes(this.state).then(() => {
+      this.props.closeModal();
+      this.props.fetchRestaurants();
+    }, (err) => {
+      this.setState({ errors: err.response.data.errors, isLoading: false })
+    });
   }
 
   render(){
@@ -40,6 +55,10 @@ class CreateResForm extends React.PureComponent{
           onChange={this.onChange}
           type="text"
         />
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
+          <button type="button" type="submit" className="btn btn-primary">Submit</button>
+        </div>
       </form>
     );
   };
