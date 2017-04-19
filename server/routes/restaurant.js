@@ -25,4 +25,13 @@ router.get('/', authenticate, (req, res) => {
   }
 })
 
+router.get('/:id', (req, res) => {
+  let restaurantId = req.params.id;
+  db.Restaurant.findOne({where: {id: restaurantId}}).then(
+    function(restaurant){
+      res.status(200).json({restaurant: restaurant});
+    }
+  );
+})
+
 module.exports = router;

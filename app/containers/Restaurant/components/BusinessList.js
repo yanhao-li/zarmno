@@ -3,6 +3,7 @@ import CreateNewResModal from 'react-modal';
 import { getRestaurantsList } from '../actions';
 import ModalStyle from './ModalStyle';
 import CreateResForm from './CreateResForm';
+import { Link } from 'react-router';
 
 class BusinessList extends React.PureComponent{
   constructor(props){
@@ -52,7 +53,7 @@ class BusinessList extends React.PureComponent{
           (
             <ul>
               {this.state.restaurants.map(restaurant =>
-                (<li key={restaurant.id}> <a href="#">{restaurant.name}</a></li>
+                (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id}>{restaurant.name}</Link></li>
                 )
               )}
             </ul>
@@ -62,10 +63,10 @@ class BusinessList extends React.PureComponent{
               <div>
                   <span>You have no restaurants, claim one</span>
               </div>
-              <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
             </div>
           )
         }
+        <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
         <CreateNewResModal
           isOpen = {this.state.modalIsOpen}
           onRequestClose = {this.closeModal}

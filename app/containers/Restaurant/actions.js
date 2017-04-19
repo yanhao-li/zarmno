@@ -7,3 +7,7 @@ export function registerRes(resData) {
 export function getRestaurantsList() {
   return axios.get('/api/restaurant');
 }
+
+export function fetchRestaurantInfo(id){
+  return axios.get('/api/restaurant/' + id);
+}
