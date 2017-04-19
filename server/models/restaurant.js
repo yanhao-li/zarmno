@@ -3,7 +3,8 @@ module.exports = function RestaurantFunc(sequelize, DataTypes) {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true, allowNull: false },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
     location: { type: DataTypes.STRING, allowNull: false },
-    owner_id: { type: DataTypes.INTEGER, allowNull: false }
+    owner_id: { type: DataTypes.INTEGER, allowNull: false, unique: true },
+    info: { type: DataTypes.STRING, allowNull: true }
   }, {
     timestamps: true,
     freezeTableName: true,

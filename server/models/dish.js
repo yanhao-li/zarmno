@@ -9,9 +9,6 @@ module.exports = function DishFunc(sequelize, DataTypes) {
     timestamps: true,
     freezeTableName: true,
     classMethods: {
-      associate(models) {
-        Dish.belongsTo(models.Restaurant);
-      },
     },
   });
   return Dish;

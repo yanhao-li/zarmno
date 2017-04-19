@@ -1,113 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getRestaurantsList } from './actions';
-import Modal from 'react-modal';
-import CreateResForm from './components/CreateResForm';
+import BusinessList from './components/BusinessList';
+import UserList from './components/UserList';
 
-const ModalStyle={
-  overlay : {
-    backgroundColor   : 'rgba(0, 0, 0, 0.75)'
-  },
-  content : {
-    position: 'absolute',
-    top: '40px',
-    left: '40px',
-    right: '40px',
-    border: '1px solid #ccc',
-    background: '#fff',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '4px',
-    outline: 'none',
-    padding: '20px'
-  }
-}
 
 class RestaurantList extends React.PureComponent{
-  constructor(props){
-    super(props);
-    this.state = {
-      modalIsOpen: false,
-      restaurants: [],
-    };
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.fetchRestaurants = this.fetchRestaurants.bind(this);
-  }
-
-  openModal(){
-    this.setState({modalIsOpen: true});
-  }
-
-  closeModal(){
-    this.setState({modalIsOpen: false});
-  }
-
-  fetchRestaurants(){
-    getRestaurantsList().then(
-      res => {
-        this.setState({
-          restaurants: res.data.restaurants
-        })
-      }
-    )
-  }
-
-  componentWillMount(){
-    getRestaurantsList().then(
-      res => {
-        this.setState({
-          restaurants: res.data.restaurants
-        })
-      }
-    )
-  }
 
   render(){
-    let title = (<h1>Restaurantlist</h1>);
     const { user, isAuthenticated } = this.props.auth;
-    if (user.role === 'customer') {
-      title = (<h1>My Favoriate Restaurants</h1>);
-    } else if (user.role === 'business') {
-      title = (<h1>Dashboard</h1>);
-    } else {
-      title = (<h1>Please log in to see the page</h1>)
-    }
 
-    let restaurantsList;
-    if (this.state.restaurants.length > 0) {
-      restaurantsList=(
-        <ul>
-          {this.state.restaurants.map(restaurant =>
-            (<li key={restaurant.id}> <a href="#">{restaurant.name}</a></li>
-            )
-          )}
-        </ul>
-      )
-    } else {
-      restaurantsList=(
-        <div>
-          <span>You have no restaurants, claim one</span>
-          <br />
-        </div>
-      )
-    }
     return(
       <div>
-        { title }
-        { restaurantsList }
-        <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
-        <Modal
-          isOpen = {this.state.modalIsOpen}
-          onRequestClose = {this.closeModal}
-          contentLabel = "Create New Restaurant Label"
-          className="modal-dialog"
-          style={ModalStyle}
-          shouldCloseOnOverlayClick={false}
-        >
-          <CreateResForm closeModal = {this.closeModal} fetchRestaurants = {this.fetchRestaurants}/>
-        </Modal>
+        {user.role == "business" ?
+          ( <BusinessList /> ) : ( <UserList/> )
+        }
       </div>
     )
   }
