@@ -85,9 +85,9 @@ export default function createRoutes(store) {
     },
     {
       path: 'restaurant/:id',
-      name: 'restaurantInfo',
+      name: 'restaurantPage',
       getComponent(nextState, cb) {
-        import('containers/Restaurant/RestaurantInfo')
+        import('containers/Restaurant/RestaurantPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

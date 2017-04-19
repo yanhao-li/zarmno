@@ -1,7 +1,9 @@
 import React from 'react';
 import { fetchRestaurantInfo } from './actions';
+import RestaurantInfo from './components/RestaurantInfo';
+import Menu from './components/Menu';
 
-class RestaurantInfo extends React.PureComponent{
+class RestaurantPage extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
@@ -33,15 +35,13 @@ class RestaurantInfo extends React.PureComponent{
 
   render(){
     const { restaurant } = this.state;
-
     return(
       <div>
-        <h1>{restaurant.name}</h1>
-        <h1>{restaurant.location}</h1>
-        { restaurant.info ? <p>{restaurant.info}</p> : <p>This restaurant hasn't added information yet</p>}
+        <RestaurantInfo restaurant={ restaurant }/>
+        <Menu />
       </div>
     );
   }
 }
 
-export default RestaurantInfo;
+export default RestaurantPage;
