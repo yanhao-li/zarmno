@@ -11,7 +11,8 @@ class RestaurantPage extends React.PureComponent{
         id: this.props.params.id,
         name: "",
         locaiton: "",
-        info: ""
+        info: "",
+        menu: []
       },
       errors: {
 
@@ -26,7 +27,8 @@ class RestaurantPage extends React.PureComponent{
           restaurant:{
             name: res.data.restaurant.name,
             info: res.data.restaurant.info,
-            location: res.data.restaurant.location
+            location: res.data.restaurant.location,
+            menu: res.data.menu
           }
         })
       }
@@ -38,7 +40,7 @@ class RestaurantPage extends React.PureComponent{
     return(
       <div>
         <RestaurantInfo restaurant={ restaurant }/>
-        <Menu />
+        <Menu restaurant={ restaurant }/>
       </div>
     );
   }

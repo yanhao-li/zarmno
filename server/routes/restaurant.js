@@ -27,11 +27,24 @@ router.get('/', authenticate, (req, res) => {
 
 router.get('/:id', (req, res) => {
   let restaurantId = req.params.id;
-  db.Restaurant.findOne({where: {id: restaurantId}}).then(
+  let restaurantInfo;
+  let menu;
+  let FindRestaurantInfo = db.Restaurant.findOne({where: {id: restaurantId}}).then(
     function(restaurant){
-      res.status(200).json({restaurant: restaurant});
+      restaurantInfo = restaurant;
     }
   );
+  let FindDishes = db.Dish.findAll({where: {restaurantId: restaurantId}}).then(
+    function(dishes){
+      menu = dishes;
+    }
+  );
+  Promise.all([FindRestaurantInfo, FindDishes]).then(
+    function(){
+      res.json({restaurant: restaurantInfo, menu: menu});
+    };
+  );
+
 })
 
 module.exports = router;

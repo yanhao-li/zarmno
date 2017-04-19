@@ -5,7 +5,7 @@ class Menu extends React.PureComponent{
     return (
       <div>
         <h3>Menu</h3>
-        
+
       </div>
     );
   }
