@@ -1,10 +1,10 @@
 import React from 'react';
 import { fetchRestaurantInfo } from './actions';
-import RestaurantInfo from './components/RestaurantInfo';
-import Menu from './components/Menu';
+import EditRestaurantInfo from './components/EditRestaurantInfo'
+import EditMenu from './components/EditMenu';
 import { Link } from 'react-router';
 
-class RestaurantPage extends React.PureComponent{
+class RestaurantEdit extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
@@ -15,10 +15,8 @@ class RestaurantPage extends React.PureComponent{
         info: "",
         menu: []
       },
-      errors: {
-
-      }
-    }
+      errors: {},
+    };
   }
 
   componentWillMount(){
@@ -42,12 +40,11 @@ class RestaurantPage extends React.PureComponent{
     const { restaurant } = this.state;
     return(
       <div>
-        <RestaurantInfo restaurant={ restaurant }/>
-        <Menu restaurant={ restaurant }/>
-        <Link to={"/restaurant/" + restaurant.id + "/edit"} className="btn btn-secondary">Edit</Link>
+        <EditRestaurantInfo restaurant={ restaurant }/>
+        <EditMenu restaurant={ restaurant }/>
       </div>
     );
   }
 }
 
-export default RestaurantPage;
+export default RestaurantEdit;

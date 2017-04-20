@@ -47,4 +47,16 @@ router.get('/:id', (req, res) => {
 
 })
 
+router.put('/:id', (req,res) => {
+  let restaurantId = req.params.id;
+  let {fieldName, formValue} = req.body
+  db.Restaurant.findById(restaurantId).then(
+    function(restaurant){
+      restaurant.update({
+        [fieldName]: formValue
+      }).then(() => res.json({success: true}));
+    }
+  );
+})
+
 module.exports = router;

@@ -11,3 +11,7 @@ export function getRestaurantsList() {
 export function fetchRestaurantInfo(id){
   return axios.get('/api/restaurant/' + id);
 }
+
+export function updateResInfo(id, data){
+  return axios.put('/api/restaurant/' + id, data);
+}
