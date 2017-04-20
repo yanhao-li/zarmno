@@ -29,20 +29,20 @@ router.get('/:id', (req, res) => {
   let restaurantId = req.params.id;
   let restaurantInfo;
   let menu;
-  let FindRestaurantInfo = db.Restaurant.findOne({where: {id: restaurantId}}).then(
+  let fetchRestaurantInfo = db.Restaurant.findOne({where: {id: restaurantId}}).then(
     function(restaurant){
       restaurantInfo = restaurant;
     }
   );
-  let FindDishes = db.Dish.findAll({where: {restaurantId: restaurantId}}).then(
+  let fetchDishes = db.Dish.findAll({where: {restaurantId: restaurantId}}).then(
     function(dishes){
       menu = dishes;
     }
   );
-  Promise.all([FindRestaurantInfo, FindDishes]).then(
+  Promise.all([fetchRestaurantInfo, fetchDishes]).then(
     function(){
       res.json({restaurant: restaurantInfo, menu: menu});
-    };
+    }
   );
 
 })
