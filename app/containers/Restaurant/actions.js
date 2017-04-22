@@ -5,7 +5,11 @@ export function registerRes(resData) {
 }
 
 export function getRestaurantsList() {
-  return axios.get('/api/restaurant');
+  return axios.get('/api/restaurant').then(
+    res => {
+      dispatch(setRestaurantList(res.data.restaurants));
+    }
+  )
 }
 
 export function fetchRestaurantInfo(id){

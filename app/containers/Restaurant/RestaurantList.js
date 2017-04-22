@@ -19,9 +19,10 @@ class RestaurantList extends React.PureComponent{
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
+  console.log(state);
   return{
-    auth: state.get('auth')
+    auth: state.get('auth'),
   }
 };
 

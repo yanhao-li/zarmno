@@ -4,37 +4,22 @@ import { getRestaurantsList } from '../actions';
 import ModalStyle from './ModalStyle';
 import CreateResForm from './CreateResForm';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 class BusinessList extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
       modalIsOpen: false,
-      restaurants: [],
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.fetchRestaurants = this.fetchRestaurants.bind(this);
   };
 
-  fetchRestaurants(){
-    getRestaurantsList().then(
-      res => {
-        this.setState({
-          restaurants: res.data.restaurants
-        })
-      }
-    )
-  }
-
+  const restaurants = this.props.restaurantList
   componentWillMount(){
-    getRestaurantsList().then(
-      res => {
-        this.setState({
-          restaurants: res.data.restaurants
-        })
-      }
-    )
+    this.props.getRestaurantsList().then()
+
   }
 
   openModal(){
@@ -75,11 +60,23 @@ class BusinessList extends React.PureComponent{
           style={ModalStyle}
           shouldCloseOnOverlayClick={false}
         >
-          <CreateResForm closeModal = {this.closeModal} fetchRestaurants = {this.fetchRestaurants}/>
+          <CreateResForm closeModal = {this.closeModal}/>
         </CreateNewResModal>
       </div>
     );
   }
 }
 
-export default BusinessList
+const mapStateToProps = (state) => {
+  return {
+    restaurantList: state.get('restaurantList'),
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps)(BusinessList);
