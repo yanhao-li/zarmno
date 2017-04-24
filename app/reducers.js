@@ -39,6 +39,17 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
+function isLoading(state = false, action) {
+  switch (action.type) {
+    case 'REQUEST_DATA':
+      return true;
+    case 'RECEIVE_DATA':
+      return false;
+    default:
+    return state;
+  }
+}
+
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
@@ -49,6 +60,7 @@ export default function createReducer(asyncReducers) {
     auth: authReducer,
     currentRes: currentRes,
     restaurantList: restaurantList,
+    isLoading: isLoading,
     ...asyncReducers,
   });
 }

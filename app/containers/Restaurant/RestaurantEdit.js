@@ -3,41 +3,12 @@ import { fetchRestaurantInfo } from './actions';
 import EditRestaurantInfo from './components/EditRestaurantInfo'
 import EditMenu from './components/EditMenu';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 class RestaurantEdit extends React.PureComponent{
-  constructor(props){
-    super(props);
-    this.state = {
-      restaurant: {
-        id: this.props.params.id,
-        name: "",
-        locaiton: "",
-        info: "",
-        menu: []
-      },
-      errors: {},
-    };
-  }
-
-  componentWillMount(){
-    fetchRestaurantInfo(this.state.restaurant.id).then(
-      (res) => {
-        this.setState({
-          ...this.state,
-          restaurant:{
-            ...this.state.restaurant,
-            name: res.data.restaurant.name,
-            info: res.data.restaurant.info,
-            location: res.data.restaurant.location,
-            menu: res.data.menu
-          },
-        })
-      }
-    )
-  }
 
   render(){
-    const { restaurant } = this.state;
+    const { restaurant } = this.props.currentRes;
     return(
       <div>
         <EditRestaurantInfo restaurant={ restaurant }/>
@@ -47,4 +18,10 @@ class RestaurantEdit extends React.PureComponent{
   }
 }
 
-export default RestaurantEdit;
+const mapStateToProps = (state) => {
+  return {
+      currentRes: state.get('currentRes'),
+  }
+}
+
+export default connect(mapStateToProps)(RestaurantEdit);

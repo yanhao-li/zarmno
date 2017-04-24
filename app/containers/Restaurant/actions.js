@@ -1,38 +1,50 @@
 import axios from 'axios';
 
-export function setRestaurantList(restaurantList){
+export const setRestaurantList = (restaurantList) => {
   return {
     type: 'SET_RES_LIST',
     restaurantList
   };
 }
 
-export function addRestaurant(restaurant){
+export const addRestaurant = (restaurant) => {
   return {
     type: 'ADD_RESTAURANT',
     restaurant
   };
 }
 
-export function setCurrentRes(restaurant){
+export const setCurrentRes = (restaurant) => {
   return {
     type: 'SET_CURRENT_RES',
     restaurant
   }
 }
 
-export function registerRes(resData) {
-  return axios.post('/api/restaurant', resData);
-}
+export const registerRes = (resData) => (dispatch) =>
+  axios.post('/api/restaurant', resData).then(
+    res => {
+      dispatch(addRestaurant(res.data.restaurant))
+    }
+  );
 
-export function getRestaurantsList() {
-  return axios.get('/api/restaurant');
-}
 
-export function fetchRestaurantInfo(id){
-  return axios.get('/api/restaurant/' + id);
-}
+export const getRestaurantsList = () => (dispatch) =>
+  axios.get('/api/restaurant').then(
+    res => {
+      dispatch(setRestaurantList(res.data.restaurants));
+    }
+  );
 
-export function updateResInfo(id, data){
+
+export const fetchRestaurantInfo = (id) => (dispatch) =>
+  axios.get('/api/restaurant/' + id).then(
+    res => {
+      dispatch(setCurrentRes(res.data.restaurant));
+    }
+  );
+
+
+export const updateResInfo = (id, data) => {
   return axios.put('/api/restaurant/' + id, data);
 }

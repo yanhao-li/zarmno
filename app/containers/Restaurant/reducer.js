@@ -1,4 +1,14 @@
-export const currentRes = (state = {restaurant: undefined}, action) => {
+const initResInfo = {
+  restaurant:{
+    info: {
+      id: '',
+      name: ''
+    },
+    menu: []
+  }
+}
+
+export const currentRes = (state = initResInfo, action) => {
   switch (action.type) {
     case 'SET_CURRENT_RES':
       return {

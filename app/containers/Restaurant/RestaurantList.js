@@ -2,13 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import BusinessList from './components/BusinessList';
 import UserList from './components/UserList';
-import { getRestaurantsList, setRestaurantList } from './actions';
+import { getRestaurantsList } from './actions';
 
 
 class RestaurantList extends React.PureComponent{
 
-  componentWillMount(){
-      this.props.getRestaurantsList;
+  componentDidMount(){
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.props.getRestaurantsList();
   }
 
   render(){
@@ -27,18 +31,7 @@ class RestaurantList extends React.PureComponent{
 const mapStateToProps = (state) => {
   return{
     auth: state.get('auth'),
-    restaurantList: state.get('restaurantList')
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getRestaurantsList: getRestaurantsList().then(
-      res => {
-        dispatch(setRestaurantList(res.data.restaurants));
-      }
-    )
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantList);
+export default connect(mapStateToProps, { getRestaurantsList })(RestaurantList);

@@ -12,7 +12,7 @@ class Menu extends React.PureComponent{
       <div>
         <h3>Menu</h3>
         <ul>
-          {menu.map(dish => 
+          {menu.map(dish =>
             (<li key={dish.id}><Link>{dish.name}</Link></li>)
           )}
         </ul>

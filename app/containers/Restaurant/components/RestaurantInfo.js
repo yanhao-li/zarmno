@@ -2,7 +2,7 @@ import React from 'react';
 
 class RestaurantInfo extends React.PureComponent{
   render(){
-    const restaurant = this.props.restaurant;
+    const restaurant = this.props.restaurant.info;
     return(
       <div>
         <h1>{restaurant.name}</h1>

@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
-import { registerRes, addRestaurant } from '../actions';
+import { registerRes } from '../actions';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -8,17 +8,11 @@ class CreateResForm extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
-      errors: {
-        restaurant: {
-          name: '',
-          location: ''
-        },
-      },
+      errors: "",
       restaurant: {
         name: '',
         location: ''
-      },
-      isLoading: false
+      }
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,26 +27,21 @@ class CreateResForm extends React.PureComponent{
 
   onSubmit(e) {
     e.preventDefault();
-    this.setState({errors: {restaurant: {}}, isLoading: true});
-    registerRes(this.state.restaurant).then((res) => {
-      this.props.onAddNewRes(res.data.restaurant);
-      this.props.closeModal();
-    }, (err) => {
-      this.setState({ errors: err.response.data.errors, isLoading: false })
-    });
+    this.props.registerRes(this.state.restaurant).then(
+      () => this.props.closeModal()
+    );
   }
 
   render(){
-    const { errors, restaurant, isLoading } = this.state;
+    const {errors, restaurant} = this.state;
     return(
       <form onSubmit={this.onSubmit}>
-        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
         <TextFieldGroup
           className="form-group"
           name="name"
           label="Restaurant Name"
           value={restaurant.name}
-          error={errors.restaurant.name}
+          error={errors}
           onChange={this.onChange}
           type="text"
         />
@@ -61,7 +50,7 @@ class CreateResForm extends React.PureComponent{
           name="location"
           label="Location"
           value={restaurant.location}
-          error={errors.restaurant.location}
+          error={errors}
           onChange={this.onChange}
           type="text"
         />
@@ -74,12 +63,5 @@ class CreateResForm extends React.PureComponent{
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddNewRes: (restaurant) => {
-      dispatch(addRestaurant(restaurant));
-    }
-  }
-}
 
-export default connect(null, mapDispatchToProps)(CreateResForm);
+export default connect(null, { registerRes })(CreateResForm);

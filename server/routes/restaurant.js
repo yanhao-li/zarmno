@@ -41,7 +41,10 @@ router.get('/:id', (req, res) => {
   );
   Promise.all([fetchRestaurantInfo, fetchDishes]).then(
     function(){
-      res.json({restaurant: restaurantInfo, menu: menu});
+      res.json({restaurant:{
+        info: restaurantInfo,
+        menu: menu
+      }});
     }
   );
 

@@ -6,38 +6,22 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 class RestaurantPage extends React.PureComponent{
-  constructor(props){
-    super(props);
-    this.state = {
-      restaurant: this.props.currentRes,
-      errors: {}
-    }
+
+  componentDidMount(){
+    this.fetchData()
   }
 
-  componentWillMount(){
-    fetchRestaurantInfo(this.state.restaurant.id).then(
-      (res) => {
-        this.setState({
-          ...this.state,
-          restaurant:{
-            ...this.state.restaurant,
-            name: res.data.restaurant.name,
-            info: res.data.restaurant.info,
-            location: res.data.restaurant.location,
-            menu: res.data.menu
-          },
-        })
-      }
-    )
+  fetchData() {
+    this.props.fetchRestaurantInfo(this.props.params.id);
   }
 
   render(){
-    const { restaurant } = this.state;
+    let { restaurant } = this.props.currentRes;
     return(
       <div>
         <RestaurantInfo restaurant={ restaurant }/>
         <Menu restaurant={ restaurant }/>
-        <Link to={"/restaurant/" + restaurant.id + "/edit"} className="btn btn-secondary">Edit</Link>
+        <Link to={"/restaurant/" + restaurant.info.id + "/edit"} className="btn btn-secondary">Edit</Link>
       </div>
     );
   }
@@ -49,4 +33,13 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(RestaurantPage);
+const mapDispatchToPros = (dispatch) => {
+  return{
+    setCurrentRes: (restaurant) => {
+      dispatch(setCurrentRes(restaurant));
+    },
+
+  };
+}
+
+export default connect(mapStateToProps, {fetchRestaurantInfo})(RestaurantPage);
