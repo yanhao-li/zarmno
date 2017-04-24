@@ -4,6 +4,7 @@ import { getRestaurantsList } from '../actions';
 import ModalStyle from './ModalStyle';
 import CreateResForm from './CreateResForm';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 class BusinessList extends React.PureComponent{
   constructor(props){
@@ -15,10 +16,6 @@ class BusinessList extends React.PureComponent{
     this.closeModal = this.closeModal.bind(this);
   };
 
-  componentWillMount(){
-    this.props.getRestaurantsList().then()
-  }
-
   openModal(){
     this.setState({modalIsOpen: true});
   }
@@ -28,13 +25,14 @@ class BusinessList extends React.PureComponent{
   }
 
   render(){
+    const restaurants = this.props.restaurantList;
     return(
       <div>
         <h1>Dashboard</h1>
-        { this.state.restaurants.length > 0 ?
+        { restaurants.length > 0 ?
           (
             <ul>
-              {this.state.restaurants.map(restaurant =>
+              {restaurants.map(restaurant =>
                 (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id}>{restaurant.name}</Link></li>
                 )
               )}
@@ -64,4 +62,11 @@ class BusinessList extends React.PureComponent{
   }
 }
 
-export default BusinessList;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.get('auth'),
+    restaurantList: state.get('restaurantList')
+  }
+};
+
+export default connect(mapStateToProps)(BusinessList);

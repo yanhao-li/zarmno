@@ -12,13 +12,7 @@ export function registerRes(resData) {
 }
 
 export function getRestaurantsList() {
-  return axios.get('/api/restaurant').then(
-    (dispatch) => {
-      res => {
-        
-      }
-    }
-  )
+  return axios.get('/api/restaurant');
 }
 
 export function fetchRestaurantInfo(id){

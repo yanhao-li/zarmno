@@ -11,6 +11,8 @@ export const currentRes = (state = {restaurant: undefined}, action) => {
 
 export const restaurantList = (state = [], action) => {
   switch (action.type) {
+    case 'SET_RES_LIST':
+      return action.restaurantList;
     case 'ADD_RESTAURANT':
       return [
         ...state,
