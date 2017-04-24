@@ -7,6 +7,14 @@ import { connect } from 'react-redux';
 
 class RestaurantEdit extends React.PureComponent{
 
+  componentDidMount(){
+    this.fetchData();
+  }
+
+  fetchData(){
+    this.props.fetchRestaurantInfo(this.props.params.id);
+  }
+
   render(){
     const { restaurant } = this.props.currentRes;
     return(
@@ -24,4 +32,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(RestaurantEdit);
+export default connect(mapStateToProps, {fetchRestaurantInfo})(RestaurantEdit);

@@ -57,7 +57,7 @@ router.put('/:id', (req,res) => {
     function(restaurant){
       restaurant.update({
         [fieldName]: formValue
-      }).then(() => res.json({success: true}));
+      }).then((restaurant) => res.status(200).json({restaurant: restaurant}));
     }
   );
 })

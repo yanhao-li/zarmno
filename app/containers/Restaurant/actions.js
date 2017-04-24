@@ -45,6 +45,9 @@ export const fetchRestaurantInfo = (id) => (dispatch) =>
   );
 
 
-export const updateResInfo = (id, data) => {
-  return axios.put('/api/restaurant/' + id, data);
-}
+export const updateResInfo = (id, data) => (dispatch) =>
+  axios.put('/api/restaurant/' + id, data).then(
+    res => {
+      dispatch(setCurrentRes(res.data.restaurant));
+    }
+  );

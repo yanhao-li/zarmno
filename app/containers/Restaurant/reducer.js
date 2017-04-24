@@ -12,7 +12,10 @@ export const currentRes = (state = initResInfo, action) => {
   switch (action.type) {
     case 'SET_CURRENT_RES':
       return {
-        restaurant: action.restaurant,
+        restaurant: {
+          ...state.restaurant,
+          info: action.restaurant.info
+        }
       };
     default:
       return state;
