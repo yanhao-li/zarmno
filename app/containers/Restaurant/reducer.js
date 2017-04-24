@@ -16,6 +16,7 @@ export const restaurantList = (state = [], action) => {
     case 'ADD_RESTAURANT':
       return [
         ...state,
+        action.restaurant
       ];
     default: return state;
   }

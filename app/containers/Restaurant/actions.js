@@ -4,7 +4,14 @@ export function setRestaurantList(restaurantList){
   return {
     type: 'SET_RES_LIST',
     restaurantList
-  }
+  };
+}
+
+export function addRestaurant(restaurant){
+  return {
+    type: 'ADD_RESTAURANT',
+    restaurant
+  };
 }
 
 export function registerRes(resData) {
