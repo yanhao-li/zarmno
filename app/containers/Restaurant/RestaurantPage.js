@@ -3,21 +3,14 @@ import { fetchRestaurantInfo } from './actions';
 import RestaurantInfo from './components/RestaurantInfo';
 import Menu from './components/Menu';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 class RestaurantPage extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
-      restaurant: {
-        id: this.props.params.id,
-        name: "",
-        locaiton: "",
-        info: "",
-        menu: []
-      },
-      errors: {
-
-      }
+      restaurant: this.props.currentRes,
+      errors: {}
     }
   }
 
@@ -50,4 +43,10 @@ class RestaurantPage extends React.PureComponent{
   }
 }
 
-export default RestaurantPage;
+const mapStateToProps = (state) => {
+  return {
+    currentRes: state.get('currentRes'),
+  };
+}
+
+export default connect(mapStateToProps)(RestaurantPage);

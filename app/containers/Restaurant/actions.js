@@ -14,6 +14,13 @@ export function addRestaurant(restaurant){
   };
 }
 
+export function setCurrentRes(restaurant){
+  return {
+    type: 'SET_CURRENT_RES',
+    restaurant
+  }
+}
+
 export function registerRes(resData) {
   return axios.post('/api/restaurant', resData);
 }

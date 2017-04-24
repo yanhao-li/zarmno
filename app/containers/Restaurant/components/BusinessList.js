@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateNewResModal from 'react-modal';
-import { getRestaurantsList } from '../actions';
+import { getRestaurantsList, setCurrentRes } from '../actions';
 import ModalStyle from './ModalStyle';
 import CreateResForm from './CreateResForm';
 import { Link } from 'react-router';
@@ -33,7 +33,7 @@ class BusinessList extends React.PureComponent{
           (
             <ul>
               {restaurants.map(restaurant =>
-                (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id}>{restaurant.name}</Link></li>
+                (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} onClick={() => this.props.onClickLink(restaurant)}>{restaurant.name}</Link></li>
                 )
               )}
             </ul>
@@ -69,4 +69,12 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(BusinessList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClickLink: (restaurant) => {
+      dispatch(setCurrentRes(restaurant));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BusinessList);
