@@ -1,13 +1,22 @@
 import axios from 'axios';
 
+export function setRestaurantList(restaurantList){
+  return {
+    type: 'SET_RES_LIST',
+    restaurantList
+  }
+}
+
 export function registerRes(resData) {
   return axios.post('/api/restaurant', resData);
 }
 
 export function getRestaurantsList() {
   return axios.get('/api/restaurant').then(
-    res => {
-      dispatch(setRestaurantList(res.data.restaurants));
+    (dispatch) => {
+      res => {
+        
+      }
     }
   )
 }
