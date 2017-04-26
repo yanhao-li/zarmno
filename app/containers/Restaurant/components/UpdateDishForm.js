@@ -4,11 +4,12 @@ import TextFieldGroup from 'components/TextFieldGroup';
 class UpdateDishModal extends React.PureComponent{
   constructor(props){
     super(props);
+    const dish = this.props.dishEditing;
     this.state = {
       errors: "",
       dish: {
-        name: '',
-        info: '',
+        name: dish.name,
+        description: dish.description,
         img: ''
       }
     };
@@ -44,9 +45,9 @@ class UpdateDishModal extends React.PureComponent{
         />
         <TextFieldGroup
           className="form-group"
-          name="info"
-          label="Info"
-          value={dish.info}
+          name="Description"
+          label="Dish description"
+          value={dish.description}
           error={errors}
           onChange={this.onChange}
           type="text"

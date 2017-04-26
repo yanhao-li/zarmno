@@ -9,18 +9,24 @@ class EditMenu extends React.PureComponent{
   constructor(props) {
     super(props);
     this.state = {
+      dishEditing: undefined,
       modalIsOpen: false,
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   };
 
-  openModal(){
-    this.setState({modalIsOpen: true});
+  openModal(dish){
+    this.setState({
+      dishEditing: dish,
+      modalIsOpen: true
+    });
   }
 
   closeModal(){
-    this.setState({modalIsOpen: false});
+    this.setState({
+      modalIsOpen: false
+    });
   }
 
   render(){
@@ -30,7 +36,7 @@ class EditMenu extends React.PureComponent{
         <h3>Menu</h3>
         <ul>
           {menu.map(dish =>
-            (<MenuItem  key={dish.id} dish={dish} openModal={this.openModal}/>)
+            (<MenuItem  key={dish.id} dish={dish} openModal={this.openModal.bind(this, dish)}/>)
           )}
         </ul>
         <UpdateDishModal
@@ -41,7 +47,7 @@ class EditMenu extends React.PureComponent{
           style={ModalStyle}
           shouldCloseOnOverlayClick={false}
         >
-          <UpdateDishForm closeModal={this.closeModal} />
+          <UpdateDishForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />
         </UpdateDishModal>
       </div>
     );
