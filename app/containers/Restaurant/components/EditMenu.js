@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import MenuItem from './MenuItem';
 import ModalStyle from './ModalStyle';
 import UpdateDishModal from 'react-modal';
+import UpdateDishForm from './UpdateDishForm';
 
 class EditMenu extends React.PureComponent{
   constructor(props) {
@@ -40,7 +41,7 @@ class EditMenu extends React.PureComponent{
           style={ModalStyle}
           shouldCloseOnOverlayClick={false}
         >
-
+          <UpdateDishForm closeModal={this.closeModal} />
         </UpdateDishModal>
       </div>
     );

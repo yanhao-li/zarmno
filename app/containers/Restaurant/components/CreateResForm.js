@@ -1,7 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { registerRes } from '../actions';
-import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 
 class CreateResForm extends React.PureComponent{
