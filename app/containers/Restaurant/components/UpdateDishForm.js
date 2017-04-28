@@ -1,20 +1,23 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
+import { updateDish } from '../actions';
+import { connect } from 'react-redux';
 
-class UpdateDishModal extends React.PureComponent{
+class UpdateDishForm extends React.PureComponent{
   constructor(props){
     super(props);
     const dish = this.props.dishEditing;
     this.state = {
       errors: "",
       dish: {
+        id: dish.id,
         name: dish.name,
         description: dish.description,
         img: ''
       }
     };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.saveChanges = this.saveChanges.bind(this);
   }
 
   onChange(e) {
@@ -24,16 +27,18 @@ class UpdateDishModal extends React.PureComponent{
     }});
   }
 
-  onSubmit(e) {
+  saveChanges(e){
+    const { dish } = this.state;
     e.preventDefault();
-    this.props.registerRes(this.state.restaurant).then(
-      () => this.props.closeModal()
+    this.props.updateDish(dish).then(
+      this.props.closeModal
     );
   }
+
   render(){
     const { dish, errors } = this.state;
     return(
-      <form onSubmit={this.onSubmit}>
+      <form>
         <TextFieldGroup
           className="form-group"
           name="name"
@@ -55,11 +60,11 @@ class UpdateDishModal extends React.PureComponent{
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
           <button type="button" className="btn btn-danger" onClick={this.props.closeModal}>Delete</button>
-          <button type="button" type="submit" className="btn btn-primary">Submit</button>
+          <button type="button" type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
         </div>
       </form>
     )
   }
 };
 
-export default UpdateDishModal;
+export default connect(null, { updateDish })(UpdateDishForm);

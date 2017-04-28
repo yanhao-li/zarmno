@@ -11,7 +11,7 @@ const resolve = require('path').resolve;
 const user = require('./routes/user');
 const session = require('./routes/session');
 const restaurant = require('./routes/restaurant');
-const dishes = require('./routes/dishes');
+const dish = require('./routes/dish');
 const models = require('./models');
 
 
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use('/api/session', session);
 app.use('/api/user', user);
 app.use('/api/restaurant', restaurant);
-app.use('/api/dishes', dishes);
+app.use('/api/dish', dish);
 
 
 // In production we need to pass these values in instead of relying on webpack
