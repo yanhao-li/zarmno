@@ -15,15 +15,19 @@ export const currentRes = (state = initResInfo, action) => {
         restaurant: action.restaurant
       };
     case 'UPDATE_DISH':
-      let newRes = state
-      newRes.restaurant.menu.map(dish => {
+      let newMenu = state.restaurant.menu.map(dish => {
         if (dish.id == action.dish.id) {
           dish = action.dish
         }
+        return dish
       }
       );
-      console.log(newRes);
-      return newRes;
+      return {
+        restaurant: {
+          ...state.restaurant,
+          menu: newMenu
+        }
+      };
     default:
       return state;
   }
