@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-  console.log(req.body)
   const { id, name, description, img  } = req.body;
   db.Dish.findById(id).then(
     function(dish){
