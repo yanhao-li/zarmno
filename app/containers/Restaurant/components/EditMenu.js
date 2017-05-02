@@ -5,7 +5,6 @@ import ModalStyle from './ModalStyle';
 import Modal from 'react-modal';
 import UpdateDishForm from './UpdateDishForm';
 import AddDishForm from './AddDishForm';
-import { addDish } from '../actions';
 import { connect } from 'react-redux';
 
 class EditMenu extends React.PureComponent{
@@ -14,10 +13,12 @@ class EditMenu extends React.PureComponent{
     this.state = {
       dishEditing: undefined,
       modalIsOpen: false,
+      modalForm: 'add'
     }
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.setDishEditing = this.setDishEditing.bind(this);
+    this.onAddDishBtnClick = this.onAddDishBtnClick.bind(this);
   };
 
   openModal(){
@@ -32,9 +33,17 @@ class EditMenu extends React.PureComponent{
     });
   }
 
+  onAddDishBtnClick(){
+    this.openModal();
+    this.setState({
+      modalForm: 'add'
+    });
+  }
+
   setDishEditing(dish){
     this.setState({
-      dishEditing: dish
+      dishEditing: dish,
+      modalForm: 'edit'
     });
   }
 
@@ -48,7 +57,7 @@ class EditMenu extends React.PureComponent{
           {menu.map(dish =>
             (<MenuItem  key={dish.id} dish={dish} openModal={this.openModal} setDishEditing={this.setDishEditing}/>)
           )}
-          <button type="button" className="btn btn-primary btn-sm" onClick={this.props.addDish}>Add Dish</button>
+          <button type="button" className="btn btn-primary btn-sm" onClick={this.onAddDishBtnClick}>Add Dish</button>
         </ul>
         <Modal
           isOpen = {this.state.modalIsOpen}
@@ -58,11 +67,15 @@ class EditMenu extends React.PureComponent{
           style={ModalStyle}
           shouldCloseOnOverlayClick={false}
         >
-          <UpdateDishForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />
+          { this.state.modalForm === 'edit' ?
+           (<UpdateDishForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />)
+           :
+           (<AddDishForm closeModal={this.closeModal} />)
+          }
         </Modal>
       </div>
     );
   }
 }
 
-export default connect(null, { addDish })(EditMenu);
+export default EditMenu;

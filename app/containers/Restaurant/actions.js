@@ -28,6 +28,13 @@ export const updateDishView = (dish) => {
   }
 };
 
+export const addDishView = (dish) => {
+  return {
+    type: 'ADD_DISH',
+    dish
+  }
+};
+
 export const registerRes = (resData) => (dispatch) =>
   axios.post('/api/restaurant', resData).then(
     res => {
@@ -66,6 +73,6 @@ export const updateDish = (dish) => (dispatch) =>
 export const addDish = (dish) => (dispatch) =>
   axios.post('/api/dish', dish).then(
     res => {
-      dispatch();
+      dispatch(addDishView(res.data.dish));
     }
   )

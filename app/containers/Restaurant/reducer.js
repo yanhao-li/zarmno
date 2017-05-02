@@ -14,6 +14,7 @@ export const currentRes = (state = initResInfo, action) => {
       return {
         restaurant: action.restaurant
       };
+
     case 'UPDATE_DISH':
       let newMenu = state.restaurant.menu.map(dish => {
         if (dish.id == action.dish.id) {
@@ -28,6 +29,18 @@ export const currentRes = (state = initResInfo, action) => {
           menu: newMenu
         }
       };
+
+    case 'ADD_DISH':
+      return {
+        restaurant: {
+          ...state.restaurant,
+          menu: [
+            ...state.restaurant.menu,
+            action.dish
+          ]
+        }
+      };
+
     default:
       return state;
   }
