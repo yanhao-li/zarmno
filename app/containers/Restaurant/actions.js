@@ -62,3 +62,10 @@ export const updateDish = (dish) => (dispatch) =>
       dispatch(updateDishView(res.data.dish));
     }
   );
+
+export const addDish = (dish) => (dispatch) =>
+  axios.post('/api/dish', dish).then(
+    res => {
+      dispatch();
+    }
+  )
