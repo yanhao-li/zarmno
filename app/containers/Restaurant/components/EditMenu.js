@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import MenuItem from './MenuItem';
 import ModalStyle from './ModalStyle';
 import Modal from 'react-modal';

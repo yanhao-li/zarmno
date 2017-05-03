@@ -21,6 +21,7 @@ class RestaurantEdit extends React.PureComponent{
       <div>
         <EditRestaurantInfo restaurant={ restaurant }/>
         <EditMenu restaurant={ restaurant }/>
+        <Link to={'/restaurant/' + restaurant.info.id}><button className="btn btn-secondary btn-sm">Go back</button></Link>
       </div>
     );
   }
