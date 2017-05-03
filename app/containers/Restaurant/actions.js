@@ -35,6 +35,13 @@ export const addDishView = (dish) => {
   }
 };
 
+export const deleteDishView = (dish) => {
+  return {
+    type: 'DELETE_DISH',
+    dish
+  }
+};
+
 export const registerRes = (resData) => (dispatch) =>
   axios.post('/api/restaurant', resData).then(
     res => {
@@ -64,7 +71,7 @@ export const updateResInfo = (id, data) => (dispatch) =>
   );
 
 export const updateDish = (dish) => (dispatch) =>
-  axios.put('/api/dish', dish).then(
+  axios.put('/api/dish/' + dish.id, dish).then(
     res => {
       dispatch(updateDishView(res.data.dish));
     }
@@ -74,5 +81,12 @@ export const addDish = (dish) => (dispatch) =>
   axios.post('/api/dish', dish).then(
     res => {
       dispatch(addDishView(res.data.dish));
+    }
+  )
+
+export const deleteDish = (dish) => (dispatch) =>
+  axios.delete('/api/dish/' + dish.id).then(
+    res => {
+      dispatch(deleteDishView(dish));
     }
   )

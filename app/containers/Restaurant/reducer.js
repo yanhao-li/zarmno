@@ -16,17 +16,16 @@ export const currentRes = (state = initResInfo, action) => {
       };
 
     case 'UPDATE_DISH':
-      let newMenu = state.restaurant.menu.map(dish => {
-        if (dish.id == action.dish.id) {
-          dish = action.dish
-        }
-        return dish
-      }
-      );
       return {
         restaurant: {
           ...state.restaurant,
-          menu: newMenu
+          menu:
+            state.restaurant.menu.map(dish => {
+              if (dish.id == action.dish.id) {
+                dish = action.dish
+              }
+              return dish
+            }) 
         }
       };
 
@@ -38,6 +37,17 @@ export const currentRes = (state = initResInfo, action) => {
             ...state.restaurant.menu,
             action.dish
           ]
+        }
+      };
+
+    case 'DELETE_DISH':
+      return {
+        restaurant: {
+          ...state.restaurant,
+          menu:
+            state.restaurant.menu.filter(dish => {
+              return dish.id !== action.dish.id
+            })
         }
       };
 

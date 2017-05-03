@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
-import { updateDish } from '../actions';
+import { updateDish, deleteDish } from '../actions';
 import { connect } from 'react-redux';
 
 class UpdateDishForm extends React.PureComponent{
@@ -18,6 +18,15 @@ class UpdateDishForm extends React.PureComponent{
     };
     this.onChange = this.onChange.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
+    this.deleteDish = this.deleteDish.bind(this);
+  }
+
+  deleteDish(e) {
+    const { dish } = this.state;
+    e.preventDefault();
+    this.props.deleteDish(dish).then(
+      this.props.closeModal
+    );
   }
 
   onChange(e) {
@@ -59,7 +68,7 @@ class UpdateDishForm extends React.PureComponent{
         />
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
-          <button type="button" className="btn btn-danger" onClick={this.props.closeModal}>Delete</button>
+          <button type="button" className="btn btn-danger" onClick={this.deleteDish}>Delete</button>
           <button type="button" type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
         </div>
       </form>
@@ -67,4 +76,4 @@ class UpdateDishForm extends React.PureComponent{
   }
 };
 
-export default connect(null, { updateDish })(UpdateDishForm);
+export default connect(null, { updateDish, deleteDish })(UpdateDishForm);
