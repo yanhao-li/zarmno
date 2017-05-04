@@ -21,6 +21,13 @@ export const setCurrentRes = (restaurant) => {
   }
 };
 
+export const updateResInfoView = (restaurant) => {
+  return {
+    type: 'UPDATE_RES_INFO',
+    restaurant
+  }
+};
+
 export const updateDishView = (dish) => {
   return {
     type: 'UPDATE_DISH',
@@ -66,7 +73,7 @@ export const fetchRestaurantInfo = (id) => (dispatch) =>
 export const updateResInfo = (id, data) => (dispatch) =>
   axios.put('/api/restaurant/' + id, data).then(
     res => {
-      dispatch(setCurrentRes(res.data.restaurant));
+      dispatch(updateResInfoView(res.data.restaurant));
     }
   );
 

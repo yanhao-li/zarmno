@@ -15,6 +15,14 @@ export const currentRes = (state = initResInfo, action) => {
         restaurant: action.restaurant
       };
 
+    case 'UPDATE_RES_INFO':
+      return {
+        restaurant: {
+          ...state.restaurant,
+          info: action.restaurant
+        }
+      };
+
     case 'UPDATE_DISH':
       return {
         restaurant: {
@@ -25,7 +33,7 @@ export const currentRes = (state = initResInfo, action) => {
                 dish = action.dish
               }
               return dish
-            }) 
+            })
         }
       };
 
