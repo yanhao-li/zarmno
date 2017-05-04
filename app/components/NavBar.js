@@ -62,7 +62,7 @@ class NavBar extends React.PureComponent {
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <Link className="navbar-brand" to="/">Test</Link>
+        <Link className="navbar-brand" to="/">Menu Plus</Link>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           {link}
         </div>

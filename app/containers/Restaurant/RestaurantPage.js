@@ -9,6 +9,7 @@ class RestaurantPage extends React.PureComponent{
 
   componentDidMount(){
     this.fetchData()
+    document.title = "Restaurant Information"
   }
 
   fetchData() {
