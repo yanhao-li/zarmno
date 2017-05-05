@@ -10,10 +10,7 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
-
-import messages from './messages';
 
 const NotFoundHeader = styled.h1`
     position: relative;
@@ -27,7 +24,7 @@ export default class NotFound extends React.PureComponent { // eslint-disable-li
   render() {
     return (
       <NotFoundHeader>
-        <FormattedMessage {...messages.header} />
+        <div>404 NOT FOUND</div>
       </NotFoundHeader>
     );
   }

@@ -17,6 +17,7 @@ class NavBar extends React.PureComponent {
     super();
     this.logout = this.logout.bind(this);
   }
+
   logout(e) {
     e.preventDefault();
     this.props.logout();
@@ -28,7 +29,7 @@ class NavBar extends React.PureComponent {
     let link;
     const userLinks = (
       <ul className="navbar-nav">
-        <li className="nav-item"><Link className="nav-link" to="/profile">{ this.props.auth.user.email }</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/profile">{ user.email }</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/restaurant">My Favorites</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
       </ul>
@@ -43,8 +44,8 @@ class NavBar extends React.PureComponent {
 
     const businessLinks = (
       <ul className="navbar-nav">
-        <li className="nav-item"><Link className="nav-link" to="/profile">{ this.props.auth.user.email }</Link></li>
-        <li className="nav-item"><Link className="nav-link" to="/restaurant">My restaurant</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/profile">{ user.email }</Link></li>
+        <li className="nav-item"><Link className="nav-link" to={"/restaurant/" + user.id}>My restaurant</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
       </ul>
     );

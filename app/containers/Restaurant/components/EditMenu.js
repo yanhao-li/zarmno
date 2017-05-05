@@ -48,7 +48,7 @@ class EditMenu extends React.PureComponent{
 
 
   render(){
-    const { menu } = this.props.restaurant;
+    const { menu } = this.props;
     return (
       <div>
         <h3>Menu</h3>

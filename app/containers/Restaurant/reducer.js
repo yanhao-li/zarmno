@@ -1,78 +1,60 @@
 const initResInfo = {
-  restaurant:{
-    info: {
-      id: '',
-      name: ''
-    },
-    menu: []
-  }
+  info: {},
+  menu: []
 }
 
 export const currentRes = (state = initResInfo, action) => {
   switch (action.type) {
-    case 'SET_CURRENT_RES':
+    case 'SET_CURRENT_RES_INFO':
       return {
-        restaurant: action.restaurant
+        ...state,
+        info: action.info
       };
+
+    case 'SET_CURRENT_RES_MENU':
+      return {
+        ...state,
+        menu: action.menu
+      }
 
     case 'UPDATE_RES_INFO':
       return {
-        restaurant: {
-          ...state.restaurant,
-          info: action.restaurant
-        }
+        ...state,
+        info: action.restaurant
       };
 
     case 'UPDATE_DISH':
       return {
-        restaurant: {
-          ...state.restaurant,
-          menu:
-            state.restaurant.menu.map(dish => {
-              if (dish.id == action.dish.id) {
-                dish = action.dish
-              }
-              return dish
-            })
-        }
+        ...state,
+        menu:
+          state.restaurant.menu.map(dish => {
+            if (dish.id == action.dish.id) {
+              dish = action.dish
+            }
+            return dish
+          })
       };
 
     case 'ADD_DISH':
       return {
-        restaurant: {
-          ...state.restaurant,
-          menu: [
-            ...state.restaurant.menu,
+        ...state,
+        menu:
+          [
+            ...state.menu,
             action.dish
           ]
-        }
       };
 
     case 'DELETE_DISH':
       return {
-        restaurant: {
-          ...state.restaurant,
-          menu:
-            state.restaurant.menu.filter(dish => {
-              return dish.id !== action.dish.id
-            })
-        }
+        ...state,
+        menu:
+          state.restaurant.menu.filter(dish => {
+            return dish.id !== action.dish.id
+          })
       };
 
     default:
       return state;
-  }
-};
-
-export const restaurantList = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_RES_LIST':
-      return action.restaurantList;
-    case 'ADD_RESTAURANT':
-      return [
-        ...state,
-        action.restaurant
-      ];
-    default: return state;
   }
 };

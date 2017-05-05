@@ -6,12 +6,12 @@ const router = express.Router();
 router.post('/', authenticate, (req, res) => {
   const restaurant = req.body;
   const ownerId = req.currentUser.id;
-  db.Restaurant.build({ name: restaurant.name, location: restaurant.location, owner_id: ownerId }).save()
+  db.Restaurant.build({ id: ownerId, name: restaurant.name, location: restaurant.location }).save()
     .then((restaurant) => { res.status(200).json({ restaurant: restaurant }) })
     .catch((err) => res.status(500).json({ errors: err }));
 });
 
-router.get('/', authenticate, (req, res) => {
+router.get('/', (req, res) => {
     db.Restaurant.findAll().then(
       function(restaurants){
         res.status(200).json({restaurants: restaurants});

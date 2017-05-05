@@ -1,25 +1,18 @@
 import axios from 'axios';
 
-export const setRestaurantList = (restaurantList) => {
+export const setCurrentResInfo = (info) => {
   return {
-    type: 'SET_RES_LIST',
-    restaurantList
-  };
-}
-
-export const addRestaurant = (restaurant) => {
-  return {
-    type: 'ADD_RESTAURANT',
-    restaurant
-  };
-}
-
-export const setCurrentRes = (restaurant) => {
-  return {
-    type: 'SET_CURRENT_RES',
-    restaurant
+    type: 'SET_CURRENT_RES_INFO',
+    info
   }
 };
+
+export const setCurrentResMenu = (menu) => {
+  return {
+    type: 'SET_CURRENT_RES_MENU',
+    menu
+  }
+}
 
 export const updateResInfoView = (restaurant) => {
   return {
@@ -52,21 +45,17 @@ export const deleteDishView = (dish) => {
 export const registerRes = (resData) => (dispatch) =>
   axios.post('/api/restaurant', resData).then(
     res => {
-      dispatch(addRestaurant(res.data.restaurant))
+      dispatch(setCurrentResInfo(res.data.restaurant))
     }
   );
 
-export const getRestaurantsList = () => (dispatch) =>
-  axios.get('/api/restaurant').then(
-    res => {
-      dispatch(setRestaurantList(res.data.restaurants));
-    }
-  );
+export const getRestaurantsList = axios.get('/api/restaurant');
 
-export const fetchRestaurantInfo = (id) => (dispatch) =>
+export const fetchRestaurant = (id) => (dispatch) =>
   axios.get('/api/restaurant/' + id).then(
     res => {
-      dispatch(setCurrentRes(res.data.restaurant));
+      dispatch(setCurrentResInfo(rse.data.restaurant.info));
+      dispatch(setCurrentResMenu(res.data.restaurant.menu));
     }
   );
 

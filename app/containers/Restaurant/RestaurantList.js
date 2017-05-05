@@ -1,24 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import BusinessList from './components/BusinessList';
-import UserList from './components/UserList';
+import { Link } from 'react-router';
 import { getRestaurantsList } from './actions';
 
 
 class RestaurantList extends React.PureComponent{
+  constructor(props){
+    super(props);
+    this.state = {
+      restaurantList: []
+    };
+  }
 
   componentDidMount(){
-    this.props.getRestaurantsList();
+    getRestaurantsList.then(
+      (res) =>
+      this.setState({
+        restaurantList: res.data.restaurants
+      })
+    );
   }
 
   render(){
-    const { user, isAuthenticated } = this.props.auth;
-
+    const {restaurantList} = this.state;
     return(
       <div>
-        {user.role == "business" ?
-          ( <BusinessList /> ) : ( <UserList/> )
-        }
+        <h1> All restaurants </h1>
+        <ul>
+          {restaurantList.map(restaurant =>
+            (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
+            )
+          )}
+        </ul>
       </div>
     )
   }
@@ -26,8 +39,8 @@ class RestaurantList extends React.PureComponent{
 
 const mapStateToProps = (state) => {
   return{
-    auth: state.get('auth'),
+    restaurantList: state.get('restaurantList')
   }
 };
 
-export default connect(mapStateToProps, { getRestaurantsList })(RestaurantList);
+export default connect(mapStateToProps)(RestaurantList);

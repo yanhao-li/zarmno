@@ -59,7 +59,6 @@ export default function createReducer(asyncReducers) {
     language: languageProviderReducer,
     auth: authReducer,
     currentRes: currentRes,
-    restaurantList: restaurantList,
     isLoading: isLoading,
     ...asyncReducers,
   });

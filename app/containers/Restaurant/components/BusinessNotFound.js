@@ -6,7 +6,7 @@ import CreateResForm from './CreateResForm';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-class BusinessList extends React.PureComponent{
+class BusinessNotFound extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
@@ -28,24 +28,7 @@ class BusinessList extends React.PureComponent{
     const restaurants = this.props.restaurantList;
     return(
       <div>
-        <h1>Dashboard</h1>
-        { restaurants.length > 0 ?
-          (
-            <ul>
-              {restaurants.map(restaurant =>
-                (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
-                )
-              )}
-            </ul>
-          ) :
-          (
-            <div>
-              <div>
-                  <span>You have no restaurants, claim one</span>
-              </div>
-            </div>
-          )
-        }
+        <h3>You haven't claim business yet</h3>
         <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
         <CreateNewResModal
           isOpen = {this.state.modalIsOpen}
@@ -69,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(BusinessList);
+export default connect(mapStateToProps)(BusinessNotFound);

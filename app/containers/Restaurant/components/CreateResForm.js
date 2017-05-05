@@ -26,9 +26,7 @@ class CreateResForm extends React.PureComponent{
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.registerRes(this.state.restaurant).then(
-      () => this.props.closeModal()
-    );
+    this.props.registerRes(this.state.restaurant);
   }
 
   render(){
