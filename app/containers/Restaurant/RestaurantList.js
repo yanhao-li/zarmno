@@ -8,10 +8,6 @@ import { getRestaurantsList } from './actions';
 class RestaurantList extends React.PureComponent{
 
   componentDidMount(){
-    this.fetchData();
-  }
-
-  fetchData() {
     this.props.getRestaurantsList();
   }
 

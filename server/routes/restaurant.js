@@ -12,17 +12,11 @@ router.post('/', authenticate, (req, res) => {
 });
 
 router.get('/', authenticate, (req, res) => {
-  const userId = req.currentUser.id;
-  const role = req.currentUser.role;
-  if(role === "business"){
-    db.Restaurant.findAll({where: { owner_id: userId }}).then(
+    db.Restaurant.findAll().then(
       function(restaurants){
         res.status(200).json({restaurants: restaurants});
       }
     );
-  } else if(req.currentUser === "customer") {
-
-  }
 })
 
 router.get('/:id', (req, res) => {

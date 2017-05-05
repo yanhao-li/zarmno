@@ -1,15 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-class BusinessList extends React.PureComponent{
+class UserList extends React.PureComponent{
   render(){
+    const {restaurantList} = this.props;
     return(
       <div>
-        <h1>
-          Restaurant List
-        </h1>
+        <h1> All restaurants </h1>
+        <ul>
+          {restaurantList.map(restaurant =>
+            (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
+            )
+          )}
+        </ul>
       </div>
     );
   }
 }
 
-export default BusinessList
+const mapStateToProps = (state) => {
+  return {
+    restaurantList: state.get('restaurantList')
+  }
+}
+export default connect(mapStateToProps)(UserList)
