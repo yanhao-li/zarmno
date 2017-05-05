@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { fetchRestaurant } from './actions';
 
 class RestaurantEdit extends React.PureComponent{
-  
+
   componentDidMount(){
     this.props.fetchRestaurant(this.props.params.id);
   }

@@ -18,9 +18,9 @@ class InfoForm extends React.PureComponent{
   }
 
   saveChanges(e){
-    const {restaurant} = this.props.currentRes;
+    const {info} = this.props.currentRes;
     e.preventDefault();
-    this.props.updateResInfo(restaurant.info.id, this.state).then(
+    this.props.updateResInfo(info.id, this.state).then(
       this.setState({
         isFormShowed: false,
       })

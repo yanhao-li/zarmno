@@ -8,7 +8,7 @@ class EditRestaurantInfo extends React.PureComponent{
       <div>
         <InfoForm info={info} name="name" title="Restaurant Name" data={info.name}/>
         <InfoForm info={info} name="location" title="Location" data={info.location}/>
-        <InfoForm info={info} name= "info" title="Description" data={ info.description ? info.description : "This restaurant hasn't added description yet"}/>
+        <InfoForm info={info} name= "description" title="Description" data={ info.description ? info.description : "This restaurant hasn't added description yet"}/>
       </div>
     );
   }

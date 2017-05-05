@@ -54,7 +54,7 @@ export const getRestaurantsList = axios.get('/api/restaurant');
 export const fetchRestaurant = (id) => (dispatch) =>
   axios.get('/api/restaurant/' + id).then(
     res => {
-      dispatch(setCurrentResInfo(rse.data.restaurant.info));
+      dispatch(setCurrentResInfo(res.data.restaurant.info));
       dispatch(setCurrentResMenu(res.data.restaurant.menu));
     }
   );

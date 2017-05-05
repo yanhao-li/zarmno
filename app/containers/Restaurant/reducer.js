@@ -27,7 +27,7 @@ export const currentRes = (state = initResInfo, action) => {
       return {
         ...state,
         menu:
-          state.restaurant.menu.map(dish => {
+          state.menu.map(dish => {
             if (dish.id == action.dish.id) {
               dish = action.dish
             }
@@ -49,7 +49,7 @@ export const currentRes = (state = initResInfo, action) => {
       return {
         ...state,
         menu:
-          state.restaurant.menu.filter(dish => {
+          state.menu.filter(dish => {
             return dish.id !== action.dish.id
           })
       };

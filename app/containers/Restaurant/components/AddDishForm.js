@@ -9,7 +9,7 @@ class AddDishForm extends React.PureComponent{
     this.state = {
       errors: "",
       dish: {
-        resId: this.props.currentRes.restaurant.info.id,
+        resId: this.props.currentRes.info.id,
         name: "",
         description: "",
         img: ""
