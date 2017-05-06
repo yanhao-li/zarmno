@@ -10,7 +10,7 @@ export function setCurrentUser(user) {
 }
 
 export function login(data) {
-  return (dispatch) => axios.post('/api/session', data).then(
+  return (dispatch) => axios.post('/api/v1/session', data).then(
       (res) => {
         const token = res.data.token;
         localStorage.setItem('jwtToken', token);
@@ -29,7 +29,7 @@ export function logout() {
 }
 
 export function getAuth() {
-  return (dispatch) => axios.get('/api/session').then(
+  return (dispatch) => axios.get('/api/v1/session').then(
       (res) => {
         dispatch(setCurrentUser(res.data.user));
       }

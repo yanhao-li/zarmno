@@ -14,10 +14,15 @@ class RestaurantList extends React.PureComponent{
 
   componentDidMount(){
     getRestaurantsList.then(
-      (res) =>
-      this.setState({
-        restaurantList: res.data.restaurants
-      })
+      (res) => {
+        if(res.data.restaurants){
+          this.setState({
+            restaurantList: res.data.restaurants
+          })
+        }
+      }, (err) => {
+        console.log(err)
+      }
     );
   }
 

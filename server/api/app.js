@@ -18,3 +18,5 @@ router.put('/restaurant/:id', api.restaurant.edit);
 router.post('/dish', api.dish.add);
 router.put('/dish/:id', api.dish.edit);
 router.delete('/dish/:id', api.dish.destroy);
+
+module.exports = router;

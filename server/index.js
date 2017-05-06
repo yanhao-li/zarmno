@@ -8,10 +8,6 @@ const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
-const user = require('./routes/user');
-const session = require('./routes/session');
-const restaurant = require('./routes/restaurant');
-const dish = require('./routes/dish');
 const models = require('./models');
 
 
@@ -21,14 +17,8 @@ const app = express();
 // app.use('/api', myApi);
 
 app.use(bodyParser.json());
-// The function users is executed for any type of HTTP request on the /api/users
 
-app.use('/api/v1', require('./api/app'))
-app.use('/api/session', session);
-app.use('/api/user', user);
-app.use('/api/restaurant', restaurant);
-app.use('/api/dish', dish);
-
+app.use('/api/v1', require('./api/app'));
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
