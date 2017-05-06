@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuItem from './MenuItem';
-import ModalStyle from './ModalStyle';
+import ModalStyle from '../components/ModalStyle';
 import Modal from 'react-modal';
 import UpdateDishForm from './UpdateDishForm';
 import AddDishForm from './AddDishForm';

@@ -1,6 +1,6 @@
 import React from 'react';
 import EditRestaurantInfo from './components/EditRestaurantInfo'
-import EditMenu from './components/EditMenu';
+import EditMenu from './Menu/EditMenu';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchRestaurant } from './actions';

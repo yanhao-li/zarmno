@@ -22,6 +22,8 @@ const app = express();
 
 app.use(bodyParser.json());
 // The function users is executed for any type of HTTP request on the /api/users
+
+app.use('/api/v1', require('./api/app'))
 app.use('/api/session', session);
 app.use('/api/user', user);
 app.use('/api/restaurant', restaurant);

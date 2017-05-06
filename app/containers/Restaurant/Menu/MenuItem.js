@@ -1,5 +1,5 @@
 import React from 'react';
-import ModifyBtn from './ModifyBtn';
+import ModifyBtn from '../components/ModifyBtn';
 
 class MenuItem extends React.PureComponent{
   constructor(props){

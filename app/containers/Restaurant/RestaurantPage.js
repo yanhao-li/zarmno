@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchRestaurant } from './actions';
 import BusinessNotFound from './components/BusinessNotFound';
 import RestaurantInfo from './components/RestaurantInfo';
-import Menu from './components/Menu';
+import Menu from './Menu/Menu';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NotFound from 'containers/NotFoundPage';
