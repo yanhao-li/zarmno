@@ -1,38 +1,12 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
+import { getRestaurantsList } from './actions';
 
-const restaurants = [
-  {
-    name: 'A1',
-    year: 1972,
-  },
-  {
-    name: 'A2',
-    year: 1983,
-  },
-  {
-    name: 'B1',
-    year: 1965,
-  },
-  {
-    name: 'B2',
-    year: 1933,
-  },
-  {
-    name: 'C1',
-    year: 1922,
-  },
-  {
-    name: 'C2',
-    year: 1999,
-  },
-];
-
+let restaurants;
 const getSuggestions = (value) => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
-
   return inputLength === 0 ? [] : restaurants.filter((restaurant) =>
     restaurant.name.toLowerCase().slice(0, inputLength) === inputValue
   );
@@ -122,6 +96,14 @@ export default class SearchBar extends React.Component {
       value: '',
       suggestions: [],
     };
+  }
+
+  componentDidMount(){
+    getRestaurantsList.then(
+      (res) => {
+        restaurants = res.data.restaurants
+      }
+    )
   }
 
   onChange = (event, { newValue }) => {
