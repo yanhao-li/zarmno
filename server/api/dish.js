@@ -27,7 +27,9 @@ const dish = {
       {where: {
         id: id
       }}
-    ).then(() => res.status(200).json({success: true}), (err) => res.json({errors: err}));
+    )
+    .then(() => res.status(200).json({success: true}))
+    .catch((err) => res.json({errors: err}));
   }
 }
 

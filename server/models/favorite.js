@@ -1,5 +1,5 @@
 module.exports = function CollectionFunc(sequelize, DataTypes) {
-  const RestaurantCollect = sequelize.define('RestaurantCollect', {
+  const Favorite = sequelize.define('RestaurantCollect', {
     user_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true },
     restaurant_id: { type: DataTypes.INTEGER, allowNull: false, primaryKey: true }
   }, {
@@ -8,5 +8,5 @@ module.exports = function CollectionFunc(sequelize, DataTypes) {
     classMethods: {
     },
   });
-  return RestaurantCollect;
+  return Favorite;
 };

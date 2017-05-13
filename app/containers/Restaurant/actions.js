@@ -42,6 +42,10 @@ export const deleteDishView = (dish) => {
   }
 };
 
+export const toggleLike = (id) => (dispatch) => {
+  
+}
+
 export const registerRes = (resData) => (dispatch) =>
   axios.post('/api/restaurant', resData).then(
     res => {

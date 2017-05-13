@@ -19,4 +19,8 @@ router.post('/dish', api.dish.add);
 router.put('/dish/:id', api.dish.edit);
 router.delete('/dish/:id', api.dish.destroy);
 
+//favorite
+router.post('/favorite/:id', api.favorite.add);
+router.delete('/favorite/:id', api.favorite.destroy);
+
 module.exports = router;
