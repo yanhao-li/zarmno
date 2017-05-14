@@ -3,6 +3,7 @@ import isEmpty from 'lodash/isEmpty';
 const initialState = {
   isAuthenticated: false,
   user: {},
+  favorites: []
 };
 
 export default (state = initialState, action = {}) => {
