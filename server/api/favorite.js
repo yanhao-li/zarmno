@@ -15,7 +15,8 @@ const favorite = {
       },
       attributes: ['restaurant_id']
     }).then((favorites) => {
-      res.status(200).json({ favorites: favorites });
+      const temp = favorites.map(function(favorite){return favorite.restaurant_id});
+      res.status(200).json({ favorites: temp });
     })
   }
 }
