@@ -42,8 +42,8 @@ export const deleteDishView = (dish) => {
   }
 };
 
-export const registerRes = (resData) => (dispatch) =>
-  axios.post('/api/restaurant', resData).then(
+export const registerRes = (restaurant) => (dispatch) =>
+  axios.post('/api/restaurant', restaurant).then(
     res => {
       dispatch(setCurrentResInfo(res.data.restaurant))
     }

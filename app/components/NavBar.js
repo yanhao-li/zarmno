@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from 'containers/Authentication/actions/authActions';
+import { logout } from 'containers/Authentication/actions';
 import { browserHistory } from 'react-router';
 
 const StyledNav = styled.nav`

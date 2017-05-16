@@ -14,11 +14,8 @@
 import React from 'react';
 import NavBar from 'components/NavBar';
 import styled from 'styled-components';
-import { setCurrentUser } from 'containers/Authentication/actions/authActions';
+import { initAuth } from 'containers/Authentication/actions';
 import { connect } from 'react-redux';
-import setAuthorizationToken from 'utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
-
 
 const AppDiv = styled.div`
   height: 100%;
@@ -31,20 +28,9 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
     children: React.PropTypes.node,
   };
 
-  componentWillMount() {
-    if (localStorage.jwtToken) {
-      const token = localStorage.getItem('jwtToken');
-      if (token) {
-        let user = {};
-        try {
-          user = jwtDecode(token);
-        } catch (e) {
-          throw new Error('invalid Token');
-        }
-        setAuthorizationToken(token);
-        this.props.dispatch(setCurrentUser(user));
-      }
-    }
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(initAuth());
   }
 
   render() {

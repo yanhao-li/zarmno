@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const api = require('../api');
+const authenticate = require('../middlewares/authenticate');
 
 //user
 router.post('/user', api.user.add);
@@ -18,5 +19,10 @@ router.put('/restaurant/:id', api.restaurant.edit);
 router.post('/dish', api.dish.add);
 router.put('/dish/:id', api.dish.edit);
 router.delete('/dish/:id', api.dish.destroy);
+
+//favorite
+router.get('/favorite', authenticate.authenticateUser, api.favorite.browse);
+router.post('/favorite', api.favorite.add);
+
 
 module.exports = router;

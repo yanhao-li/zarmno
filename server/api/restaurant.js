@@ -1,12 +1,11 @@
 const express = require('express');
 const db = require('../models');
-const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
 
 const restaurant = {
   add: (req, res) => {
     const restaurant = req.body;
-    const ownerId = req.currentUser.id;
+    const ownerId = req.user.id;
     db.Restaurant.build({ id: ownerId, name: restaurant.name, location: restaurant.location }).save()
       .then((restaurant) => { res.status(200).json({ restaurant: restaurant }) })
       .catch((err) => res.status(500).json({ errors: err }));

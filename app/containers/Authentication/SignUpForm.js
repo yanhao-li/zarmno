@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import TextFieldGroup from 'components/TextFieldGroup';
 import styled from 'styled-components';
 import validateInput from '../../../server/shared/validations/signup';
-import { userSignupRequest } from './actions/signupActions';
+import { userSignupRequest } from './actions';
 
 const AuthContainer = styled.div`
     box-sizing: border-box;
