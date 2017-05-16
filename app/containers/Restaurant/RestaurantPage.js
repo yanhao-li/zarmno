@@ -37,7 +37,7 @@ class RestaurantPage extends React.PureComponent{
         :
         (
           <div>
-            <RestaurantInfo info={ info }/>
+            <RestaurantInfo info={ info } auth={ auth }/>
             <Menu menu={ menu }/>
             {user.role == 'business' && (<Link to={"/restaurant/" + info.id + "/edit"} className="btn btn-secondary">Edit</Link>)}
           </div>

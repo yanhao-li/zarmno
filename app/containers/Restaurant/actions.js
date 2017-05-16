@@ -86,3 +86,18 @@ export const deleteDish = (dish) => (dispatch) =>
       dispatch(deleteDishView(dish));
     }
   )
+
+export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {
+  if (!isFavorite){
+    axios.post('/api/v1/favorite/' + restaurantId).then(
+      res => {
+      }
+    )
+  } else {
+    axios.delete('/api/v1/favorite/' + restaurantId).then(
+      res => {
+
+      }
+    )
+  }
+}

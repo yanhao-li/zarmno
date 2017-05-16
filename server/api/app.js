@@ -22,7 +22,8 @@ router.delete('/dish/:id', api.dish.destroy);
 
 //favorite
 router.get('/favorite', authenticate.authenticateUser, api.favorite.browse);
-router.post('/favorite', api.favorite.add);
+router.post('/favorite/:id', authenticate.authenticateUser, api.favorite.add);
+router.delete('/favorite/:id', authenticate.authenticateUser, api.favorite.destroy);
 
 
 module.exports = router;

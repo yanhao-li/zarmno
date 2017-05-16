@@ -4,7 +4,11 @@ const router = express.Router();
 
 const favorite = {
   add: (req, res) => {
-
+    const restaurantId = req.params.id;
+    const userId = req.user.id;
+    db.Favorite.build({user_id: userId, restaurant_id: restaurantId}).save()
+      .then(() => res.status(200).json({success: true}))
+      .catch((err) => res.status(500).json({ errors: err }));
   },
 
   browse: (req, res) => {
@@ -18,6 +22,17 @@ const favorite = {
       const temp = favorites.map(function(favorite){return favorite.restaurant_id});
       res.status(200).json({ favorites: temp });
     })
+  },
+
+  destroy: (req, res) => {
+    const restaurantId = req.params.id;
+    const userId = req.user.id;
+    db.Favorite.destroy({
+      where: {
+        user_id: userId,
+        restaurant_id: restaurantId
+      }
+    }).then(() => res.status(200).json({success: true}), (err) => res.json({ errors: err }));
   }
 }
 
