@@ -45,7 +45,7 @@ export const initAuth = () => {
   }
 };
 
-export function login(user) {
+export const login = (user) => {
   return (dispatch) => axios.post('/api/v1/session', user).then(
       (res) => {
         const token = res.data.token;
@@ -58,7 +58,7 @@ export function login(user) {
     );
 }
 
-export function logout() {
+export const logout = () => {
   return (dispatch) => {
     localStorage.removeItem('jwtToken');
     setAuthorizationToken(false);
