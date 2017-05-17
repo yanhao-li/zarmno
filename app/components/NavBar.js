@@ -30,7 +30,7 @@ class NavBar extends React.PureComponent {
     const userLinks = (
       <ul className="navbar-nav">
         <li className="nav-item"><Link className="nav-link" to="/profile">{ user.email }</Link></li>
-        <li className="nav-item"><Link className="nav-link" to="/restaurant">My Favorites</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/favorites">My Favorites</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
       </ul>
     );

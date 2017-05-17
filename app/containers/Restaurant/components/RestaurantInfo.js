@@ -42,7 +42,7 @@ class RestaurantInfo extends React.PureComponent{
       <div>
         <h1>{info.name}</h1>
         <h1>{info.location}</h1>
-        <button className={btnClass} onClick={this.toggleFavorite}>{isFavorite ? 'unfavorite' :'Save to Favorites'}</button>
+        {this.props.auth.user.role === 'customer' && <button className={btnClass} onClick={this.toggleFavorite}>{isFavorite ? 'unfavorite' :'Save to Favorites'}</button>}
         { info.description ? <p>{info.description}</p> : <p>This restaurant hasn't added information yet</p>}
       </div>
     );

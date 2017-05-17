@@ -12,7 +12,7 @@ class RestaurantEdit extends React.PureComponent{
   }
 
   render(){
-    const { info, menu } = this.props.currentRes;
+    const { info, menu } = this.props.restaurant;
     return(
       <div>
         <EditRestaurantInfo info={ info }/>
@@ -25,7 +25,7 @@ class RestaurantEdit extends React.PureComponent{
 
 const mapStateToProps = (state) => {
   return {
-      currentRes: state.get('currentRes'),
+      restaurant: state.get('restaurant'),
   }
 }
 

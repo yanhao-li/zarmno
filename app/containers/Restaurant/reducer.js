@@ -3,7 +3,7 @@ const initResInfo = {
   menu: []
 }
 
-export const currentRes = (state = initResInfo, action) => {
+export const restaurant = (state = initResInfo, action) => {
   switch (action.type) {
     case 'SET_CURRENT_RES_INFO':
       return {

@@ -43,7 +43,7 @@ export const deleteDishView = (dish) => {
 };
 
 export const registerRes = (restaurant) => (dispatch) =>
-  axios.post('/api/restaurant', restaurant).then(
+  axios.post('/api/v1/restaurant', restaurant).then(
     res => {
       dispatch(setCurrentResInfo(res.data.restaurant))
     }
@@ -51,13 +51,19 @@ export const registerRes = (restaurant) => (dispatch) =>
 
 export const getRestaurantsList = axios.get('/api/v1/restaurant');
 
-export const fetchRestaurant = (id) => (dispatch) =>
+export const fetchRestaurant = (id) =>
   axios.get('/api/v1/restaurant/' + id).then(
     res => {
-      dispatch(setCurrentResInfo(res.data.restaurant.info));
-      dispatch(setCurrentResMenu(res.data.restaurant.menu));
+      return res.data.restaurant
     }
   );
+
+export const setCurrentRes = (id) => (dispatch) => {
+  fetchRestaurant(id).then((restaurant) => {
+    dispatch(setCurrentResInfo(restaurant.info));
+    dispatch(setCurrentResMenu(restaurant.menu));
+  })
+}
 
 export const updateResInfo = (id, data) => (dispatch) =>
   axios.put('/api/v1/restaurant/' + id, data).then(

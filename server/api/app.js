@@ -10,10 +10,10 @@ router.post('/user', api.user.add);
 router.post('/session', api.session.add);
 
 //restaurant
-router.post('/restaurant', api.restaurant.add);
+router.post('/restaurant', authenticate.authenticateUser, api.restaurant.add);
 router.get('/restaurant', api.restaurant.browse);
 router.get('/restaurant/:id', api.restaurant.read);
-router.put('/restaurant/:id', api.restaurant.edit);
+router.put('/restaurant/:id', authenticate.authenticateUser, api.restaurant.edit);
 
 //dish
 router.post('/dish', api.dish.add);

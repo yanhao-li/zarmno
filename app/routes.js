@@ -102,6 +102,15 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: 'favorites',
+      name: 'favorites',
+      getComponent(nextState, cb) {
+        import('containers/Favorites/FavoritesPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

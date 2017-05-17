@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchRestaurant } from './actions';
+import { setCurrentRes } from './actions';
 import BusinessNotFound from './components/BusinessNotFound';
 import RestaurantInfo from './components/RestaurantInfo';
 import Menu from './Menu/Menu';
@@ -11,14 +11,14 @@ import { isEmpty } from 'lodash';
 class RestaurantPage extends React.PureComponent{
 
   componentDidMount(){
-    this.props.fetchRestaurant(this.props.params.id);
+    this.props.setCurrentRes(this.props.params.id);
     document.title = "Restaurant Information"
   }
 
   render(){
-    const { currentRes, auth } = this.props;
+    const { restaurant, auth } = this.props;
     const { user } = auth;
-    const { info, menu } = currentRes;
+    const { info, menu } = restaurant;
     let notfound;
     if(user.role == "business"){
       notfound = <BusinessNotFound />;
@@ -50,7 +50,7 @@ class RestaurantPage extends React.PureComponent{
 
 const mapStateToProps = (state) => {
   return {
-    currentRes: state.get('currentRes'),
+    restaurant: state.get('restaurant'),
     auth: state.get('auth')
   };
 }
@@ -64,4 +64,4 @@ const mapDispatchToPros = (dispatch) => {
   };
 }
 
-export default connect(mapStateToProps, {fetchRestaurant})(RestaurantPage);
+export default connect(mapStateToProps, {setCurrentRes})(RestaurantPage);

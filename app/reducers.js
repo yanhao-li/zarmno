@@ -9,7 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/Authentication/reducer';
-import { currentRes, restaurantList } from 'containers/Restaurant/reducer';
+import { restaurant, restaurantList } from 'containers/Restaurant/reducer';
 
 /*
  * routeReducer
@@ -58,7 +58,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     language: languageProviderReducer,
     auth: authReducer,
-    currentRes: currentRes,
+    restaurant: restaurant,
     isLoading: isLoading,
     ...asyncReducers,
   });
