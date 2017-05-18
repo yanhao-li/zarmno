@@ -1,60 +1,54 @@
-const initResInfo = {
-  info: {},
-  menu: []
-}
+import { combineReducers } from 'redux';
 
-export const restaurant = (state = initResInfo, action) => {
+const info = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_CURRENT_RES_INFO':
-      return {
-        ...state,
-        info: action.info
-      };
-
-    case 'SET_CURRENT_RES_MENU':
-      return {
-        ...state,
-        menu: action.menu
-      }
-
-    case 'UPDATE_RES_INFO':
-      return {
-        ...state,
-        info: action.restaurant
-      };
-
-    case 'UPDATE_DISH':
-      return {
-        ...state,
-        menu:
-          state.menu.map(dish => {
-            if (dish.id == action.dish.id) {
-              dish = action.dish
-            }
-            return dish
-          })
-      };
-
-    case 'ADD_DISH':
-      return {
-        ...state,
-        menu:
-          [
-            ...state.menu,
-            action.dish
-          ]
-      };
-
-    case 'DELETE_DISH':
-      return {
-        ...state,
-        menu:
-          state.menu.filter(dish => {
-            return dish.id !== action.dish.id
-          })
-      };
-
+    case 'SET_RESTAURANT_INFO':
+      return action.info
+    case 'UPDATE_RESTAURANT_INFO':
+      return action.info
     default:
-      return state;
+      return state
+  };
+};
+
+const menu = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_RESTAURANT_MENU':
+      return action.menu
+    case 'UPDATE_DISH':
+      return state.map(dish => {
+              if (dish.id == action.dish.id) {
+                dish = action.dish
+              }
+              return dish
+          })
+    case 'ADD_DISH':
+      return [...state, action.dish]
+    case 'DELETE_DISH':
+      return state.filter(dish => dish.id !== action.dish.id)
+    default:
+      return state
   }
 };
+
+const isFetching = (state = false, action) => {
+  switch (action.type) {
+    case 'FETCH_RESTAURANT_REQUEST':
+      return true
+    case 'FETCH_RESTAURANT_SUCCESS':
+    case 'FETCH_RESTAURANT_FAILURE':
+      return false
+    default:
+      return state
+  }
+};
+
+
+const restaurant = combineReducers({
+  info,
+  menu,
+  isFetching
+});
+
+
+export default restaurant;

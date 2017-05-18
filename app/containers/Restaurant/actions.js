@@ -2,22 +2,22 @@ import axios from 'axios';
 
 export const setCurrentResInfo = (info) => {
   return {
-    type: 'SET_CURRENT_RES_INFO',
+    type: 'SET_RESTAURANT_INFO',
     info
   }
 };
 
 export const setCurrentResMenu = (menu) => {
   return {
-    type: 'SET_CURRENT_RES_MENU',
+    type: 'SET_RESTAURANT_MENU',
     menu
   }
 }
 
-export const updateResInfoView = (restaurant) => {
+export const updateResInfoView = (info) => {
   return {
-    type: 'UPDATE_RES_INFO',
-    restaurant
+    type: 'UPDATE_RESTAURANT_INFO',
+    info
   }
 };
 

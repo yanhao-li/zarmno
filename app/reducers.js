@@ -9,7 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/Authentication/reducer';
-import { restaurant, restaurantList } from 'containers/Restaurant/reducer';
+import restaurantReducer from 'containers/Restaurant/reducer';
 
 /*
  * routeReducer
@@ -39,17 +39,6 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
-function isLoading(state = false, action) {
-  switch (action.type) {
-    case 'REQUEST_DATA':
-      return true;
-    case 'RECEIVE_DATA':
-      return false;
-    default:
-    return state;
-  }
-}
-
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
@@ -58,8 +47,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     language: languageProviderReducer,
     auth: authReducer,
-    restaurant: restaurant,
-    isLoading: isLoading,
+    restaurant: restaurantReducer,
     ...asyncReducers,
   });
 }
