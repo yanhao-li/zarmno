@@ -18,12 +18,16 @@ class RestaurantPage extends React.PureComponent{
   render(){
     const { restaurant, auth } = this.props;
     const { user } = auth;
-    const { info, menu } = restaurant;
+    const { info, menu, isFetching } = restaurant;
     let notfound;
     if(user.role == "business"){
       notfound = <BusinessNotFound />;
     } else {
       notfound = <NotFound />;
+    }
+    
+    if(isFetching) {
+      return <p>Loading</p>
     }
 
     return(

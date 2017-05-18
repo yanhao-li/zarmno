@@ -52,3 +52,5 @@ const restaurant = combineReducers({
 
 
 export default restaurant;
+
+export const getIsFetching = (state) => state.isFetching;

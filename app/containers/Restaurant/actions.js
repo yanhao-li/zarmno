@@ -51,18 +51,39 @@ export const registerRes = (restaurant) => (dispatch) =>
 
 export const getRestaurantsList = axios.get('/api/v1/restaurant');
 
-export const fetchRestaurant = (id) =>
-  axios.get('/api/v1/restaurant/' + id).then(
+export const fetchRestaurant = (id) => (dispatch) => {
+
+  dispatch({
+    type: 'FETCH_RESTAURANT_REQUEST'
+  });
+
+  return axios.get('/api/v1/restaurant/' + id)
+  .then(
     res => {
+      dispatch({
+        type: 'FETCH_RESTAURANT_SUCCESS',
+        response: res.data.restaurant
+      });
       return res.data.restaurant
     }
+  )
+  .catch(
+    err => {
+      dispatch({
+        type: 'FETCH_RESTAURANT_FAILURE',
+        message: res.data.errors
+      });
+    }
   );
+}
 
 export const setCurrentRes = (id) => (dispatch) => {
-  fetchRestaurant(id).then((restaurant) => {
-    dispatch(setCurrentResInfo(restaurant.info));
-    dispatch(setCurrentResMenu(restaurant.menu));
-  })
+    dispatch(fetchRestaurant(id)).then(
+      (restaurant) => {
+        dispatch(setCurrentResInfo(restaurant.info));
+        dispatch(setCurrentResMenu(restaurant.menu));
+      }
+    )
 }
 
 export const updateResInfo = (id, data) => (dispatch) =>
