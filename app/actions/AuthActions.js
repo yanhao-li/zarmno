@@ -9,23 +9,6 @@ export function setCurrentUser(user) {
   };
 }
 
-function setFavorites(favorites){
-  return {
-    type: 'SET_FAVORITES',
-    favorites
-  }
-}
-
-const fetchFavorites = () => {
-  return dispatch =>
-    axios.get('/api/v1/favorite').then(
-      (res) => {
-        const { favorites } = res.data;
-        dispatch(setFavorites(favorites))
-      }
-    )
-}
-
 export const initAuth = () => {
   return dispatch => {
     if (localStorage.jwtToken) {
@@ -39,7 +22,6 @@ export const initAuth = () => {
         }
         setAuthorizationToken(token);
         dispatch(setCurrentUser(user));
-        dispatch(fetchFavorites());
       }
     }
   }
@@ -53,7 +35,6 @@ export const login = (user) => {
         setAuthorizationToken(token);
         const user = jwtDecode(token);
         dispatch(setCurrentUser(user));
-        dispatch(fetchFavorites());
       }
     );
 }
