@@ -31,10 +31,8 @@ const user = (state = {}, action) => {
   };
 };
 
-const auth = combineReducers({
+export default combineReducers({
   isFetching,
   isAuthenticated,
   user
 });
-
-export default auth;

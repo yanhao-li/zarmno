@@ -44,13 +44,10 @@ const isFetching = (state = false, action) => {
 };
 
 
-const restaurant = combineReducers({
+export default combineReducers({
   info,
   menu,
   isFetching
 });
-
-
-export default restaurant;
 
 export const getIsFetching = (state) => state.isFetching;
