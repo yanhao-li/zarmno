@@ -9,13 +9,13 @@ npm start
 ```javascript
 {
   auth:{
-    isAuthenticated: Boolean
+    isAuthenticated: Boolean,
     user: {
       id:
       email:
       role:
-    }
-    favorites: []
+    },
+    isFetching: Boolean
   },
 
   restaurant:{
@@ -27,6 +27,11 @@ npm start
     isFetching: Boolean
     menu: []
   },
+
+  favorites: {
+    isFetching: Boolean,
+    restaurants: []
+  }
 
 
 
