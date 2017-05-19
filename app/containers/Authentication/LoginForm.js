@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import TextFieldGroup from 'components/TextFieldGroup';
 import validateInput from '../../../server/shared/validations/login';
-import { login } from './actions';
+import { login } from 'actions/AuthActions';
 
 
 const AuthContainer = styled.div`

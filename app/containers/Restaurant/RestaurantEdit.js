@@ -3,7 +3,7 @@ import EditRestaurantInfo from './components/EditRestaurantInfo'
 import EditMenu from './Menu/EditMenu';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchRestaurant } from './actions';
+import { fetchRestaurant } from 'actions/RestaurantActions';
 
 class RestaurantEdit extends React.PureComponent{
 

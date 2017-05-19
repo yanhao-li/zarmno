@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
-import { addDish } from '../actions';
+import { addDish } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
 class AddDishForm extends React.PureComponent{

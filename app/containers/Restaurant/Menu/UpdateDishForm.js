@@ -1,6 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
-import { updateDish, deleteDish } from '../actions';
+import { updateDish, deleteDish } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
 class UpdateDishForm extends React.PureComponent{

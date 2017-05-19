@@ -28,9 +28,6 @@ import App from 'containers/App';
 // Import selector for `syncHistoryWithStore`
 import { makeSelectLocationState } from 'containers/App/selectors';
 
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
 // Load the favicon, the manifest.json file and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./favicon.ico';
@@ -73,7 +70,6 @@ const rootRoute = {
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-      <LanguageProvider messages={messages}>
         <Router
           history={history}
           // Index route
@@ -85,7 +81,6 @@ const render = (messages) => {
             applyRouterMiddleware(useScroll())
           }
         />
-      </LanguageProvider>
     </Provider>,
     document.getElementById('app')
   );

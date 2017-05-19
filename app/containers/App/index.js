@@ -14,7 +14,7 @@
 import React from 'react';
 import NavBar from 'components/NavBar';
 import styled from 'styled-components';
-import { initAuth } from 'containers/Authentication/actions';
+import { initAuth } from 'actions/AuthActions';
 import { connect } from 'react-redux';
 
 const AppDiv = styled.div`

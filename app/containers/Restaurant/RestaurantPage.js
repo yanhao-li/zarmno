@@ -1,5 +1,5 @@
 import React from 'react';
-import { setCurrentRes } from './actions';
+import { setCurrentRes } from 'actions/RestaurantActions';
 import BusinessNotFound from './components/BusinessNotFound';
 import RestaurantInfo from './components/RestaurantInfo';
 import Menu from './Menu/Menu';
@@ -25,7 +25,7 @@ class RestaurantPage extends React.PureComponent{
     } else {
       notfound = <NotFound />;
     }
-    
+
     if(isFetching) {
       return <p>Loading</p>
     }

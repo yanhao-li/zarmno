@@ -1,7 +1,7 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
-import { getRestaurantsList } from './actions';
+import { getRestaurantsList } from 'actions/RestaurantsListActions';
 
 let restaurants;
 const getSuggestions = (value) => {

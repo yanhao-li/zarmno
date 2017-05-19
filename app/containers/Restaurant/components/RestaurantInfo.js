@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classNames';
-import { toggleFavorite } from '../actions';
+import { toggleFavorite } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
 class RestaurantInfo extends React.PureComponent{

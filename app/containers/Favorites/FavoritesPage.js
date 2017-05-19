@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRestaurant } from 'containers/Restaurant/actions';
+import { fetchRestaurant } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
 
 class FavoritesPage extends React.PureComponent{

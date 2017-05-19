@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { getRestaurantsList } from './actions';
+import { getRestaurantsList } from 'actions/RestaurantActions';
 
 
 class RestaurantList extends React.PureComponent{

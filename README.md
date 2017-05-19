@@ -9,31 +9,33 @@ npm start
 ```javascript
 {
   auth:{
+    isFetching: Boolean,
     isAuthenticated: Boolean,
     user: {
+      avatar:
       id:
       email:
       role:
     },
-    isFetching: Boolean
   },
 
+  //current viewing restaurant
   restaurant:{
+    isFetching: Boolean,
+    isFavorite: Boolean,
     info: {
       id:
       name:
       location:
     },
-    isFetching: Boolean
-    menu: []
+    menu: [], //all dish objects belongs to this restaurant
+    comments: []
   },
 
   favorites: {
     isFetching: Boolean,
-    restaurants: []
-  }
-
-
+    restaurants: [] //all favorite restaurants id
+  },
 
 }
 ```

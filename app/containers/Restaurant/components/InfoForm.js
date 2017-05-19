@@ -1,6 +1,6 @@
 import React from 'react';
 import ModifyBtn from './ModifyBtn';
-import { updateResInfo } from '../actions';
+import { updateResInfo } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
 class InfoForm extends React.PureComponent{

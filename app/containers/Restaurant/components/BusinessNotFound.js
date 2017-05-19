@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateNewResModal from 'react-modal';
-import { getRestaurantsList } from '../actions';
+import { getRestaurantsList } from 'actions/RestaurantActions';
 import ModalStyle from './ModalStyle';
 import CreateResForm from './CreateResForm';
 import { Link } from 'react-router';
