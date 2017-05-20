@@ -1,7 +1,7 @@
 import React from 'react';
 import InfoForm from './InfoForm';
 
-class EditRestaurantInfo extends React.PureComponent{
+class RestaurantInfoEdit extends React.PureComponent{
   render(){
     const { info } = this.props;
     return(
@@ -14,4 +14,4 @@ class EditRestaurantInfo extends React.PureComponent{
   }
 };
 
-export default EditRestaurantInfo;
+export default RestaurantInfoEdit;

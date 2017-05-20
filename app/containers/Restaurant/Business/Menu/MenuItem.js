@@ -1,5 +1,5 @@
 import React from 'react';
-import ModifyBtn from '../components/ModifyBtn';
+import ModifyBtn from '../components/ModifyButton';
 
 class MenuItem extends React.PureComponent{
   constructor(props){
@@ -16,7 +16,7 @@ class MenuItem extends React.PureComponent{
     const {dish} = this.props;
     return(
         <li>
-          {dish.name}<ModifyBtn onClick={this.onClick}/>
+          {dish.name}<ModifyButton onClick={this.onClick}/>
         </li>
     );
   }

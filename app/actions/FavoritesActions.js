@@ -7,7 +7,7 @@ function setFavorites(favorites){
   }
 }
 
-const fetchFavorites = () => {
+export const fetchFavorites = () => {
   return dispatch =>
     axios.get('/api/v1/favorite').then(
       (res) => {
@@ -15,4 +15,19 @@ const fetchFavorites = () => {
         dispatch(setFavorites(favorites))
       }
     )
+}
+
+export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {
+  if (!isFavorite){
+    axios.post('/api/v1/favorite/' + restaurantId).then(
+      res => {
+      }
+    )
+  } else {
+    axios.delete('/api/v1/favorite/' + restaurantId).then(
+      res => {
+
+      }
+    )
+  }
 }

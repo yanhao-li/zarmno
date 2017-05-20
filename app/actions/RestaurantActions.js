@@ -71,7 +71,7 @@ export const fetchRestaurant = (id) => (dispatch) => {
     err => {
       dispatch({
         type: 'FETCH_RESTAURANT_FAILURE',
-        message: res.data.errors
+        message: err
       });
     }
   );
@@ -113,18 +113,3 @@ export const deleteDish = (dish) => (dispatch) =>
       dispatch(deleteDishView(dish));
     }
   )
-
-export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {
-  if (!isFavorite){
-    axios.post('/api/v1/favorite/' + restaurantId).then(
-      res => {
-      }
-    )
-  } else {
-    axios.delete('/api/v1/favorite/' + restaurantId).then(
-      res => {
-
-      }
-    )
-  }
-}

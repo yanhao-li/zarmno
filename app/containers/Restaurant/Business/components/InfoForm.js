@@ -1,5 +1,5 @@
 import React from 'react';
-import ModifyBtn from './ModifyBtn';
+import ModifyButton from './ModifyButton';
 import { updateResInfo } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
@@ -69,7 +69,7 @@ class InfoForm extends React.PureComponent{
           <div className="form-inline">
             <h3>{ this.props.title }</h3>
             <span>{this.props.data}</span>
-            <ModifyBtn onClick={this.showForm}/>
+            <ModifyButton onClick={this.showForm}/>
           </div>
         )}
       </div>

@@ -22,7 +22,6 @@ npm start
   //current viewing restaurant
   restaurant:{
     isFetching: Boolean,
-    isFavorite: Boolean,
     info: {
       id:
       name:

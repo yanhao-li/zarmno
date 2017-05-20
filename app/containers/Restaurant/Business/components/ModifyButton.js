@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ModifyBtn extends React.PureComponent{
+class ModifyButton extends React.PureComponent{
   render(){
     return(
       <button onClick={this.props.onClick} className="btn btn-outline-secondary btn-sm">
@@ -10,4 +10,4 @@ class ModifyBtn extends React.PureComponent{
   }
 }
 
-export default ModifyBtn;
+export default ModifyButton;

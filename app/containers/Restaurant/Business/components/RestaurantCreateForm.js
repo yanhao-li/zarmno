@@ -3,7 +3,7 @@ import TextFieldGroup from 'components/TextFieldGroup';
 import { registerRes } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
-class CreateResForm extends React.PureComponent{
+class RestaurantCreateForm extends React.PureComponent{
   constructor(props){
     super(props);
     this.state = {
@@ -61,4 +61,4 @@ class CreateResForm extends React.PureComponent{
 }
 
 
-export default connect(null, { registerRes })(CreateResForm);
+export default connect(null, { registerRes })(RestaurantCreateForm);

@@ -2,8 +2,8 @@ import React from 'react';
 import MenuItem from './MenuItem';
 import ModalStyle from '../components/ModalStyle';
 import Modal from 'react-modal';
-import UpdateDishForm from './UpdateDishForm';
-import AddDishForm from './AddDishForm';
+import DishUpdateForm from './DishUpdateForm';
+import DishAddForm from './DishAddForm';
 import { connect } from 'react-redux';
 
 class EditMenu extends React.PureComponent{
@@ -67,9 +67,9 @@ class EditMenu extends React.PureComponent{
           shouldCloseOnOverlayClick={false}
         >
           { this.state.modalForm === 'edit' ?
-           (<UpdateDishForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />)
+           (<DishUpdateForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />)
            :
-           (<AddDishForm closeModal={this.closeModal} />)
+           (<DishAddForm closeModal={this.closeModal} />)
           }
         </Modal>
       </div>

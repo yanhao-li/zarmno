@@ -47,6 +47,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     auth: authReducer,
     restaurant: restaurantReducer,
+    favorites: favoritesReducer,
     ...asyncReducers,
   });
 }

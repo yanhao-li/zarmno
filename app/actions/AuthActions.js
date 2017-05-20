@@ -1,6 +1,7 @@
 import axios from 'axios';
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
+import { fetchFavorites } from './FavoritesActions';
 
 export function setCurrentUser(user) {
   return {
@@ -9,8 +10,7 @@ export function setCurrentUser(user) {
   };
 }
 
-export const initAuth = () => {
-  return dispatch => {
+export const initAuth = () => (dispatch) => {
     if (localStorage.jwtToken) {
       const token = localStorage.getItem('jwtToken');
       if (token) {
@@ -22,10 +22,10 @@ export const initAuth = () => {
         }
         setAuthorizationToken(token);
         dispatch(setCurrentUser(user));
+        dispatch(fetchFavorites());
       }
     }
   }
-};
 
 export const login = (user) => {
   return (dispatch) => axios.post('/api/v1/session', user).then(
@@ -56,5 +56,5 @@ export function getAuth() {
 }
 
 export function userSignupRequest(userData) {
-  return axios.post('/api/user', userData);
+  return axios.post('/api/v1/user', userData);
 }
