@@ -1,48 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRestaurant } from 'actions/RestaurantActions';
+import { fetchRestaurantById } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
 
 class FavoritesPage extends React.PureComponent{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      restaurants: [],
+      restaurants: this.props.favorites.restaurants,
     };
   }
 
-  componentDidMount(){
-    const {auth} = this.props;
-    const {favorites} = auth;
-    const promises = favorites.map((id) => {
-      return fetchRestaurant(id).then((rst) => {
-        return rst
-      })
-    })
-    Promise.all(promises).then((rst) => {
-      this.setState({
-        restaurants: rst
-      })
-    })
-  }
-
   componentWillReceiveProps(nextProps){
-    const { dispatch, auth } = nextProps;
-    const { favorites } = auth;
-    const promises = favorites.map((id) => {
-      return fetchRestaurant(id).then((rst) => {
-        return rst
-      })
-    })
-    Promise.all(promises).then((rst) => {
-      this.setState({
-        restaurants: rst
-      })
+    const { favorites } = nextProps;
+    const { restaurants } = favorites;
+    this.setState({
+      restaurants: restaurants
     })
   }
 
   render(){
-    const { restaurants } = this.state
+    const { isFetching } = this.props.favorites;
+    const { restaurants } = this.state;
+
+    if(isFetching) {
+      return(
+        <div> Loading </div>
+      )
+    }
+
     return(
       <div>
         <h1>My favorites</h1>
@@ -60,6 +46,7 @@ class FavoritesPage extends React.PureComponent{
 const mapStateToProps = (state) => {
   return {
     auth: state.get('auth'),
+    favorites: state.get('favorites')
   }
 }
 

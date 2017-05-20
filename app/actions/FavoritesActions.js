@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchRestaurantById } from './RestaurantActions';
 
 function setFavorites(favorites){
   return {
@@ -9,24 +10,36 @@ function setFavorites(favorites){
 
 export const fetchFavorites = () => {
   return dispatch =>
-    axios.get('/api/v1/favorite').then(
-      (res) => {
-        const { favorites } = res.data;
-        dispatch(setFavorites(favorites))
-      }
-    )
+    axios.get('/api/v1/favorite')
+      .then(
+        (res) => {
+          const FavoritesIds = res.data.favorites;
+          const favoritesPromises = FavoritesIds.map((id) => {
+            return dispatch(fetchRestaurantById(id))
+              .then((restaurant) => restaurant)
+          })
+          Promise.all(favoritesPromises)
+            .then((favorites) => dispatch(setFavorites(favorites)))
+        }
+      )
+      .catch(
+        (err) => {
+
+        }
+      )
 }
 
 export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {
   if (!isFavorite){
     axios.post('/api/v1/favorite/' + restaurantId).then(
       res => {
+        res.status(200).json({success: true});
       }
     )
   } else {
     axios.delete('/api/v1/favorite/' + restaurantId).then(
       res => {
-
+        res.status(200).json({success: true});
       }
     )
   }

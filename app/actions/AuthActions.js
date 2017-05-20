@@ -22,7 +22,20 @@ export const initAuth = () => (dispatch) => {
         }
         setAuthorizationToken(token);
         dispatch(setCurrentUser(user));
-        dispatch(fetchFavorites());
+        dispatch({
+          type: 'FETCH_FAVORITES_REQUEST'
+        });
+        dispatch(fetchFavorites())
+        .then(()=>
+          dispatch({
+            type: 'FETCH_FAVORITES_SUCCESS'
+          })
+        )
+        .catch(()=>
+          dispatch({
+            type: 'FETCH_FAVORITES_FAILURE'
+          })
+        );
       }
     }
   }
