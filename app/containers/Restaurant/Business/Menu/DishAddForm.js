@@ -1,15 +1,15 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { addDish } from 'actions/RestaurantActions';
-import { connect } from 'react-redux';
 
 class DishAddForm extends React.PureComponent{
   constructor(props){
     super(props);
+    const { restaurant } = this.props;
     this.state = {
       errors: "",
       dish: {
-        resId: this.props.currentRes.info.id,
+        resId: restaurant.info.id,
         name: "",
         description: "",
         img: ""
@@ -28,10 +28,10 @@ class DishAddForm extends React.PureComponent{
 
   saveChanges(e){
     const { dish } = this.state;
+    const { dispatch } = this.props;
     e.preventDefault();
-    this.props.addDish(dish).then(
-      this.props.closeModal
-    );
+    dispatch(addDish(dish));
+    this.props.closeModal();
   }
 
   render(){
@@ -65,10 +65,4 @@ class DishAddForm extends React.PureComponent{
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    currentRes: state.get('currentRes')
-  }
-}
-
-export default connect(mapStateToProps, { addDish })(DishAddForm);
+export default DishAddForm;

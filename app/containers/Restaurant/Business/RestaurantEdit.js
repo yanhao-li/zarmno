@@ -1,22 +1,23 @@
 import React from 'react';
-import EditRestaurantInfo from './components/RestaurantInfoEdit'
-import EditMenu from './Menu/MenuEdit';
+import RestaurantInfoEdit from './components/RestaurantInfoEdit'
+import MenuEdit from './Menu/MenuEdit';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { fetchRestaurant } from 'actions/RestaurantActions';
+import { setCurrentRes } from 'actions/RestaurantActions';
 
 class RestaurantEdit extends React.PureComponent{
 
   componentDidMount(){
-    this.props.fetchRestaurant(this.props.params.id);
+    const {dispatch} = this.props;
+    dispatch(setCurrentRes(this.props.params.id));
   }
 
   render(){
-    const { info, menu } = this.props.restaurant;
+    const { info } = this.props.restaurant;
     return(
       <div>
-        <EditRestaurantInfo info={ info }/>
-        <EditMenu menu={ menu }/>
+        <RestaurantInfoEdit {...this.props}/>
+        <MenuEdit {...this.props}/>
         <Link to={'/restaurant/' + info.id}><button className="btn btn-secondary btn-sm">Go back</button></Link>
       </div>
     );
@@ -25,8 +26,10 @@ class RestaurantEdit extends React.PureComponent{
 
 const mapStateToProps = (state) => {
   return {
+      auth: state.get('auth'),
       restaurant: state.get('restaurant'),
+      favorites: state.get('favorites')
   }
 }
 
-export default connect(mapStateToProps, {fetchRestaurant})(RestaurantEdit);
+export default connect(mapStateToProps)(RestaurantEdit);

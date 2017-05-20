@@ -3,12 +3,12 @@ import InfoForm from './InfoForm';
 
 class RestaurantInfoEdit extends React.PureComponent{
   render(){
-    const { info } = this.props;
+    const { info } = this.props.restaurant;
     return(
       <div>
-        <InfoForm info={info} name="name" title="Restaurant Name" data={info.name}/>
-        <InfoForm info={info} name="location" title="Location" data={info.location}/>
-        <InfoForm info={info} name= "description" title="Description" data={ info.description ? info.description : "This restaurant hasn't added description yet"}/>
+        <InfoForm name="name" title="Restaurant Name" data={info.name} {...this.props}/>
+        <InfoForm name="location" title="Location" data={info.location} {...this.props}/>
+        <InfoForm name= "description" title="Description" data={ info.description ? info.description : "This restaurant hasn't added description yet"} {...this.props}/>
       </div>
     );
   }

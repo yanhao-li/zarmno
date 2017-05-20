@@ -1,7 +1,7 @@
 import React from 'react';
-import ModifyBtn from '../components/ModifyButton';
+import ModifyButton from '../components/ModifyButton';
 
-class MenuItem extends React.PureComponent{
+class DishEdit extends React.PureComponent{
   constructor(props){
     super(props);
     this.onClick = this.onClick.bind(this);
@@ -22,4 +22,4 @@ class MenuItem extends React.PureComponent{
   }
 };
 
-export default MenuItem;
+export default DishEdit;

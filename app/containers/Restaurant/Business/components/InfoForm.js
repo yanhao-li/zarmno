@@ -1,7 +1,6 @@
 import React from 'react';
 import ModifyButton from './ModifyButton';
 import { updateResInfo } from 'actions/RestaurantActions';
-import { connect } from 'react-redux';
 
 class InfoForm extends React.PureComponent{
   constructor(props){
@@ -18,13 +17,13 @@ class InfoForm extends React.PureComponent{
   }
 
   saveChanges(e){
-    const {info} = this.props.currentRes;
+    const { restaurant, dispatch } = this.props;
+    const { info } = restaurant;
     e.preventDefault();
-    this.props.updateResInfo(info.id, this.state).then(
-      this.setState({
-        isFormShowed: false,
-      })
-    );
+    dispatch(updateResInfo(info.id, this.state));
+    this.setState({
+      isFormShowed: false,
+    })
   }
 
   cancelChanges(e){
@@ -77,10 +76,4 @@ class InfoForm extends React.PureComponent{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    currentRes: state.get('currentRes')
-  }
-}
-
-export default connect(mapStateToProps, { updateResInfo })(InfoForm);
+export default InfoForm;

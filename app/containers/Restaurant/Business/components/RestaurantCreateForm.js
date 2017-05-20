@@ -61,4 +61,4 @@ class RestaurantCreateForm extends React.PureComponent{
 }
 
 
-export default connect(null, { registerRes })(RestaurantCreateForm);
+export default RestaurantCreateForm;

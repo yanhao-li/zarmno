@@ -1,10 +1,9 @@
 import React from 'react';
-import MenuItem from './MenuItem';
+import DishEdit from './DishEdit';
 import ModalStyle from '../components/ModalStyle';
 import Modal from 'react-modal';
 import DishUpdateForm from './DishUpdateForm';
 import DishAddForm from './DishAddForm';
-import { connect } from 'react-redux';
 
 class EditMenu extends React.PureComponent{
   constructor(props) {
@@ -48,13 +47,13 @@ class EditMenu extends React.PureComponent{
 
 
   render(){
-    const { menu } = this.props;
+    const { menu } = this.props.restaurant;
     return (
       <div>
         <h3>Menu</h3>
         <ul>
           {menu.map(dish =>
-            (<MenuItem  key={dish.id} dish={dish} openModal={this.openModal} setDishEditing={this.setDishEditing}/>)
+            (<DishEdit  key={dish.id} dish={dish} openModal={this.openModal} setDishEditing={this.setDishEditing} {...this.props}/>)
           )}
           <button type="button" className="btn btn-primary btn-sm" onClick={this.onAddDishBtnClick}>Add Dish</button>
         </ul>
@@ -67,9 +66,9 @@ class EditMenu extends React.PureComponent{
           shouldCloseOnOverlayClick={false}
         >
           { this.state.modalForm === 'edit' ?
-           (<DishUpdateForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} />)
+           (<DishUpdateForm closeModal={this.closeModal} dishEditing={this.state.dishEditing} {...this.props}/>)
            :
-           (<DishAddForm closeModal={this.closeModal} />)
+           (<DishAddForm closeModal={this.closeModal} {...this.props}/>)
           }
         </Modal>
       </div>

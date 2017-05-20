@@ -4,7 +4,6 @@ import { getRestaurantsList } from 'actions/RestaurantActions';
 import ModalStyle from './components/ModalStyle';
 import CreateResForm from './components/RestaurantCreateForm';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
 
 class BusinessNotFound extends React.PureComponent{
   constructor(props){
@@ -45,11 +44,4 @@ class BusinessNotFound extends React.PureComponent{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.get('auth'),
-    restaurantList: state.get('restaurantList')
-  }
-};
-
-export default connect(mapStateToProps)(BusinessNotFound);
+export default BusinessNotFound;

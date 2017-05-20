@@ -1,7 +1,6 @@
 import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { updateDish, deleteDish } from 'actions/RestaurantActions';
-import { connect } from 'react-redux';
 
 class DishUpdateForm extends React.PureComponent{
   constructor(props){
@@ -23,10 +22,10 @@ class DishUpdateForm extends React.PureComponent{
 
   deleteDish(e) {
     const { dish } = this.state;
+    const { dispatch } = this.props;
     e.preventDefault();
-    this.props.deleteDish(dish).then(
-      this.props.closeModal
-    );
+    dispatch(deleteDish(dish));
+    this.props.closeModal();
   }
 
   onChange(e) {
@@ -38,10 +37,10 @@ class DishUpdateForm extends React.PureComponent{
 
   saveChanges(e){
     const { dish } = this.state;
+    const { dispatch } = this.props;
     e.preventDefault();
-    this.props.updateDish(dish).then(
-      this.props.closeModal
-    );
+    dispatch(updateDish(dish))
+    this.props.closeModal();
   }
 
   render(){
@@ -76,4 +75,4 @@ class DishUpdateForm extends React.PureComponent{
   }
 };
 
-export default connect(null, { updateDish, deleteDish })(DishUpdateForm);
+export default DishUpdateForm;
