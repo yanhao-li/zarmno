@@ -25,10 +25,13 @@ class RestaurantPage extends React.PureComponent{
   componentWillReceiveProps(nextProps){
     const {restaurant} = this.props;
     const {restaurants} = nextProps.favorites;
-    if(restaurants.includes(restaurant.info.id)){
-      this.setState({
-        isFavorite: true
-      })
+    for (let x in restaurants) {
+      if (restaurants[x].info.id == restaurant.info.id){
+        this.setState({
+          isFavorite: true
+        })
+        break;
+      }
     }
   }
 

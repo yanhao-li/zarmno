@@ -8,6 +8,20 @@ function setFavorites(favorites){
   }
 }
 
+function appendFavorite(restaurant){
+  return {
+    type: 'APPEND_FAVORITE',
+    restaurant
+  }
+}
+
+function removeFavorite(restaurantId){
+  return {
+    type: 'REMOVE_FAVORITE',
+    restaurantId
+  }
+}
+
 export const fetchFavorites = () => {
   return dispatch =>
     axios.get('/api/v1/favorite')
@@ -32,14 +46,16 @@ export const fetchFavorites = () => {
 export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {
   if (!isFavorite){
     axios.post('/api/v1/favorite/' + restaurantId).then(
-      res => {
-        res.status(200).json({success: true});
+      () => {
+        dispatch(fetchRestaurantById(restaurantId)).then(
+          (restaurant) => dispatch(appendFavorite(restaurant))
+        )
       }
     )
   } else {
     axios.delete('/api/v1/favorite/' + restaurantId).then(
-      res => {
-        res.status(200).json({success: true});
+      () => {
+        dispatch(removeFavorite(restaurantId))
       }
     )
   }

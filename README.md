@@ -2,8 +2,10 @@ Menu Plus is an online menu service.
 
 
 ## Usage
+```
 npm install
 npm start
+```
 
 ## Redux Store Structure
 ```javascript
