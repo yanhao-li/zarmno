@@ -1,4 +1,4 @@
-Menu Plus is an online menu service.
+Menu Plus is an online menu.
 
 
 ## Usage
