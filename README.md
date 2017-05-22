@@ -45,7 +45,7 @@ npm start
 
 ## Reference
 Client: React, Redux
-sound-redux
+sound-redux, Todo
 
 Server: Express
 Ghost
