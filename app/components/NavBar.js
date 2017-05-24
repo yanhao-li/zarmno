@@ -8,12 +8,21 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
+import Avatar from 'material-ui/Avatar';
+import Paper from 'material-ui/Paper';
 
 const styles = {
   navbar: {
     backgroundColor: 'white',
-    FlatButton: {
-      color: 'white'
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: '80px',
+    paddingRight: '80px',
+    iconElementRight: {
+      margin: 0,
+      FlatButton: {
+        color: 'white'
+      },
     }
   }
 }
@@ -22,9 +31,12 @@ class NavBar extends React.PureComponent {
   constructor() {
     super();
     this.state = {
+      avatarShadow: 1,
       menuIsOpen: false
     }
     this.logout = this.logout.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
 
@@ -41,6 +53,18 @@ class NavBar extends React.PureComponent {
       menuIsOpen: false,
     });
   };
+
+  onMouseEnter = () => {
+    this.setState({
+      avatarShadow: 2
+    })
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      avatarShadow: 1
+    })
+  }
 
   logout(e) {
     e.preventDefault();
@@ -79,13 +103,15 @@ class NavBar extends React.PureComponent {
 
     const guestNav = (
       <ul className="nav">
-        <li className="nav-item"><Link className="nav-link" to="/signup"><FlatButton label="SIGN UP" backgroundColor='#1E88E5' hoverColor='#0D47A1' style={styles.navbar.FlatButton} /></Link></li>
-        <li className="nav-item"><Link className="nav-link" to="/login"><FlatButton label="LOG IN" backgroundColor='#EC407A' hoverColor='#AD1457' style={styles.navbar.FlatButton} /></Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/signup"><FlatButton label="SIGN UP" backgroundColor='#1E88E5' hoverColor='#0D47A1' style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/login"><FlatButton label="LOG IN" backgroundColor='#EC407A' hoverColor='#AD1457' style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
       </ul>
     );
 
     const userNav = (
-      <FlatButton label={user.email} onTouchTap={this.handleTouchTap} style={{color: '#64B5F6'}} />
+      <Paper circle={true} onTouchTap={this.handleTouchTap} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} zDepth={this.state.avatarShadow}>
+        <Avatar src="https://pbs.twimg.com/profile_images/703321571667132417/009UGEqY_normal.jpg"/>
+      </Paper>
     );
 
     if (!isAuthenticated) {
@@ -100,13 +126,14 @@ class NavBar extends React.PureComponent {
           title={<Link to="/">Menu Plus</Link>}
           showMenuIconButton={false}
           iconElementRight={nav}
+          iconStyleRight={styles.navbar.iconElementRight}
           style={styles.navbar}
         />
         <Popover
           open={this.state.menuIsOpen}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+          anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
+          targetOrigin={{horizontal: 'middle', vertical: 'top'}}
           onRequestClose={this.handleRequestClose}
           >
           {navMenu}

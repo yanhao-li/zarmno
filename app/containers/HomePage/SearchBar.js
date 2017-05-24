@@ -2,6 +2,15 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 import { getRestaurantsList } from 'actions/RestaurantsListActions';
+import FlatButton from 'material-ui/FlatButton'
+
+const styles = {
+  searchBtn: {
+    color: 'white',
+    height: 50,
+    width: 100
+  }
+}
 
 let restaurants;
 const getSuggestions = (value) => {
@@ -77,11 +86,6 @@ const AutosuggestTheme = {
   },
 };
 
-const SearchBtn = styled.button`
-  height: 50px;
-  width: 100px;
-`;
-
 
 export default class SearchBar extends React.Component {
   constructor() {
@@ -148,7 +152,7 @@ export default class SearchBar extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-        <SearchBtn type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Search</SearchBtn>
+        <FlatButton label="SEARCH" backgroundColor='#EC407A' hoverColor='#F06292' primary={true} style={styles.searchBtn}/>
       </SearchForm>
     );
   }
