@@ -16,7 +16,7 @@ import NavBar from 'components/NavBar';
 import styled from 'styled-components';
 import { initAuth } from 'actions/AuthActions';
 import { connect } from 'react-redux';
-import {black, white} from 'material-ui/styles/colors';
+import { black, white } from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -26,15 +26,10 @@ const AppDiv = styled.div`
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: white,
-    primary2Color: black,
-    primary3Color: black,
-    accent1Color: black,
-    accent2Color: black,
-    accent3Color: black,
+    primary1Color: '#1E88E5',
+    accent1Color: '#EC407A',
     textColor: black,
-    canvasColor: black,
-    alternateTetColor: black
+    alternateTextColor: white
   },
 })
 
