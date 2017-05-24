@@ -19,9 +19,7 @@ import 'sanitize.css/sanitize.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-// import 'materialize-css/bin/materialize.css';
-// import 'materialize-css/bin/materialize.js';
-
+import injectTapEventPlugin from 'react-tap-event-plugin'; //Material-UI event listener
 // Import root app
 import App from 'containers/App';
 
@@ -65,6 +63,7 @@ const rootRoute = {
   // childRoutes is An array of child routes, same as children in JSX route configs.
   childRoutes: createRoutes(store),
 };
+injectTapEventPlugin();
 
 
 const render = (messages) => {

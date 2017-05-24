@@ -26,4 +26,18 @@ injectGlobal`
     min-width: 100%;
   }
 
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  li {
+    list-style-type: none;  
+  }
+
 `;

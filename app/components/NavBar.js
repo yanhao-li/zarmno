@@ -1,16 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from 'actions/AuthActions';
 import { browserHistory } from 'react-router';
-
-const StyledNav = styled.nav`
-  position: relative;
-  height: 60px;
-  width: 100%;
-  z-index: 100;
-`;
+import AppBar from 'material-ui/AppBar';
 
 class NavBar extends React.PureComponent {
   constructor() {
@@ -28,7 +21,7 @@ class NavBar extends React.PureComponent {
     const { isAuthenticated, user } = this.props.auth;
     let link;
     const userLinks = (
-      <ul className="navbar-nav">
+      <ul className="nav">
         <li className="nav-item"><Link className="nav-link" to="/profile">{ user.email }</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/favorites">My Favorites</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
@@ -36,14 +29,14 @@ class NavBar extends React.PureComponent {
     );
 
     const guestLinks = (
-      <ul className="navbar-nav">
+      <ul className="nav">
         <li className="nav-item"><Link className="nav-link" to="/signup">Sign up</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/login">Log in</Link></li>
       </ul>
     );
 
     const businessLinks = (
-      <ul className="navbar-nav">
+      <ul className="nav">
         <li className="nav-item"><Link className="nav-link" to="/profile">{ user.email }</Link></li>
         <li className="nav-item"><Link className="nav-link" to={"/restaurant/" + user.id}>My restaurant</Link></li>
         <li className="nav-item"><a className="nav-link" href="/logout" onClick={this.logout}>Log out</a></li>
@@ -58,16 +51,10 @@ class NavBar extends React.PureComponent {
       link = businessLinks;
     }
 
+
     return (
-      <StyledNav className="navbar navbar-toggleable-md navbar-light bg-faded">
-        <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <Link className="navbar-brand" to="/">Menu Plus</Link>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-          {link}
-        </div>
-      </StyledNav>
+      <AppBar
+        title={<Link to="/">Menu Plus</Link>} iconElementRight={link} />
     );
   }
 }

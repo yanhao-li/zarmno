@@ -16,11 +16,27 @@ import NavBar from 'components/NavBar';
 import styled from 'styled-components';
 import { initAuth } from 'actions/AuthActions';
 import { connect } from 'react-redux';
+import {black, white} from 'material-ui/styles/colors';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const AppDiv = styled.div`
   height: 100%;
 `;
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: white,
+    primary2Color: black,
+    primary3Color: black,
+    accent1Color: black,
+    accent2Color: black,
+    accent3Color: black,
+    textColor: black,
+    canvasColor: black,
+    alternateTetColor: black
+  },
+})
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -35,10 +51,12 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
 
   render() {
     return (
-      <AppDiv>
-        <NavBar />
-        {React.Children.toArray(this.props.children)}
-      </AppDiv>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <AppDiv>
+          <NavBar />
+          {React.Children.toArray(this.props.children)}
+        </AppDiv>
+      </MuiThemeProvider>
     );
   }
 }
