@@ -27,7 +27,7 @@ class RestaurantPage extends React.PureComponent{
     }
 
     return(
-      <div>
+      <div className="container">
         <RestaurantInfo {...this.props}/>
         <Menu {...this.props}/>
         <Link to={"/restaurant/" + info.id + "/edit"} className="btn btn-secondary">Edit</Link>

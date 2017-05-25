@@ -4,6 +4,12 @@ import { Link } from 'react-router';
 import { getRestaurantsList } from 'actions/RestaurantActions';
 import Subheader from 'material-ui/Subheader';
 import RestaurantCard from './RestaurantCard';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  background-color: #ffffff;
+  height: 100%;
+`
 
 class RestaurantList extends React.PureComponent{
   constructor(props){
@@ -30,7 +36,7 @@ class RestaurantList extends React.PureComponent{
   render(){
     const {restaurantList} = this.state;
     return(
-      <div className="container">
+      <Container className="container">
         <Subheader>All restaurants</Subheader>
         <ul className="row">
           {restaurantList.map(restaurant =>
@@ -40,7 +46,7 @@ class RestaurantList extends React.PureComponent{
             )
           )}
         </ul>
-      </div>
+      </Container>
     )
   }
 }

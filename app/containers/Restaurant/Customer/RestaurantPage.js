@@ -6,6 +6,32 @@ import Menu from '../Common/Menu';
 import NotFound from 'containers/NotFoundPage';
 import { isEmpty } from 'lodash';
 import { toggleFavorite } from 'actions/FavoritesActions';
+import styled from 'styled-components';
+import Paper from 'material-ui/Paper';
+import Chip from 'material-ui/Chip';
+import {Card, CardMedia, CardTitle} from 'material-ui/Card';
+
+const FeatureImgDiv = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(130, 31, 32, 1);
+  height: 500px;
+  overflow: hidden;
+  background-image: url("https://truffle-assets.imgix.net/pxqrocxwsjcc_1U8QdKL1ogqw60u04k2KmI_hainanese-chicken-rice_squareThumbnail_en-US.png");
+  background-size: cover;
+`
+
+const styles = {
+  InfoPaper: {
+    position: 'absolute',
+    bottom: 0,
+    borderRadius: '5px 5px 0 0',
+    height: '300px',
+    display: 'flex',
+    alignItems: 'center'
+  }
+}
 
 class RestaurantPage extends React.PureComponent{
   constructor(){
@@ -48,11 +74,6 @@ class RestaurantPage extends React.PureComponent{
   render(){
     const { isFetching, info } = this.props.restaurant;
     const { isFavorite } = this.state;
-    const btnClass = classNames({
-      'btn': true,
-      'btn-info': !isFavorite,
-      'btn-danger': isFavorite
-    });
 
     if (isFetching) {
       return <p>Loading</p>
@@ -64,9 +85,23 @@ class RestaurantPage extends React.PureComponent{
 
     return(
       <div>
-        <RestaurantInfo {...this.props}/>
-        <button className={btnClass} onClick={this.toggleFavorite}>{isFavorite ? 'Unfavorite' :'Save to Favorites'}</button>
-        <Menu {...this.props}/>
+        <FeatureImgDiv>
+          <Paper className="container" style={styles.InfoPaper}>
+            <RestaurantInfo {...this.props}/>
+            <Chip backgroundColor={isFavorite ? '#3F51B5' : '#EC407A'} labelColor="white" onClick={this.toggleFavorite}>{isFavorite ? 'Remove From Favorite' :'Save to Favorites'}</Chip>
+            <Card style={{height: 250, width: 250, position: 'absolute', right: '50px'}}>
+              <CardMedia
+                overlay={<CardTitle title="more images"> </CardTitle>}
+                style={{height: '250px'}}
+                >
+                <img src="https://media.timeout.com/images/100666581/image.jpg" style={{width: '250px', height: '250px'}}/>
+              </CardMedia>
+            </Card>
+          </Paper>
+        </FeatureImgDiv>
+        <div className="container">
+          <Menu {...this.props}/>
+        </div>
       </div>
     );
   }

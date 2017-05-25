@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRestaurantById } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
-import Subheader from 'material-ui/Subheader'
-import RestaurantCard from 'containers/Restaurant/Common/RestaurantCard'
+import Subheader from 'material-ui/Subheader';
+import styled from 'styled-components';
+import RestaurantCard from 'containers/Restaurant/Common/RestaurantCard';
+
+const Container = styled.div`
+  background-color: #ffffff;
+  height: 100%;
+`
 
 class FavoritesPage extends React.PureComponent{
   constructor(props){
@@ -32,7 +38,7 @@ class FavoritesPage extends React.PureComponent{
     }
 
     return(
-      <div className="container">
+      <Container className="container">
         <Subheader>My favorites</Subheader>
         <ul className="row">
           {restaurants.map(restaurant =>
@@ -40,7 +46,7 @@ class FavoritesPage extends React.PureComponent{
             )
           )}
         </ul>
-      </div>
+      </Container>
     );
   }
 }
