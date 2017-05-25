@@ -5,11 +5,15 @@ import { getRestaurantsList } from 'actions/RestaurantActions';
 import Subheader from 'material-ui/Subheader';
 import RestaurantCard from './RestaurantCard';
 import styled from 'styled-components';
+import Paper from 'material-ui/Paper';
 
-const Container = styled.div`
-  background-color: #ffffff;
-  height: 100%;
-`
+const styles = {
+  paper: {
+    backgroundColor: 'white',
+    height: '100%',
+    marginTop: 30
+  }
+}
 
 class RestaurantList extends React.PureComponent{
   constructor(props){
@@ -36,7 +40,7 @@ class RestaurantList extends React.PureComponent{
   render(){
     const {restaurantList} = this.state;
     return(
-      <Container className="container">
+      <Paper className="container" style={styles.paper}>
         <Subheader>All restaurants</Subheader>
         <ul className="row">
           {restaurantList.map(restaurant =>
@@ -46,7 +50,7 @@ class RestaurantList extends React.PureComponent{
             )
           )}
         </ul>
-      </Container>
+      </Paper>
     )
   }
 }

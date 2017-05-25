@@ -5,11 +5,15 @@ import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
 import styled from 'styled-components';
 import RestaurantCard from 'containers/Restaurant/Common/RestaurantCard';
+import Paper from 'material-ui/Paper';
 
-const Container = styled.div`
-  background-color: #ffffff;
-  height: 100%;
-`
+const styles = {
+  paper: {
+    backgroundColor: "#ffffff",
+    height: "100%",
+    marginTop: 30
+  }
+}
 
 class FavoritesPage extends React.PureComponent{
   constructor(props){
@@ -38,7 +42,7 @@ class FavoritesPage extends React.PureComponent{
     }
 
     return(
-      <Container className="container">
+      <Paper className="container" style={styles.paper}>
         <Subheader>My favorites</Subheader>
         <ul className="row">
           {restaurants.map(restaurant =>
@@ -46,7 +50,7 @@ class FavoritesPage extends React.PureComponent{
             )
           )}
         </ul>
-      </Container>
+      </Paper>
     );
   }
 }
