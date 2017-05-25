@@ -45,11 +45,13 @@ const restaurant = {
 
   edit: (req, res) => {
     let restaurantId = req.params.id;
-    let {fieldName, formValue} = req.body
+    let { name, location, description } = req.body
     db.Restaurant.findById(restaurantId).then(
       function(restaurant){
         restaurant.update({
-          [fieldName]: formValue
+          name: name,
+          location: location,
+          description: description
         }).then((restaurant) => res.status(200).json({restaurant: restaurant}));
       }
     );

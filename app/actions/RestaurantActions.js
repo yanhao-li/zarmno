@@ -86,8 +86,8 @@ export const setCurrentRes = (id) => (dispatch) => {
     )
 }
 
-export const updateResInfo = (id, data) => (dispatch) =>
-  axios.put('/api/v1/restaurant/' + id, data).then(
+export const updateResInfo = (id, newInfo) => (dispatch) =>
+  axios.put('/api/v1/restaurant/' + id, newInfo).then(
     res => {
       dispatch(updateResInfoView(res.data.restaurant));
     }
