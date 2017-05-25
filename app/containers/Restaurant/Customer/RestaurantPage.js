@@ -28,8 +28,6 @@ const styles = {
     bottom: 0,
     borderRadius: '5px 5px 0 0',
     height: '300px',
-    display: 'flex',
-    alignItems: 'center'
   }
 }
 
@@ -87,21 +85,25 @@ class RestaurantPage extends React.PureComponent{
       <div>
         <FeatureImgDiv>
           <Paper className="container" style={styles.InfoPaper}>
-            <RestaurantInfo {...this.props}/>
-            <Chip backgroundColor={isFavorite ? '#3F51B5' : '#EC407A'} labelColor="white" onClick={this.toggleFavorite}>{isFavorite ? 'Remove From Favorite' :'Save to Favorites'}</Chip>
-            <Card style={{height: 250, width: 250, position: 'absolute', right: '50px'}}>
-              <CardMedia
-                overlay={<CardTitle title="more images"> </CardTitle>}
-                style={{height: '250px'}}
-                >
-                <img src="https://media.timeout.com/images/100666581/image.jpg" style={{width: '250px', height: '250px'}}/>
-              </CardMedia>
-            </Card>
+            <div className="row">
+              <div className="col">
+                <RestaurantInfo {...this.props}/>
+                <Chip backgroundColor={isFavorite ? '#3F51B5' : '#EC407A'} labelColor="white" onClick={this.toggleFavorite} style={{marginLeft: 30}}>{isFavorite ? 'Remove From Favorite' :'Save to Favorites'}</Chip>
+              </div>
+              <div className="col">
+                <Card style={{height: 250, width: 250, float: 'right', margin: 30}}>
+                  <CardMedia
+                    overlay={<CardTitle title="more images"> </CardTitle>}
+                    style={{height: '250px'}}
+                    >
+                    <img src="https://media.timeout.com/images/100666581/image.jpg" style={{width: '250px', height: '250px'}}/>
+                  </CardMedia>
+                </Card>
+              </div>
+            </div>
           </Paper>
         </FeatureImgDiv>
-        <div className="container">
-          <Menu {...this.props}/>
-        </div>
+        <Menu {...this.props}/>
       </div>
     );
   }

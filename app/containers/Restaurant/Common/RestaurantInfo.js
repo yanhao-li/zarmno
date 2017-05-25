@@ -1,6 +1,9 @@
 import React from 'react';
-import { toggleFavorite } from 'actions/RestaurantActions';
-import { connect } from 'react-redux';
+import styled from 'styled-components';
+
+const RestaurantInfoDiv = styled.div`
+  padding: 30px;
+`
 
 class RestaurantInfo extends React.PureComponent{
 
@@ -8,13 +11,13 @@ class RestaurantInfo extends React.PureComponent{
     const { restaurant } = this.props;
     const { info } = restaurant;
     return(
-      <div>
-        <h1>{info.name}</h1>
-        <h1>{info.location}</h1>
-        { info.description ? <p>{info.description}</p> : <p>This restaurant hasn't added information yet</p>}
-      </div>
+      <RestaurantInfoDiv className="col">
+        <h1 className="display-4">{info.name}</h1>
+        <h3 className="text-muted">{info.location}</h3>
+        { info.description ? <p className="lead">{info.description}</p> : <p className="lead">This restaurant hasn't added information yet</p>}
+      </RestaurantInfoDiv>
     );
   }
 };
 
-export default connect()(RestaurantInfo);
+export default RestaurantInfo;
