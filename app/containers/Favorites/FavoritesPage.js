@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchRestaurantById } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
+import Subheader from 'material-ui/Subheader'
+import RestaurantCard from 'containers/Restaurant/Common/RestaurantCard'
 
 class FavoritesPage extends React.PureComponent{
   constructor(props){
@@ -30,11 +32,11 @@ class FavoritesPage extends React.PureComponent{
     }
 
     return(
-      <div>
-        <h1>My favorites</h1>
-        <ul>
+      <div className="container">
+        <Subheader>My favorites</Subheader>
+        <ul className="row">
           {restaurants.map(restaurant =>
-            (<li key={restaurant.info.id}> <Link to={'/restaurant/' + restaurant.info.id} >{restaurant.info.name}</Link></li>
+            (<li key={restaurant.info.id}> <Link to={'/restaurant/' + restaurant.info.id}><RestaurantCard restaurant={ restaurant.info }/></Link></li>
             )
           )}
         </ul>
