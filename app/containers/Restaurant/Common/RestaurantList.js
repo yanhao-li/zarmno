@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { getRestaurantsList } from 'actions/RestaurantActions';
-
+import Subheader from 'material-ui/Subheader';
+import RestaurantCard from './RestaurantCard';
 
 class RestaurantList extends React.PureComponent{
   constructor(props){
@@ -29,11 +30,13 @@ class RestaurantList extends React.PureComponent{
   render(){
     const {restaurantList} = this.state;
     return(
-      <div>
-        <h1> All restaurants </h1>
-        <ul>
+      <div className="container">
+        <Subheader>All restaurants</Subheader>
+        <ul className="row">
           {restaurantList.map(restaurant =>
-            (<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
+            (
+              <li key={restaurant.id}><Link to={'/restaurant/' + restaurant.id}><RestaurantCard restaurant={restaurant}/></Link></li>
+              //<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
             )
           )}
         </ul>
