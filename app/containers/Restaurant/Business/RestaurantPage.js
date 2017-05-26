@@ -81,7 +81,7 @@ class RestaurantPage extends React.PureComponent{
                   :
                   (<RestaurantInfo {...this.props}/>)
                 }
-                {!this.state.isEditing && (<button className="btn btn-secondary" onClick={this.onEdit}>Edit</button>)}
+                {!this.state.isEditing && (<button className="btn btn-secondary" onClick={this.onEdit} style={{marginLeft: "30px"}}>Edit</button>)}
 
               </div>
               <div className="col">

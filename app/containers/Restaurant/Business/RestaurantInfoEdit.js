@@ -1,11 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import TextField from 'material-ui/TextField';
 import { updateResInfo } from 'actions/RestaurantActions';
 
-const RestaurantInfoDiv = styled.div`
-  padding: 30px;
-`
 
 class RestaurantInfoEdit extends React.PureComponent{
   constructor(props){
@@ -42,7 +38,7 @@ class RestaurantInfoEdit extends React.PureComponent{
     const { restaurant } = this.props;
     const { info } = restaurant;
     return(
-      <RestaurantInfoDiv className="col">
+      <div style={{padding: 20}}>
         <TextField
           id="text-field-controlled"
           value={this.state.fieldsValue.name}
@@ -64,9 +60,11 @@ class RestaurantInfoEdit extends React.PureComponent{
           floatingLabelText="Restaurant Description"
           onChange={this.handleChange}
         />
-        <button className="btn btn-secondary" onClick={this.saveChanges}>Save</button>
-        <button className="btn btn-secondary" onClick={this.props.cancelEdit}>Cancel</button>
-      </RestaurantInfoDiv>
+        <div>
+          <button className="btn btn-secondary" onClick={this.saveChanges} style={{marginTop: "10px"}}>Save</button>
+          <button className="btn btn-secondary" onClick={this.props.cancelEdit} style={{margin: "10px 0 0 10px"}}>Cancel</button>
+        </div>
+      </div>
     );
   }
 };
