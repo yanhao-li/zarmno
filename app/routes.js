@@ -78,7 +78,7 @@ export default function createRoutes(store) {
       name: 'restaurantList',
       onEnter: requireAuth,
       getComponent(nextState, cb) {
-        import('containers/Restaurant/Common/RestaurantList')
+        import('containers/Restaurant/components/Common/RestaurantList')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -87,7 +87,7 @@ export default function createRoutes(store) {
       path: 'restaurant/:id',
       name: 'restaurantPage',
       getComponent(nextState, cb) {
-        import('containers/Restaurant/RestaurantContainer')
+        import('containers/Restaurant/RestaurantPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

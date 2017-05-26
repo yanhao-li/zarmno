@@ -4,7 +4,7 @@ import { fetchRestaurantById } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
 import styled from 'styled-components';
-import RestaurantCard from 'containers/Restaurant/Common/RestaurantCard';
+import RestaurantCard from 'containers/Restaurant/components/Common/RestaurantCard';
 import Paper from 'material-ui/Paper';
 
 const styles = {

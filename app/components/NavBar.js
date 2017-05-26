@@ -79,17 +79,17 @@ class NavBar extends React.PureComponent {
 
     const customerMenu = (
       <Menu>
-        <MenuItem><Link to="/profile">Profile</Link></MenuItem>
-        <MenuItem><Link to="/favorites">My Favorites</Link></MenuItem>
-        <MenuItem><a href="/logout" onClick={this.logout}>Log out</a></MenuItem>
+        <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
+        <Link to="/favorites"><MenuItem>My Favorites</MenuItem></Link>
+        <a href="/logout" onClick={this.logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
     )
 
     const businessMenu = (
       <Menu>
-        <MenuItem><Link to="/profile">Profile</Link></MenuItem>
-        <MenuItem><Link to={"/restaurant/" + user.id}>My restaurant</Link></MenuItem>
-        <MenuItem><a href="/logout" onClick={this.logout}>Log out</a></MenuItem>
+        <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
+        <Link to={"/restaurant/" + user.id}><MenuItem>My restaurant</MenuItem></Link>
+        <a href="/logout" onClick={this.logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
     );
 

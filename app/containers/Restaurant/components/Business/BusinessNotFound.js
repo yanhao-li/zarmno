@@ -1,8 +1,6 @@
 import React from 'react';
-import CreateNewResModal from 'react-modal';
 import { getRestaurantsList } from 'actions/RestaurantActions';
-import ModalStyle from './components/ModalStyle';
-import CreateResForm from './components/RestaurantCreateForm';
+import CreateResForm from './RestaurantCreateForm';
 import { Link } from 'react-router';
 
 class BusinessNotFound extends React.PureComponent{
@@ -29,16 +27,6 @@ class BusinessNotFound extends React.PureComponent{
       <div>
         <h3>You haven't claim business yet</h3>
         <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
-        <CreateNewResModal
-          isOpen = {this.state.modalIsOpen}
-          onRequestClose = {this.closeModal}
-          contentLabel = "Create New Restaurant Label"
-          className="modal-dialog"
-          style={ModalStyle}
-          shouldCloseOnOverlayClick={false}
-        >
-          <CreateResForm closeModal = {this.closeModal}/>
-        </CreateNewResModal>
       </div>
     );
   }
