@@ -17,44 +17,8 @@ const styles = {
 }
 
 class Menu extends React.PureComponent{
-  constructor(){
-    super();
-    this.state = {
-      dishViewing: undefined,
-      modalIsOpen: false,
-      business: {
-        modalAction: undefined,
-      },
-      customer: {
-        isFavorite: false
-      }
-    }
-    this.closeModal = this.closeModal.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.onClickAddBtn = this.onClickAddBtn.bind(this);
-  };
-
-  openModal(){
-    this.setState({
-      modalIsOpen: true
-    });
-  }
-
-  onClickAddBtn(){
-    this.setState({
-      modalAction: 'add'
-    })
-    this.openModal();
-  }
-
-  closeModal(){
-    this.setState({
-      modalIsOpen: false
-    });
-  }
-
-
   render(){
+    const { user } = this.props.auth;
     const { menu } = this.props.restaurant;
     return (
       <Paper className="container" style={styles.menuPaper}>
@@ -64,15 +28,7 @@ class Menu extends React.PureComponent{
             (<li key={dish.id}><DishCard dish={dish}></DishCard></li>)
           )}
         </ul>
-        <DishAddButton />
-        <Dialog
-          title="title"
-          modal={false}
-          open={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-        >
-
-        </Dialog>
+        {user.role === "business" && (<DishAddButton />)}
       </Paper>
     );
   }
