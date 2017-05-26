@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classNames';
 import { setCurrentRes} from 'actions/RestaurantActions';
 import RestaurantInfo from '../Common/RestaurantInfo';
-import Menu from '../Common/Menu';
+import Menu from './components/Menu';
 import NotFound from 'containers/NotFoundPage';
 import { isEmpty } from 'lodash';
 import { toggleFavorite } from 'actions/FavoritesActions';

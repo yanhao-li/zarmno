@@ -3,7 +3,7 @@ import { setCurrentRes } from 'actions/RestaurantActions';
 import BusinessNotFound from './BusinessNotFound';
 import RestaurantInfo from '../Common/RestaurantInfo';
 import RestaurantInfoEdit from './RestaurantInfoEdit';
-import Menu from '../Common/Menu';
+import Menu from './components/Menu';
 import { isEmpty } from 'lodash';
 import styled from 'styled-components';
 import Paper from 'material-ui/Paper';
@@ -27,6 +27,11 @@ const styles = {
     bottom: 0,
     borderRadius: '5px 5px 0 0',
     height: '300px',
+  },
+  addDishBottom: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30
   }
 }
 
