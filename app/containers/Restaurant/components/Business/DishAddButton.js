@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Dialog from 'material-ui/Dialog';
+import DishAddForm from './DishAddForm';
 
 const DishAddButtonStyle = styled.div`
   position: absolute;
@@ -11,8 +12,8 @@ const DishAddButtonStyle = styled.div`
 `
 
 class DishAddButton extends React.PureComponent{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       modalIsOpen: false
     }
@@ -52,7 +53,7 @@ class DishAddButton extends React.PureComponent{
           open={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
         >
-
+          <DishAddForm closeModal={this.closeModal} {...this.props}/>
         </Dialog>
       </DishAddButtonStyle>
     )

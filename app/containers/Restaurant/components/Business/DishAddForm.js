@@ -1,5 +1,6 @@
 import React from 'react';
-import TextFieldGroup from 'components/TextFieldGroup';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 import { addDish } from 'actions/RestaurantActions';
 
 class DishAddForm extends React.PureComponent{
@@ -15,11 +16,11 @@ class DishAddForm extends React.PureComponent{
         img: ""
       }
     };
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
   }
 
-  onChange(e) {
+  handleChange(e) {
     this.setState({dish: {
       ...this.state.dish,
       [e.target.name]: e.target.value
@@ -37,30 +38,27 @@ class DishAddForm extends React.PureComponent{
   render(){
     const { dish, errors } = this.state;
     return(
-      <form>
-        <TextFieldGroup
-          className="form-group"
+      <div>
+        <TextField
           name="name"
-          label="Dish name"
+          floatingLabelText="Dish Name"
+          floatingLabelFixed={true}
+          onChange={this.handleChange}
           value={dish.name}
-          error={errors}
-          onChange={this.onChange}
-          type="text"
         />
-        <TextFieldGroup
-          className="form-group"
+        <br />
+        <TextField
           name="description"
-          label="Dish description"
+          floatingLabelText="Dish description"
+          floatingLabelFixed={true}
+          onChange={this.handleChange}
           value={dish.description}
-          error={errors}
-          onChange={this.onChange}
-          type="text"
         />
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
-          <button type="button" type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
+        <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
+          <FlatButton onClick={this.props.closeModal}>Close</FlatButton>
+          <FlatButton onClick={this.saveChanges} primary={true}>Save</FlatButton>
         </div>
-      </form>
+      </div>
     )
   }
 };

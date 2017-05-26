@@ -17,6 +17,10 @@ const styles = {
 }
 
 class Menu extends React.PureComponent{
+  constructor(props){
+    super(props);
+  };
+  
   render(){
     const { user } = this.props.auth;
     const { menu } = this.props.restaurant;
@@ -28,7 +32,7 @@ class Menu extends React.PureComponent{
             (<li key={dish.id}><DishCard dish={dish}></DishCard></li>)
           )}
         </ul>
-        {user.role === "business" && (<DishAddButton />)}
+        {user.role === "business" && (<DishAddButton {...this.props}/>)}
       </Paper>
     );
   }
