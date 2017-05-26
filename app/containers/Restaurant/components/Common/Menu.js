@@ -2,9 +2,7 @@ import React from 'react';
 import Subheader from 'material-ui/Subheader';
 import DishCard from './DishCard';
 import Paper from 'material-ui/Paper';
-import Dialog from 'material-ui/Dialog';
 //For Business
-import DishUpdateForm from '../Business/DishUpdateForm';
 import DishAddButton from '../Business/DishAddButton'
 
 const styles = {
@@ -20,7 +18,7 @@ class Menu extends React.PureComponent{
   constructor(props){
     super(props);
   };
-  
+
   render(){
     const { user } = this.props.auth;
     const { menu } = this.props.restaurant;
@@ -29,7 +27,7 @@ class Menu extends React.PureComponent{
         <Subheader>Menu</Subheader>
         <ul className="row">
           {menu.map(dish =>
-            (<li key={dish.id}><DishCard dish={dish}></DishCard></li>)
+            (<li key={dish.id}><DishCard dish={dish} {...this.props}></DishCard></li>)
           )}
         </ul>
         {user.role === "business" && (<DishAddButton {...this.props}/>)}
