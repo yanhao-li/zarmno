@@ -2,9 +2,11 @@ import React from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Dialog from 'material-ui/Dialog';
 import DishPage from 'containers/Restaurant/DishPage';
+import DishDeleteButton from '../Business/DishDeleteButton';
 
 const styles = {
   card:{
+    position: 'relative',
     height: '384px',
     width: '250px',
     backgroundColor: '#f6f6f6',
@@ -16,6 +18,7 @@ const styles = {
     }
   }
 }
+
 
 class DishCard extends React.PureComponent{
   constructor(){
@@ -55,11 +58,20 @@ class DishCard extends React.PureComponent{
     })
   }
 
-  render(){
+  deleteDish(e) {
+    const { dish } = this.state;
+    const { dispatch } = this.props;
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(deleteDish(dish));
+    this.props.closeModal();
+  }
 
+  render(){
     const {dish} = this.props;
     return(
       <Card style={styles.card}  zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onTouchTap={this.handleOpen}>
+        <DishDeleteButton {...this.props}/>
         <CardMedia style={styles.card.CardImg}>
           <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" />
         </CardMedia>
