@@ -40,15 +40,17 @@ export const initAuth = () => (dispatch) => {
   }
 };
 
-export const login = (user) => (dispatch) => axios.post('/api/v1/session', user).then(
-      (res) => {
-        const token = res.data.token;
-        localStorage.setItem('jwtToken', token);
-        setAuthorizationToken(token);
-        const user = jwtDecode(token);
-        dispatch(setCurrentUser(user));
-      }
-    );
+export const login = (loginData) =>
+  (dispatch) =>
+      axios.post('/api/v1/session', loginData).then(
+        (res) => {
+          const token = res.data.token;
+          localStorage.setItem('jwtToken', token);
+          setAuthorizationToken(token);
+          const user = jwtDecode(token)
+          dispatch(setCurrentUser(user));
+        }
+      );
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('jwtToken');

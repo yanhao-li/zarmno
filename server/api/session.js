@@ -1,9 +1,7 @@
-const express = require('express');
 const db = require('../models');
 const secretKey = require('../config/secretKeys');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const router = express.Router();
 
 const session = {
   add: (req, res) => {

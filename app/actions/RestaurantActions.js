@@ -96,7 +96,7 @@ export const addDish = (dish) => (dispatch) =>
 
 export const deleteDish = (dish) => (dispatch) =>
   axios.delete(`/api/v1/dish/${dish.id}`).then(
-    (res) => {
+    () => {
       dispatch(deleteDishView(dish));
     }
   );

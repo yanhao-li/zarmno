@@ -1,13 +1,11 @@
-const express = require('express');
 const db = require('../models');
-const router = express.Router();
 
 const restaurant = {
   add: (req, res) => {
-    const restaurant = req.body;
+    const body = req.body;
     const ownerId = req.user.id;
-    db.Restaurant.build({ id: ownerId, name: restaurant.name, location: restaurant.location }).save()
-      .then((restaurant) => { res.status(200).json({ restaurant }); })
+    db.Restaurant.build({ id: ownerId, name: body.name, location: body.location }).save()
+      .then((rst) => { res.status(200).json({ rst }); })
       .catch((err) => res.status(500).json({ errors: err }));
   },
 
@@ -24,8 +22,8 @@ const restaurant = {
     let restaurantInfo;
     let menu;
     const fetchRestaurantInfo = db.Restaurant.findOne({ where: { id: restaurantId } }).then(
-      (restaurant) => {
-        restaurantInfo = restaurant;
+      (rst) => {
+        restaurantInfo = rst;
       }
     );
     const fetchDishes = db.Dish.findAll({ where: { restaurantId } }).then(
@@ -45,14 +43,17 @@ const restaurant = {
 
   edit: (req, res) => {
     const restaurantId = req.params.id;
-    let { name, location, description } = req.body;
+    const { name, location, description } = req.body;
     db.Restaurant.findById(restaurantId).then(
-      (restaurant) => {
-        restaurant.update({
+      (rst) => {
+        rst.update({
           name,
           location,
           description,
-        }).then((restaurant) => res.status(200).json({ restaurant }));
+        })
+        .then(
+          (updatedRestaurant) => res.status(200).json({ updatedRestaurant })
+        );
       }
     );
   },

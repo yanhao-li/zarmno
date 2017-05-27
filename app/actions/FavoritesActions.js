@@ -34,9 +34,7 @@ export const fetchFavorites = () => (dispatch) =>
         }
       )
       .catch(
-        (err) => {
 
-        }
       );
 
 export const toggleFavorite = (isFavorite, restaurantId) => (dispatch) => {

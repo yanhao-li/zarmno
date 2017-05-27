@@ -66,7 +66,7 @@ const rootRoute = {
 injectTapEventPlugin();
 
 
-const render = (messages) => {
+const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <Router

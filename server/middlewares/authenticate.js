@@ -23,7 +23,7 @@ const authenticate = {
             req.user = user;
             next();
             return null;
-          }).catch((err) => {
+          }).catch(() => {
             res.status(404).json({ error: 'No such user' });
           });
         }

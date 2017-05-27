@@ -1,8 +1,6 @@
-const express = require('express');
 const validateInput = require('../shared/validations/signup');
 const bcrypt = require('bcrypt');
 const db = require('../models');
-const router = express.Router();
 
 
 // User Register: Create a user
