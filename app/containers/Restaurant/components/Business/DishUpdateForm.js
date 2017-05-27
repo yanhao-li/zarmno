@@ -2,18 +2,18 @@ import React from 'react';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { updateDish, deleteDish } from 'actions/RestaurantActions';
 
-class DishUpdateForm extends React.PureComponent{
-  constructor(props){
+class DishUpdateForm extends React.PureComponent {
+  constructor(props) {
     super(props);
     const dish = this.props.dishEditing;
     this.state = {
-      errors: "",
+      errors: '',
       dish: {
         id: dish.id,
         name: dish.name,
         description: dish.description,
-        img: ''
-      }
+        img: '',
+      },
     };
     this.onChange = this.onChange.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
@@ -29,23 +29,23 @@ class DishUpdateForm extends React.PureComponent{
   }
 
   onChange(e) {
-    this.setState({dish: {
+    this.setState({ dish: {
       ...this.state.dish,
-      [e.target.name]: e.target.value
-    }});
+      [e.target.name]: e.target.value,
+    } });
   }
 
-  saveChanges(e){
+  saveChanges(e) {
     const { dish } = this.state;
     const { dispatch } = this.props;
     e.preventDefault();
-    dispatch(updateDish(dish))
+    dispatch(updateDish(dish));
     this.props.closeModal();
   }
 
-  render(){
+  render() {
     const { dish, errors } = this.state;
-    return(
+    return (
       <form>
         <TextFieldGroup
           className="form-group"
@@ -71,8 +71,8 @@ class DishUpdateForm extends React.PureComponent{
           <button type="button" type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
         </div>
       </form>
-    )
+    );
   }
-};
+}
 
 export default DishUpdateForm;

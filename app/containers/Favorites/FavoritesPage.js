@@ -9,44 +9,44 @@ import Paper from 'material-ui/Paper';
 
 const styles = {
   paper: {
-    backgroundColor: "#ffffff",
-    height: "100%",
-    marginTop: 30
-  }
-}
+    backgroundColor: '#ffffff',
+    height: '100%',
+    marginTop: 30,
+  },
+};
 
-class FavoritesPage extends React.PureComponent{
-  constructor(props){
+class FavoritesPage extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
       restaurants: this.props.favorites.restaurants,
     };
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     const { favorites } = nextProps;
     const { restaurants } = favorites;
     this.setState({
-      restaurants: restaurants
-    })
+      restaurants,
+    });
   }
 
-  render(){
+  render() {
     const { isFetching } = this.props.favorites;
     const { restaurants } = this.state;
 
-    if(isFetching) {
-      return(
+    if (isFetching) {
+      return (
         <div> Loading </div>
-      )
+      );
     }
 
-    return(
+    return (
       <Paper className="container" style={styles.paper}>
         <Subheader>My favorites</Subheader>
         <ul className="row">
-          {restaurants.map(restaurant =>
-            (<li key={restaurant.info.id}> <Link to={'/restaurant/' + restaurant.info.id}><RestaurantCard restaurant={ restaurant.info }/></Link></li>
+          {restaurants.map((restaurant) =>
+            (<li key={restaurant.info.id}> <Link to={`/restaurant/${restaurant.info.id}`}><RestaurantCard restaurant={restaurant.info} /></Link></li>
             )
           )}
         </ul>
@@ -55,11 +55,9 @@ class FavoritesPage extends React.PureComponent{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    auth: state.get('auth'),
-    favorites: state.get('favorites')
-  }
-}
+const mapStateToProps = (state) => ({
+  auth: state.get('auth'),
+  favorites: state.get('favorites'),
+});
 
 export default connect(mapStateToProps)(FavoritesPage);

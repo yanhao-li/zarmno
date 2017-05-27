@@ -3,7 +3,7 @@ module.exports = function DishFunc(sequelize, DataTypes) {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true, allowNull: false },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false },
-    restaurantId: { type: DataTypes.STRING, allowNull: false},
+    restaurantId: { type: DataTypes.STRING, allowNull: false },
   }, {
     timestamps: true,
     freezeTableName: true,

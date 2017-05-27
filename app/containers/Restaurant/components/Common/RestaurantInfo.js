@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 const RestaurantInfoDiv = styled.div`
   padding: 30px;
-`
+`;
 
-class RestaurantInfo extends React.PureComponent{
+class RestaurantInfo extends React.PureComponent {
 
-  render(){
+  render() {
     const { restaurant } = this.props;
     const { info } = restaurant;
-    return(
+    return (
       <RestaurantInfoDiv className="col">
         <h1 className="display-4">{info.name}</h1>
         <h3 className="text-muted">{info.location}</h3>
@@ -18,6 +18,6 @@ class RestaurantInfo extends React.PureComponent{
       </RestaurantInfoDiv>
     );
   }
-};
+}
 
 export default RestaurantInfo;

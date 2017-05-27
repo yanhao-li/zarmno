@@ -9,40 +9,40 @@ const DishAddButtonStyle = styled.div`
   position: absolute;
   right: 30px;
   bottom: 30px;
-`
+`;
 
-class DishAddButton extends React.PureComponent{
-  constructor(props){
+class DishAddButton extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
-    }
+      modalIsOpen: false,
+    };
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.onClickAddBtn = this.onClickAddBtn.bind(this);
   }
 
-  openModal(){
+  openModal() {
     this.setState({
-      modalIsOpen: true
+      modalIsOpen: true,
     });
   }
 
-  onClickAddBtn(){
+  onClickAddBtn() {
     this.setState({
-      modalAction: 'add'
-    })
+      modalAction: 'add',
+    });
     this.openModal();
   }
 
-  closeModal(){
+  closeModal() {
     this.setState({
-      modalIsOpen: false
+      modalIsOpen: false,
     });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <DishAddButtonStyle>
         <FloatingActionButton onTouchTap={this.onClickAddBtn}>
           <ContentAdd />
@@ -53,10 +53,10 @@ class DishAddButton extends React.PureComponent{
           open={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
         >
-          <DishAddForm closeModal={this.closeModal} {...this.props}/>
+          <DishAddForm closeModal={this.closeModal} {...this.props} />
         </Dialog>
       </DishAddButtonStyle>
-    )
+    );
   }
 }
 

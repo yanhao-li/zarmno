@@ -2,15 +2,15 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import styled from 'styled-components';
 import { getRestaurantsList } from 'actions/RestaurantsListActions';
-import FlatButton from 'material-ui/FlatButton'
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   searchBtn: {
     color: 'white',
     height: 50,
-    width: 100
-  }
-}
+    width: 100,
+  },
+};
 
 let restaurants;
 const getSuggestions = (value) => {
@@ -102,12 +102,12 @@ export default class SearchBar extends React.Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     getRestaurantsList.then(
       (res) => {
-        restaurants = res.data.restaurants
+        restaurants = res.data.restaurants;
       }
-    )
+    );
   }
 
   onChange = (event, { newValue }) => {
@@ -152,7 +152,7 @@ export default class SearchBar extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-        <FlatButton label="SEARCH" backgroundColor='#EC407A' hoverColor='#F06292' primary={true} style={styles.searchBtn}/>
+        <FlatButton label="SEARCH" backgroundColor="#EC407A" hoverColor="#F06292" primary style={styles.searchBtn} />
       </SearchForm>
     );
   }

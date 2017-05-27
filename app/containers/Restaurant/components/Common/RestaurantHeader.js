@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import RestaurantInfo from './RestaurantInfo';
 import RestaurantImgs from './RestaurantImgs';
 
-//material-ui
+// material-ui
 import Paper from 'material-ui/Paper';
-import {Card, CardMedia, CardTitle} from 'material-ui/Card';
+import { Card, CardMedia, CardTitle } from 'material-ui/Card';
 
-//For Customer User
+// For Customer User
 import FavoriteButton from './FavoriteButton';
 
-//For Business User
+// For Business User
 import RestaurantInfoEdit from 'containers/Restaurant/components/Business/RestaurantInfoEdit';
 
 
@@ -23,7 +23,7 @@ const HeaderStyle = styled.div`
   overflow: hidden;
   background-image: url("https://truffle-assets.imgix.net/pxqrocxwsjcc_1U8QdKL1ogqw60u04k2KmI_hainanese-chicken-rice_squareThumbnail_en-US.png");
   background-size: cover;
-`
+`;
 
 const styles = {
   InfoPaper: {
@@ -35,53 +35,53 @@ const styles = {
   addDishBottom: {
     position: 'absolute',
     bottom: 30,
-    right: 30
-  }
-}
+    right: 30,
+  },
+};
 
-class RestaurantHeader extends React.PureComponent{
-  constructor(){
+class RestaurantHeader extends React.PureComponent {
+  constructor() {
     super();
     this.state = {
       isEditing: false,
-    }
+    };
     this.onEdit = this.onEdit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
   }
 
-  toggleFavorite(e){
+  toggleFavorite(e) {
     e.preventDefault();
     const { dispatch } = this.props;
     const { restaurant } = this.props;
     this.setState({
-      isFavorite: !this.state.isFavorite
+      isFavorite: !this.state.isFavorite,
     });
     dispatch(toggleFavorite(this.state.isFavorite, restaurant.info.id));
   }
 
-  onEdit(){
+  onEdit() {
     this.setState({
-      isEditing: true
+      isEditing: true,
     });
   }
 
-  cancelEdit(){
+  cancelEdit() {
     this.setState({
-      isEditing: false
-    })
+      isEditing: false,
+    });
   }
 
-  render(){
-    const { user } = this.props.auth
+  render() {
+    const { user } = this.props.auth;
     let information;
-    if (user.role === "business") {
+    if (user.role === 'business') {
       if (this.state.isEditing) {
-        information = (<RestaurantInfoEdit {...this.props} cancelEdit = {this.cancelEdit}/>);
+        information = (<RestaurantInfoEdit {...this.props} cancelEdit={this.cancelEdit} />);
       } else {
         information = (
           <div>
-            <RestaurantInfo {...this.props}/>
-            <button className="btn btn-secondary" onClick={this.onEdit} style={{marginLeft: "30px"}}>
+            <RestaurantInfo {...this.props} />
+            <button className="btn btn-secondary" onClick={this.onEdit} style={{ marginLeft: '30px' }}>
               Edit
             </button>
           </div>
@@ -90,14 +90,14 @@ class RestaurantHeader extends React.PureComponent{
     } else {
       information = (
         <div>
-          <RestaurantInfo {...this.props}/>
-          <FavoriteButton {...this.props}/>
+          <RestaurantInfo {...this.props} />
+          <FavoriteButton {...this.props} />
         </div>
       );
     }
 
 
-    return(
+    return (
       <HeaderStyle>
         <Paper className="container" style={styles.InfoPaper}>
           <div className="row">
@@ -110,8 +110,8 @@ class RestaurantHeader extends React.PureComponent{
           </div>
         </Paper>
       </HeaderStyle>
-    )
+    );
   }
-};
+}
 
 export default RestaurantHeader;

@@ -10,29 +10,29 @@ const DeleteSVG = (props) => (
     <path d="M10,0 C4.47,0 0,4.47 0,10 C0,15.53 4.47,20 10,20 C15.53,20 20,15.53 20,10 C20,4.47 15.53,0 10,0 Z"></path>
     <polygon id="Path" fill="#FFFFFF" points="15 13.59 13.59 15 10 11.41 6.41 15 5 13.59 8.59 10 5 6.41 6.41 5 10 8.59 13.59 5 15 6.41 11.41 10"></polygon>
   </SvgIcon>
-)
+);
 
-class DishDeleteButton extends React.PureComponent{
-  constructor(props){
+class DishDeleteButton extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
-      modalIsOpen: false
-    }
+      modalIsOpen: false,
+    };
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
     this.deleteDish = this.deleteDish.bind(this);
   }
 
-  openModal(e){
+  openModal(e) {
     e.stopPropagation();
     this.setState({
-      modalIsOpen: true
+      modalIsOpen: true,
     });
   }
 
-  closeModal(){
+  closeModal() {
     this.setState({
-      modalIsOpen: false
+      modalIsOpen: false,
     });
   }
 
@@ -43,37 +43,37 @@ class DishDeleteButton extends React.PureComponent{
     this.closeModal();
   }
 
-  render(){
-    const {dish} = this.props;
+  render() {
+    const { dish } = this.props;
     const actions = [
       <FlatButton
         label="Cancel"
-        primary={true}
+        primary
         onTouchTap={this.closeModal}
       />,
       <FlatButton
         label="Confirm"
-        secondary={true}
+        secondary
         onTouchTap={this.deleteDish}
-      />
+      />,
     ];
 
-    return(
+    return (
       <div>
-        <IconButton style={{position: 'absolute', top: -22, right: -25}} onTouchTap={this.openModal}>
+        <IconButton style={{ position: 'absolute', top: -22, right: -25 }} onTouchTap={this.openModal}>
           <DeleteSVG />
         </IconButton>
         <Dialog
-          title={"Delete Dish: " + dish.name}
-          actions = {actions}
-          modal={true}
+          title={`Delete Dish: ${dish.name}`}
+          actions={actions}
+          modal
           open={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
         >
           Are you sure you wanna delete the dish "{dish.name}"
         </Dialog>
       </div>
-    )
+    );
   }
 }
 

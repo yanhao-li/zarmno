@@ -19,10 +19,10 @@ const loadModule = (cb) => (componentModule) => {
 }
 */
 
-function requireAuth (nextState, replace, callback) {
+function requireAuth(nextState, replace, callback) {
   const token = localStorage.getItem('jwtToken');
   if (!token) replace('/login');
-  return callback()
+  return callback();
 }
 
 export default function createRoutes(store) {

@@ -7,55 +7,55 @@ const restaurant = {
     const restaurant = req.body;
     const ownerId = req.user.id;
     db.Restaurant.build({ id: ownerId, name: restaurant.name, location: restaurant.location }).save()
-      .then((restaurant) => { res.status(200).json({ restaurant: restaurant }) })
+      .then((restaurant) => { res.status(200).json({ restaurant }); })
       .catch((err) => res.status(500).json({ errors: err }));
   },
 
   browse: (req, res) => {
     db.Restaurant.findAll().then(
-      function(restaurants){
-        res.status(200).json({restaurants: restaurants});
+      (restaurants) => {
+        res.status(200).json({ restaurants });
       }
     );
   },
 
   read: (req, res) => {
-    let restaurantId = req.params.id;
+    const restaurantId = req.params.id;
     let restaurantInfo;
     let menu;
-    let fetchRestaurantInfo = db.Restaurant.findOne({where: {id: restaurantId}}).then(
-      function(restaurant){
+    const fetchRestaurantInfo = db.Restaurant.findOne({ where: { id: restaurantId } }).then(
+      (restaurant) => {
         restaurantInfo = restaurant;
       }
     );
-    let fetchDishes = db.Dish.findAll({where: {restaurantId: restaurantId}}).then(
-      function(dishes){
+    const fetchDishes = db.Dish.findAll({ where: { restaurantId } }).then(
+      (dishes) => {
         menu = dishes;
       }
     );
     Promise.all([fetchRestaurantInfo, fetchDishes]).then(
-      function(){
-        res.json({restaurant:{
+      () => {
+        res.json({ restaurant: {
           info: restaurantInfo,
-          menu: menu
-        }});
+          menu,
+        } });
       }
     );
   },
 
   edit: (req, res) => {
-    let restaurantId = req.params.id;
-    let { name, location, description } = req.body
+    const restaurantId = req.params.id;
+    let { name, location, description } = req.body;
     db.Restaurant.findById(restaurantId).then(
-      function(restaurant){
+      (restaurant) => {
         restaurant.update({
-          name: name,
-          location: location,
-          description: description
-        }).then((restaurant) => res.status(200).json({restaurant: restaurant}));
+          name,
+          location,
+          description,
+        }).then((restaurant) => res.status(200).json({ restaurant }));
       }
     );
-  }
-}
+  },
+};
 
 module.exports = restaurant;

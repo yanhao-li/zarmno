@@ -3,31 +3,31 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { addDish } from 'actions/RestaurantActions';
 
-class DishAddForm extends React.PureComponent{
-  constructor(props){
+class DishAddForm extends React.PureComponent {
+  constructor(props) {
     super(props);
     const { restaurant } = this.props;
     this.state = {
-      errors: "",
+      errors: '',
       dish: {
         resId: restaurant.info.id,
-        name: "",
-        description: "",
-        img: ""
-      }
+        name: '',
+        description: '',
+        img: '',
+      },
     };
     this.handleChange = this.handleChange.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
   }
 
   handleChange(e) {
-    this.setState({dish: {
+    this.setState({ dish: {
       ...this.state.dish,
-      [e.target.name]: e.target.value
-    }});
+      [e.target.name]: e.target.value,
+    } });
   }
 
-  saveChanges(e){
+  saveChanges(e) {
     const { dish } = this.state;
     const { dispatch } = this.props;
     e.preventDefault();
@@ -35,14 +35,14 @@ class DishAddForm extends React.PureComponent{
     this.props.closeModal();
   }
 
-  render(){
+  render() {
     const { dish, errors } = this.state;
-    return(
+    return (
       <div>
         <TextField
           name="name"
           floatingLabelText="Dish Name"
-          floatingLabelFixed={true}
+          floatingLabelFixed
           onChange={this.handleChange}
           value={dish.name}
         />
@@ -50,17 +50,17 @@ class DishAddForm extends React.PureComponent{
         <TextField
           name="description"
           floatingLabelText="Dish description"
-          floatingLabelFixed={true}
+          floatingLabelFixed
           onChange={this.handleChange}
           value={dish.description}
         />
         <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
           <FlatButton onClick={this.props.closeModal}>Close</FlatButton>
-          <FlatButton onClick={this.saveChanges} primary={true}>Save</FlatButton>
+          <FlatButton onClick={this.saveChanges} primary>Save</FlatButton>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default DishAddForm;

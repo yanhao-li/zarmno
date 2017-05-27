@@ -4,35 +4,35 @@ import { combineReducers } from 'redux';
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case 'FETCH_AUTH_REQUEST':
-        return true
+      return true;
     case 'FETCH_AUTH_SUCCESS':
     case 'FETCH_AUTH_FAILURE':
-        return false
+      return false;
     default:
-      return state
+      return state;
   }
 };
 
 const isAuthenticated = (state = false, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
-      return !isEmpty(action.user)
+      return !isEmpty(action.user);
     default:
-      return state
+      return state;
   }
 };
 
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
-      return action.user
+      return action.user;
     default:
-      return state
-  };
+      return state;
+  }
 };
 
 export default combineReducers({
   isFetching,
   isAuthenticated,
-  user
+  user,
 });

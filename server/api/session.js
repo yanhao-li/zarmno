@@ -26,7 +26,7 @@ const session = {
           res.status(401).json({ errors: { form: 'email or password incorrect' } });
         }
       );
-  }
-}
+  },
+};
 
 module.exports = session;

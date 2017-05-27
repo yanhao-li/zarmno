@@ -3,29 +3,29 @@ import { combineReducers } from 'redux';
 const isFetching = (state = false, action) => {
   switch (action.type) {
     case 'FETCH_FAVORITES_REQUEST':
-      return true
+      return true;
     case 'FETCH_FAVORITES_SUCCESS':
     case 'FETCH_FAVORITES_FAILURE':
-      return false
+      return false;
     default:
-      return state
+      return state;
   }
 };
 
 const restaurants = (state = [], action) => {
   switch (action.type) {
     case 'SET_FAVORITES':
-      return action.favorites
+      return action.favorites;
     case 'APPEND_FAVORITE':
-      return [...state, action.restaurant]
+      return [...state, action.restaurant];
     case 'REMOVE_FAVORITE':
-      return state.filter(restaurant => restaurant.info.id !== action.restaurantId)
+      return state.filter((restaurant) => restaurant.info.id !== action.restaurantId);
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default combineReducers({
   isFetching,
-  restaurants
+  restaurants,
 });

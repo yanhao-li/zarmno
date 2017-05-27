@@ -5,28 +5,28 @@ import DishPage from 'containers/Restaurant/DishPage';
 import DishDeleteButton from '../Business/DishDeleteButton';
 
 const styles = {
-  card:{
+  card: {
     position: 'relative',
     height: '384px',
     width: '250px',
     backgroundColor: '#f6f6f6',
     margin: '10px 5px 10px 5px',
-    CardImg:{
+    CardImg: {
       width: '100%',
       height: '250px',
-      overflow: 'hidden'
-    }
-  }
-}
+      overflow: 'hidden',
+    },
+  },
+};
 
 
-class DishCard extends React.PureComponent{
-  constructor(){
+class DishCard extends React.PureComponent {
+  constructor() {
     super();
     this.state = {
       cardDepth: 0,
-      modalIsOpen: false
-    }
+      modalIsOpen: false,
+    };
 
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseLeave = this.onMouseLeave.bind(this);
@@ -34,28 +34,28 @@ class DishCard extends React.PureComponent{
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleOpen(){
+  handleOpen() {
     this.setState({
-      modalIsOpen: true
+      modalIsOpen: true,
     });
   }
 
-  handleClose(){
+  handleClose() {
     this.setState({
-      modalIsOpen: false
+      modalIsOpen: false,
     });
   }
 
-  onMouseEnter(){
+  onMouseEnter() {
     this.setState({
-      cardDepth: 2
-    })
+      cardDepth: 2,
+    });
   }
 
-  onMouseLeave(){
+  onMouseLeave() {
     this.setState({
-      cardDepth: 0
-    })
+      cardDepth: 0,
+    });
   }
 
   deleteDish(e) {
@@ -67,15 +67,15 @@ class DishCard extends React.PureComponent{
     this.props.closeModal();
   }
 
-  render(){
-    const {dish, auth} = this.props;
-    return(
-      <Card style={styles.card}  zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onTouchTap={this.handleOpen}>
-        {auth.user.role === "business" && (<DishDeleteButton {...this.props}/>)}
+  render() {
+    const { dish, auth } = this.props;
+    return (
+      <Card style={styles.card} zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onTouchTap={this.handleOpen}>
+        {auth.user.role === 'business' && (<DishDeleteButton {...this.props} />)}
         <CardMedia style={styles.card.CardImg}>
           <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" />
         </CardMedia>
-        <CardTitle title={dish.name} titleColor="#757575" titleStyle={{fontSize: '24px', fontWeight: '100'}}/>
+        <CardTitle title={dish.name} titleColor="#757575" titleStyle={{ fontSize: '24px', fontWeight: '100' }} />
         <CardText color="#757575">
           {dish.description}
         </CardText>
@@ -83,14 +83,14 @@ class DishCard extends React.PureComponent{
           modal={false}
           open={this.state.modalIsOpen}
           onRequestClose={this.handleClose}
-          autoScrollBodyContent={true}
-          contentStyle={{width: '80%', maxWidth: 'none'}}
+          autoScrollBodyContent
+          contentStyle={{ width: '80%', maxWidth: 'none' }}
         >
-          <DishPage closeModal={this.handleClose} {...this.props}/>
+          <DishPage closeModal={this.handleClose} {...this.props} />
         </Dialog>
       </Card>
-    )
+    );
   }
-};
+}
 
 export default DishCard;

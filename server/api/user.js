@@ -20,7 +20,7 @@ const user = {
     } else {
       res.status(400).json(errors);
     }
-  }
+  },
 };
 
 module.exports = user;

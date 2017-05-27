@@ -3,24 +3,24 @@ const router = express.Router();
 const api = require('../api');
 const authenticate = require('../middlewares/authenticate');
 
-//user
+// user
 router.post('/user', api.user.add);
 
-//session
+// session
 router.post('/session', api.session.add);
 
-//restaurant
+// restaurant
 router.post('/restaurant', authenticate.authenticateUser, api.restaurant.add);
 router.get('/restaurant', api.restaurant.browse);
 router.get('/restaurant/:id', api.restaurant.read);
 router.put('/restaurant/:id', authenticate.authenticateUser, api.restaurant.edit);
 
-//dish
+// dish
 router.post('/dish', api.dish.add);
 router.put('/dish/:id', api.dish.edit);
 router.delete('/dish/:id', api.dish.destroy);
 
-//favorite
+// favorite
 router.get('/favorite', authenticate.authenticateUser, api.favorite.browse);
 router.post('/favorite/:id', authenticate.authenticateUser, api.favorite.add);
 router.delete('/favorite/:id', authenticate.authenticateUser, api.favorite.destroy);

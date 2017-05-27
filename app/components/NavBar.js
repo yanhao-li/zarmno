@@ -21,19 +21,19 @@ const styles = {
     iconElementRight: {
       margin: 0,
       FlatButton: {
-        color: 'white'
+        color: 'white',
       },
-    }
-  }
-}
+    },
+  },
+};
 
 class NavBar extends React.PureComponent {
   constructor() {
     super();
     this.state = {
       avatarShadow: 1,
-      menuIsOpen: false
-    }
+      menuIsOpen: false,
+    };
     this.logout = this.logout.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -56,14 +56,14 @@ class NavBar extends React.PureComponent {
 
   onMouseEnter = () => {
     this.setState({
-      avatarShadow: 2
-    })
+      avatarShadow: 2,
+    });
   }
 
   onMouseLeave = () => {
     this.setState({
-      avatarShadow: 1
-    })
+      avatarShadow: 1,
+    });
   }
 
   logout(e) {
@@ -83,41 +83,41 @@ class NavBar extends React.PureComponent {
         <Link to="/favorites"><MenuItem>My Favorites</MenuItem></Link>
         <a href="/logout" onClick={this.logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
-    )
+    );
 
     const businessMenu = (
       <Menu>
         <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
-        <Link to={"/restaurant/" + user.id}><MenuItem>My restaurant</MenuItem></Link>
+        <Link to={`/restaurant/${user.id}`}><MenuItem>My restaurant</MenuItem></Link>
         <a href="/logout" onClick={this.logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
     );
 
     if (isAuthenticated) {
       if (user.role === 'business') {
-        navMenu = businessMenu
+        navMenu = businessMenu;
       } else {
-        navMenu = customerMenu
+        navMenu = customerMenu;
       }
     }
 
     const guestNav = (
       <ul className="nav">
-        <li className="nav-item"><Link className="nav-link" to="/signup"><FlatButton label="SIGN UP" backgroundColor='#1E88E5' hoverColor='#0D47A1' style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
-        <li className="nav-item"><Link className="nav-link" to="/login"><FlatButton label="LOG IN" backgroundColor='#EC407A' hoverColor='#AD1457' style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/signup"><FlatButton label="SIGN UP" backgroundColor="#1E88E5" hoverColor="#0D47A1" style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/login"><FlatButton label="LOG IN" backgroundColor="#EC407A" hoverColor="#AD1457" style={styles.navbar.iconElementRight.FlatButton} /></Link></li>
       </ul>
     );
 
     const userNav = (
-      <Paper circle={true} onTouchTap={this.handleTouchTap} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} zDepth={this.state.avatarShadow}>
-        <Avatar src="https://pbs.twimg.com/profile_images/703321571667132417/009UGEqY_normal.jpg"/>
+      <Paper circle onTouchTap={this.handleTouchTap} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} zDepth={this.state.avatarShadow}>
+        <Avatar src="https://pbs.twimg.com/profile_images/703321571667132417/009UGEqY_normal.jpg" />
       </Paper>
     );
 
     if (!isAuthenticated) {
-      nav = guestNav
+      nav = guestNav;
     } else {
-      nav = userNav
+      nav = userNav;
     }
 
     return (
@@ -132,10 +132,10 @@ class NavBar extends React.PureComponent {
         <Popover
           open={this.state.menuIsOpen}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'middle', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'middle', vertical: 'top'}}
+          anchorOrigin={{ horizontal: 'middle', vertical: 'bottom' }}
+          targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
           onRequestClose={this.handleRequestClose}
-          >
+        >
           {navMenu}
         </Popover>
       </div>

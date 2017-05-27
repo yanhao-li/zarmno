@@ -19,7 +19,7 @@ import 'sanitize.css/sanitize.css';
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import injectTapEventPlugin from 'react-tap-event-plugin'; //Material-UI event listener
+import injectTapEventPlugin from 'react-tap-event-plugin'; // Material-UI event listener
 // Import root app
 import App from 'containers/App';
 
@@ -69,17 +69,17 @@ injectTapEventPlugin();
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
-        <Router
-          history={history}
+      <Router
+        history={history}
           // Index route
           // routes: Alias for children. which are One or many <Route>s or PlainRoutes. When the history changes, <Router> will match a branch of its routes, and render their configured components, with child route components nested inside the parents.
-          routes={rootRoute}
-          render={
+        routes={rootRoute}
+        render={
             // Scroll to top when going to a new page, imitating default browser
             // behaviour
             applyRouterMiddleware(useScroll())
           }
-        />
+      />
     </Provider>,
     document.getElementById('app')
   );

@@ -5,9 +5,9 @@ const session = require('./session');
 const favorite = require('./favorite');
 
 module.exports = {
-  dish: dish,
-  user: user,
-  restaurant: restaurant,
-  session: session,
-  favorite: favorite
-}
+  dish,
+  user,
+  restaurant,
+  session,
+  favorite,
+};

@@ -9,7 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 
 import authReducer from './auth';
 import restaurantReducer from './restaurant';
-import favoritesReducer from './favorites'
+import favoritesReducer from './favorites';
 
 /*
  * routeReducer

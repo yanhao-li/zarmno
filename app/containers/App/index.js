@@ -29,9 +29,9 @@ const muiTheme = getMuiTheme({
     primary1Color: '#1E88E5',
     accent1Color: '#EC407A',
     textColor: black,
-    alternateTextColor: white
+    alternateTextColor: white,
   },
-})
+});
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 

@@ -3,25 +3,25 @@ import TextFieldGroup from 'components/TextFieldGroup';
 import { registerRes } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';
 
-class RestaurantCreateForm extends React.PureComponent{
-  constructor(props){
+class RestaurantCreateForm extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
-      errors: "",
+      errors: '',
       restaurant: {
         name: '',
-        location: ''
-      }
+        location: '',
+      },
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
-    this.setState({restaurant: {
+    this.setState({ restaurant: {
       ...this.state.restaurant,
-      [e.target.name]: e.target.value
-    }});
+      [e.target.name]: e.target.value,
+    } });
   }
 
   onSubmit(e) {
@@ -29,9 +29,9 @@ class RestaurantCreateForm extends React.PureComponent{
     this.props.registerRes(this.state.restaurant);
   }
 
-  render(){
-    const {errors, restaurant} = this.state;
-    return(
+  render() {
+    const { errors, restaurant } = this.state;
+    return (
       <form onSubmit={this.onSubmit}>
         <TextFieldGroup
           className="form-group"
@@ -57,7 +57,7 @@ class RestaurantCreateForm extends React.PureComponent{
         </div>
       </form>
     );
-  };
+  }
 }
 
 

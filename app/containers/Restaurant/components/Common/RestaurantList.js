@@ -11,54 +11,52 @@ const styles = {
   paper: {
     backgroundColor: 'white',
     height: '100%',
-    marginTop: 30
-  }
-}
+    marginTop: 30,
+  },
+};
 
-class RestaurantList extends React.PureComponent{
-  constructor(props){
+class RestaurantList extends React.PureComponent {
+  constructor(props) {
     super(props);
     this.state = {
-      restaurantList: []
+      restaurantList: [],
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     getRestaurantsList.then(
       (res) => {
-        if(res.data.restaurants){
+        if (res.data.restaurants) {
           this.setState({
-            restaurantList: res.data.restaurants
-          })
+            restaurantList: res.data.restaurants,
+          });
         }
       }, (err) => {
-        console.log(err)
-      }
+      console.log(err);
+    }
     );
   }
 
-  render(){
-    const {restaurantList} = this.state;
-    return(
+  render() {
+    const { restaurantList } = this.state;
+    return (
       <Paper className="container" style={styles.paper}>
         <Subheader>All restaurants</Subheader>
         <ul className="row">
-          {restaurantList.map(restaurant =>
+          {restaurantList.map((restaurant) =>
             (
-              <li key={restaurant.id}><Link to={'/restaurant/' + restaurant.id}><RestaurantCard restaurant={restaurant}/></Link></li>
-              //<li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
+              <li key={restaurant.id}><Link to={`/restaurant/${restaurant.id}`}><RestaurantCard restaurant={restaurant} /></Link></li>
+              // <li key={restaurant.id}> <Link to={'/restaurant/' + restaurant.id} >{restaurant.name}</Link></li>
             )
           )}
         </ul>
       </Paper>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return{
-    restaurantList: state.get('restaurantList')
-  }
-};
+const mapStateToProps = (state) => ({
+  restaurantList: state.get('restaurantList'),
+});
 
 export default connect(mapStateToProps)(RestaurantList);

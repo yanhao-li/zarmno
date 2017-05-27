@@ -11,37 +11,36 @@ export function setCurrentUser(user) {
 }
 
 export const initAuth = () => (dispatch) => {
-    if (localStorage.jwtToken) {
-      const token = localStorage.getItem('jwtToken');
-      if (token) {
-        let user = {};
-        try {
-          user = jwtDecode(token);
-        } catch (e) {
-          throw new Error('invalid Token');
-        }
-        setAuthorizationToken(token);
-        dispatch(setCurrentUser(user));
-        dispatch({
-          type: 'FETCH_FAVORITES_REQUEST'
-        });
-        dispatch(fetchFavorites())
-        .then(()=>
+  if (localStorage.jwtToken) {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      let user = {};
+      try {
+        user = jwtDecode(token);
+      } catch (e) {
+        throw new Error('invalid Token');
+      }
+      setAuthorizationToken(token);
+      dispatch(setCurrentUser(user));
+      dispatch({
+        type: 'FETCH_FAVORITES_REQUEST',
+      });
+      dispatch(fetchFavorites())
+        .then(() =>
           dispatch({
-            type: 'FETCH_FAVORITES_SUCCESS'
+            type: 'FETCH_FAVORITES_SUCCESS',
           })
         )
-        .catch(()=>
+        .catch(() =>
           dispatch({
-            type: 'FETCH_FAVORITES_FAILURE'
+            type: 'FETCH_FAVORITES_FAILURE',
           })
         );
-      }
     }
   }
+};
 
-export const login = (user) => {
-  return (dispatch) => axios.post('/api/v1/session', user).then(
+export const login = (user) => (dispatch) => axios.post('/api/v1/session', user).then(
       (res) => {
         const token = res.data.token;
         localStorage.setItem('jwtToken', token);
@@ -50,15 +49,12 @@ export const login = (user) => {
         dispatch(setCurrentUser(user));
       }
     );
-}
 
-export const logout = () => {
-  return (dispatch) => {
-    localStorage.removeItem('jwtToken');
-    setAuthorizationToken(false);
-    dispatch(setCurrentUser({}));
-  };
-}
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('jwtToken');
+  setAuthorizationToken(false);
+  dispatch(setCurrentUser({}));
+};
 
 export function getAuth() {
   return (dispatch) => axios.get('/api/v1/session').then(

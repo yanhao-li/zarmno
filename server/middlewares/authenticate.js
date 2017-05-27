@@ -3,8 +3,8 @@ const { jwtSecret } = require('../config/secretKeys');
 const db = require('../models');
 
 const authenticate = {
-  authenticateUser: function authenticateUser(req, res, next){
-    const authorizationHeader = req.headers['authorization'];
+  authenticateUser: function authenticateUser(req, res, next) {
+    const authorizationHeader = req.headers.authorization;
     let token;
 
     if (authorizationHeader) {
@@ -18,22 +18,22 @@ const authenticate = {
         } else {
           db.User.findOne({
             where: { id: decoded.id },
-            attributes: ['id', 'email', 'role']
-          }).then(function(user){
-             req.user = user;
-             next();
-             return null;
-          }).catch(function(err){
+            attributes: ['id', 'email', 'role'],
+          }).then((user) => {
+            req.user = user;
+            next();
+            return null;
+          }).catch((err) => {
             res.status(404).json({ error: 'No such user' });
           });
         }
       });
     } else {
       res.status(403).json({
-        error: 'No token provided'
+        error: 'No token provided',
       });
     }
-  }
-}
+  },
+};
 
 module.exports = authenticate;

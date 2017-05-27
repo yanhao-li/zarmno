@@ -3,26 +3,26 @@ import TextField from 'material-ui/TextField';
 import { updateResInfo } from 'actions/RestaurantActions';
 
 
-class RestaurantInfoEdit extends React.PureComponent{
-  constructor(props){
+class RestaurantInfoEdit extends React.PureComponent {
+  constructor(props) {
     super(props);
     const { info } = this.props.restaurant;
     this.state = {
-      fieldsValue:{
+      fieldsValue: {
         name: info.name,
         location: info.location,
-        description: info.description
-      }
+        description: info.description,
+      },
     };
   }
 
   handleChange = (e) => {
     this.setState({
-      fieldsValue:{
+      fieldsValue: {
         ...this.state.fieldsValue,
-        [e.target.name]: e.target.value
-      }
-    })
+        [e.target.name]: e.target.value,
+      },
+    });
   }
 
   saveChanges = (e) => {
@@ -34,11 +34,11 @@ class RestaurantInfoEdit extends React.PureComponent{
   }
 
 
-  render(){
+  render() {
     const { restaurant } = this.props;
     const { info } = restaurant;
-    return(
-      <div style={{padding: 20}}>
+    return (
+      <div style={{ padding: 20 }}>
         <TextField
           id="text-field-controlled"
           value={this.state.fieldsValue.name}
@@ -61,12 +61,12 @@ class RestaurantInfoEdit extends React.PureComponent{
           onChange={this.handleChange}
         />
         <div>
-          <button className="btn btn-secondary" onClick={this.saveChanges} style={{marginTop: "10px"}}>Save</button>
-          <button className="btn btn-secondary" onClick={this.props.cancelEdit} style={{margin: "10px 0 0 10px"}}>Cancel</button>
+          <button className="btn btn-secondary" onClick={this.saveChanges} style={{ marginTop: '10px' }}>Save</button>
+          <button className="btn btn-secondary" onClick={this.props.cancelEdit} style={{ margin: '10px 0 0 10px' }}>Cancel</button>
         </div>
       </div>
     );
   }
-};
+}
 
 export default RestaurantInfoEdit;

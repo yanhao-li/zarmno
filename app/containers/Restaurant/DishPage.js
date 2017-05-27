@@ -1,14 +1,14 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card'
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
 
-class DishPage extends React.PureComponent{
-  render(){
-    const {dish, restaurant} = this.props;
-    return(
-      <Card style={{minHeight: 1000}}>
-        <IconButton style={{position: 'absolute', right: 30, top: 30}} onTouchTap={this.props.closeModal}>
+class DishPage extends React.PureComponent {
+  render() {
+    const { dish, restaurant } = this.props;
+    return (
+      <Card style={{ minHeight: 1000 }}>
+        <IconButton style={{ position: 'absolute', right: 30, top: 30 }} onTouchTap={this.props.closeModal}>
           <Close />
         </IconButton>
         <CardHeader
@@ -17,9 +17,9 @@ class DishPage extends React.PureComponent{
           avatar="https://media.timeout.com/images/100666581/image.jpg"
         />
         <CardMedia
-          mediaStyle={{height: 500, overflow: 'hidden'}}
+          mediaStyle={{ height: 500, overflow: 'hidden' }}
         >
-          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" height={500}/>
+          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" height={500} />
         </CardMedia>
         <CardTitle title={dish.name} subtitle={dish.description} />
         <CardText>
