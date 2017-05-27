@@ -68,10 +68,10 @@ class DishCard extends React.PureComponent{
   }
 
   render(){
-    const {dish} = this.props;
+    const {dish, auth} = this.props;
     return(
       <Card style={styles.card}  zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onTouchTap={this.handleOpen}>
-        <DishDeleteButton {...this.props}/>
+        {auth.user.role === "business" && (<DishDeleteButton {...this.props}/>)}
         <CardMedia style={styles.card.CardImg}>
           <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" />
         </CardMedia>
