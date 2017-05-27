@@ -17,7 +17,7 @@ const menu = (state = [], action) => {
       return action.menu;
     case 'UPDATE_DISH':
       return state.map((dish) => {
-        if (dish.id == action.dish.id) {
+        if (dish.id === action.dish.id) {
           dish = action.dish;
         }
         return dish;
