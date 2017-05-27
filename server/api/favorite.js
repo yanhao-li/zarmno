@@ -1,6 +1,4 @@
-const express = require('express');
 const db = require('../models');
-const router = express.Router();
 
 const favorite = {
   add: (req, res) => {
@@ -19,7 +17,7 @@ const favorite = {
       },
       attributes: ['restaurant_id'],
     }).then((favorites) => {
-      const temp = favorites.map((favorite) => favorite.restaurant_id);
+      const temp = favorites.map((everyFavorite) => everyFavorite.restaurant_id);
       res.status(200).json({ favorites: temp });
     });
   },
