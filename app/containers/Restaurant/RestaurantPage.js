@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
-import Menu from './components/Common/Menu';
 import { setCurrentRes } from 'actions/RestaurantActions';
+import Menu from './components/Common/Menu';
 import RestaurantHeader from './components/Common/RestaurantHeader';
 // For Customer User
 import NotFound from 'containers/NotFoundPage';
