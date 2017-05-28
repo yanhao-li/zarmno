@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchRestaurantById } from 'actions/RestaurantActions';
 import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
-import styled from 'styled-components';
 import RestaurantCard from 'containers/Restaurant/components/Common/RestaurantCard';
 import Paper from 'material-ui/Paper';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  favorites: PropTypes.object.isRequired,
+};
 
 const styles = {
   paper: {
@@ -54,6 +57,8 @@ class FavoritesPage extends React.PureComponent {
     );
   }
 }
+
+FavoritesPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
   auth: state.get('auth'),

@@ -1,9 +1,9 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { userSignupRequest } from 'actions/AuthActions';
 import TextFieldGroup from 'components/TextFieldGroup';
 import styled from 'styled-components';
 import validateInput from '../../../server/shared/validations/signup';
-import { userSignupRequest } from 'actions/AuthActions';
 
 const AuthContainer = styled.div`
     box-sizing: border-box;

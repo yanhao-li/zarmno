@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from 'actions/AuthActions';
-import { browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -39,6 +38,17 @@ class NavBar extends React.PureComponent {
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
+  onMouseEnter = () => {
+    this.setState({
+      avatarShadow: 2,
+    });
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      avatarShadow: 1,
+    });
+  }
 
   handleTouchTap = (e) => {
     e.preventDefault();
@@ -53,18 +63,6 @@ class NavBar extends React.PureComponent {
       menuIsOpen: false,
     });
   };
-
-  onMouseEnter = () => {
-    this.setState({
-      avatarShadow: 2,
-    });
-  }
-
-  onMouseLeave = () => {
-    this.setState({
-      avatarShadow: 1,
-    });
-  }
 
   logout(e) {
     e.preventDefault();

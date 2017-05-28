@@ -3,9 +3,8 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import TextFieldGroup from 'components/TextFieldGroup';
-import validateInput from '../../../server/shared/validations/login';
 import { login } from 'actions/AuthActions';
-
+import validateInput from '../../../server/shared/validations/login';
 
 const AuthContainer = styled.div`
     box-sizing: border-box;
