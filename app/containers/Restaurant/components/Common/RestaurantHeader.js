@@ -1,18 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+// material-ui
+import Paper from 'material-ui/Paper';
+// For Business User
+import RestaurantInfoEdit from 'containers/Restaurant/components/Business/RestaurantInfoEdit';
+// For Customer User
+import FavoriteButton from './FavoriteButton';
 import RestaurantInfo from './RestaurantInfo';
 import RestaurantImgs from './RestaurantImgs';
 
-// material-ui
-import Paper from 'material-ui/Paper';
-import { Card, CardMedia, CardTitle } from 'material-ui/Card';
-
-// For Customer User
-import FavoriteButton from './FavoriteButton';
-
-// For Business User
-import RestaurantInfoEdit from 'containers/Restaurant/components/Business/RestaurantInfoEdit';
-
+const propTypes = {
+  auth: PropTypes.object.isRequired,
+};
 
 const HeaderStyle = styled.div`
   position: relative;
@@ -47,16 +47,6 @@ class RestaurantHeader extends React.PureComponent {
     };
     this.onEdit = this.onEdit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
-  }
-
-  toggleFavorite(e) {
-    e.preventDefault();
-    const { dispatch } = this.props;
-    const { restaurant } = this.props;
-    this.setState({
-      isFavorite: !this.state.isFavorite,
-    });
-    dispatch(toggleFavorite(this.state.isFavorite, restaurant.info.id));
   }
 
   onEdit() {
@@ -113,5 +103,7 @@ class RestaurantHeader extends React.PureComponent {
     );
   }
 }
+
+RestaurantHeader.propTypes = propTypes;
 
 export default RestaurantHeader;

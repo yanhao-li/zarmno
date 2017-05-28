@@ -1,6 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Chip from 'material-ui/Chip';
 import { toggleFavorite } from 'actions/FavoritesActions';
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  restaurant: PropTypes.object.isRequired,
+};
 
 class FavoriteButton extends React.PureComponent {
   constructor() {
@@ -14,13 +20,13 @@ class FavoriteButton extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const { restaurant } = this.props;
     const { restaurants } = nextProps.favorites;
-    for (const x in restaurants) {
-      if (restaurants[x].info.id == restaurant.info.id) {
-        this.setState({
-          isFavorite: true,
-        });
-        break;
-      }
+    const inFavoriteList = restaurants.some((x) =>
+      x.info.id === restaurant.info.id
+    )
+    if (inFavoriteList) {
+      this.setState({
+        isFavorite: true
+      });
     }
   }
 
@@ -48,5 +54,6 @@ class FavoriteButton extends React.PureComponent {
     );
   }
 }
+FavoriteButton.propTypes = propTypes;
 
 export default FavoriteButton;

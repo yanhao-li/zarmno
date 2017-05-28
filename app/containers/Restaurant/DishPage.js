@@ -1,7 +1,14 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { Card, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui/svg-icons/navigation/close';
+
+const propTypes = {
+  dish: PropTypes.object.isRequired,
+  restaurant: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
 
 class DishPage extends React.PureComponent {
   render() {
@@ -19,7 +26,7 @@ class DishPage extends React.PureComponent {
         <CardMedia
           mediaStyle={{ height: 500, overflow: 'hidden' }}
         >
-          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" height={500} />
+          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" height={500} alt="the dish" />
         </CardMedia>
         <CardTitle title={dish.name} subtitle={dish.description} />
         <CardText>
@@ -32,5 +39,7 @@ class DishPage extends React.PureComponent {
     );
   }
 }
+
+DishPage.propTypes = propTypes;
 
 export default DishPage;

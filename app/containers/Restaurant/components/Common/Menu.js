@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Subheader from 'material-ui/Subheader';
-import DishCard from './DishCard';
 import Paper from 'material-ui/Paper';
+import DishCard from './DishCard';
 // For Business
 import DishAddButton from '../Business/DishAddButton';
+
+const propTypes = {
+  auth: PropTypes.object.isRequired,
+  restaurant: PropTypes.object.isRequired,
+};
 
 const styles = {
   menuPaper: {
@@ -15,13 +21,10 @@ const styles = {
 };
 
 class Menu extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const { user } = this.props.auth;
-    const { menu } = this.props.restaurant;
+    const { auth, restaurant } = this.props;
+    const { user } = auth;
+    const { menu } = restaurant;
     return (
       <Paper className="container" style={styles.menuPaper}>
         <Subheader>Menu</Subheader>
@@ -35,5 +38,7 @@ class Menu extends React.PureComponent {
     );
   }
 }
+
+Menu.propTypes = propTypes;
 
 export default Menu;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getRestaurantsList } from 'actions/RestaurantActions';
 import CreateResForm from './RestaurantCreateForm';
 import { Link } from 'react-router';

@@ -9,7 +9,7 @@ class RestaurantImgs extends React.PureComponent {
           overlay={<CardTitle title="more images"> </CardTitle>}
           style={{ height: '250px' }}
         >
-          <img src="https://media.timeout.com/images/100666581/image.jpg" style={{ width: '250px', height: '250px' }} />
+          <img src="https://media.timeout.com/images/100666581/image.jpg" style={{ width: '250px', height: '250px' }} alt="restaurant" />
         </CardMedia>
       </Card>
     );

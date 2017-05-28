@@ -1,5 +1,10 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import PropTypes from 'prop-types';
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+
+const propTypes = {
+  restaurant: PropTypes.object.isRequired,
+};
 
 const styles = {
   card: {
@@ -43,7 +48,7 @@ class RestaurantCard extends React.PureComponent {
     return (
       <Card style={styles.card} zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
         <CardMedia style={styles.card.CardImg}>
-          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" />
+          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" alt="The Restaurant" />
         </CardMedia>
         <CardTitle title={restaurant.name} titleColor="#757575" titleStyle={{ fontSize: '24px', fontWeight: '100' }} />
         <CardText color="#757575">
@@ -54,5 +59,7 @@ class RestaurantCard extends React.PureComponent {
     );
   }
 }
+
+RestaurantCard.propTypes = propTypes;
 
 export default RestaurantCard;

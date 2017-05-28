@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { registerRes } from 'actions/RestaurantActions';
 import { connect } from 'react-redux';

@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
-import { setCurrentRes } from 'actions/RestaurantActions';
-import Menu from './components/Common/Menu';
-import RestaurantHeader from './components/Common/RestaurantHeader';
+import PropTypes from 'prop-types';
 // For Customer User
 import NotFound from 'containers/NotFoundPage';
 // For Business User
 import BusinessNotFound from 'containers/Restaurant/components/Business/BusinessNotFound';
+import { setCurrentRes } from 'actions/RestaurantActions';
+import Menu from './components/Common/Menu';
+import RestaurantHeader from './components/Common/RestaurantHeader';
+
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  restaurant: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+};
 
 class RestaurantPage extends React.PureComponent {
 
   componentDidMount() {
-    const { dispatch, restaurant } = this.props;
+    const { dispatch } = this.props;
     dispatch(setCurrentRes(this.props.params.id));
     document.title = 'Restaurant Infomation';
   }
@@ -29,9 +37,8 @@ class RestaurantPage extends React.PureComponent {
     if (isEmpty(info)) {
       if (user.role === 'business') {
         return <BusinessNotFound />;
-      } else {
-        return <NotFound />;
       }
+      return <NotFound />;
     }
 
     return (
@@ -42,6 +49,8 @@ class RestaurantPage extends React.PureComponent {
     );
   }
 }
+
+RestaurantPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
   auth: state.get('auth'),

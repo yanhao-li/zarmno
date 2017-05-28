@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { getRestaurantsList } from 'actions/RestaurantActions';
 import Subheader from 'material-ui/Subheader';
-import RestaurantCard from './RestaurantCard';
-import styled from 'styled-components';
 import Paper from 'material-ui/Paper';
+import RestaurantCard from './RestaurantCard';
+
 
 const styles = {
   paper: {
@@ -31,9 +31,10 @@ class RestaurantList extends React.PureComponent {
             restaurantList: res.data.restaurants,
           });
         }
-      }, (err) => {
-      console.log(err);
-    }
+      },
+    //   (err) => {
+    //
+    // }
     );
   }
 
