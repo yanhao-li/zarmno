@@ -22,10 +22,10 @@ class FavoriteButton extends React.PureComponent {
     const { restaurants } = nextProps.favorites;
     const inFavoriteList = restaurants.some((x) =>
       x.info.id === restaurant.info.id
-    )
+    );
     if (inFavoriteList) {
       this.setState({
-        isFavorite: true
+        isFavorite: true,
       });
     }
   }

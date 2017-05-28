@@ -1,8 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { getRestaurantsList } from 'actions/RestaurantActions';
-import CreateResForm from './RestaurantCreateForm';
-import { Link } from 'react-router';
 
 class BusinessNotFound extends React.PureComponent {
   constructor(props) {
@@ -23,10 +19,9 @@ class BusinessNotFound extends React.PureComponent {
   }
 
   render() {
-    const restaurants = this.props.restaurantList;
     return (
       <div>
-        <h3>You haven't claim business yet</h3>
+        <h3>You have not claim business yet</h3>
         <button className="btn btn-primary" onClick={this.openModal}>Claim a New Restaurant Page</button>
       </div>
     );

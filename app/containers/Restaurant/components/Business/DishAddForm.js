@@ -4,6 +4,12 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { addDish } from 'actions/RestaurantActions';
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  restaurant: PropTypes.object.isRequired,
+};
+
 class DishAddForm extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -37,7 +43,7 @@ class DishAddForm extends React.PureComponent {
   }
 
   render() {
-    const { dish, errors } = this.state;
+    const { dish } = this.state;
     return (
       <div>
         <TextField
@@ -63,5 +69,7 @@ class DishAddForm extends React.PureComponent {
     );
   }
 }
+
+DishAddForm.propTypes = propTypes;
 
 export default DishAddForm;

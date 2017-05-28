@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from 'components/TextFieldGroup';
 import { updateDish, deleteDish } from 'actions/RestaurantActions';
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequird,
+  dishEditing: PropTypes.object.isRequird,
+};
+
 class DishUpdateForm extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -21,19 +27,19 @@ class DishUpdateForm extends React.PureComponent {
     this.deleteDish = this.deleteDish.bind(this);
   }
 
+  onChange(e) {
+    this.setState({ dish: {
+      ...this.state.dish,
+      [e.target.name]: e.target.value,
+    } });
+  }
+
   deleteDish(e) {
     const { dish } = this.state;
     const { dispatch } = this.props;
     e.preventDefault();
     dispatch(deleteDish(dish));
     this.props.closeModal();
-  }
-
-  onChange(e) {
-    this.setState({ dish: {
-      ...this.state.dish,
-      [e.target.name]: e.target.value,
-    } });
   }
 
   saveChanges(e) {
@@ -69,11 +75,13 @@ class DishUpdateForm extends React.PureComponent {
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
           <button type="button" className="btn btn-danger" onClick={this.deleteDish}>Delete</button>
-          <button type="button" type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
+          <button type="submit" className="btn btn-primary" onClick={this.saveChanges}>Save Changes</button>
         </div>
       </form>
     );
   }
 }
+
+DishUpdateForm.propTypes = propTypes;
 
 export default DishUpdateForm;

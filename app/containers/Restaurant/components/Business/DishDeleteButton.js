@@ -6,6 +6,11 @@ import SvgIcon from 'material-ui/SvgIcon';
 import FlatButton from 'material-ui/FlatButton';
 import { deleteDish } from 'actions/RestaurantActions';
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  dish: PropTypes.object.isRequired,
+};
+
 const DeleteSVG = (props) => (
   <SvgIcon color="#f44336" hoverColor="#e57373" {...props}>
     <path d="M10,0 C4.47,0 0,4.47 0,10 C0,15.53 4.47,20 10,20 C15.53,20 20,15.53 20,10 C20,4.47 15.53,0 10,0 Z"></path>
@@ -71,11 +76,13 @@ class DishDeleteButton extends React.PureComponent {
           open={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
         >
-          Are you sure you wanna delete the dish "{dish.name}"
+          Are you sure you wanna delete the dish {dish.name}
         </Dialog>
       </div>
     );
   }
 }
+
+DishDeleteButton.propTypes = propTypes;
 
 export default DishDeleteButton;

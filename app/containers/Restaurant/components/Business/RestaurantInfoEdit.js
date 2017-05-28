@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import { updateResInfo } from 'actions/RestaurantActions';
 
+const propTypes = {
+  dispatch: PropTypes.func.isRequried,
+  restaurant: PropTypes.object.isRequried,
+  cancelEdit: PropTypes.func.isRequired,
+};
 
 class RestaurantInfoEdit extends React.PureComponent {
   constructor(props) {
@@ -36,8 +41,6 @@ class RestaurantInfoEdit extends React.PureComponent {
 
 
   render() {
-    const { restaurant } = this.props;
-    const { info } = restaurant;
     return (
       <div style={{ padding: 20 }}>
         <TextField
@@ -69,5 +72,7 @@ class RestaurantInfoEdit extends React.PureComponent {
     );
   }
 }
+
+RestaurantInfoEdit.propTypes = propTypes;
 
 export default RestaurantInfoEdit;

@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ModifyButton from '../components/ModifyButton';
+
+const propTypes = {
+  openModal: PropTypes.func.isRequired,
+  dish: PropTypes.object.isRequired,
+  setDishEditing: PropTypes.object.isRequired,
+};
 
 class DishEdit extends React.PureComponent {
   constructor(props) {
@@ -17,10 +22,12 @@ class DishEdit extends React.PureComponent {
     const { dish } = this.props;
     return (
       <li>
-        {dish.name}<ModifyButton onClick={this.onClick} />
+        {dish.name}
       </li>
     );
   }
 }
+
+DishEdit.propTypes = propTypes;
 
 export default DishEdit;

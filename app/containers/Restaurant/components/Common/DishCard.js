@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Dialog from 'material-ui/Dialog';
 import DishPage from 'containers/Restaurant/DishPage';
 import DishDeleteButton from '../Business/DishDeleteButton';
+
+const propTypes = {
+  dish: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
 const styles = {
   card: {
@@ -35,18 +40,6 @@ class DishCard extends React.PureComponent {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  handleOpen() {
-    this.setState({
-      modalIsOpen: true,
-    });
-  }
-
-  handleClose() {
-    this.setState({
-      modalIsOpen: false,
-    });
-  }
-
   onMouseEnter() {
     this.setState({
       cardDepth: 2,
@@ -59,13 +52,16 @@ class DishCard extends React.PureComponent {
     });
   }
 
-  deleteDish(e) {
-    const { dish } = this.state;
-    const { dispatch } = this.props;
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(deleteDish(dish));
-    this.props.closeModal();
+  handleOpen() {
+    this.setState({
+      modalIsOpen: true,
+    });
+  }
+
+  handleClose() {
+    this.setState({
+      modalIsOpen: false,
+    });
   }
 
   render() {
@@ -74,7 +70,7 @@ class DishCard extends React.PureComponent {
       <Card style={styles.card} zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onTouchTap={this.handleOpen}>
         {auth.user.role === 'business' && (<DishDeleteButton {...this.props} />)}
         <CardMedia style={styles.card.CardImg}>
-          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" />
+          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" alt="The Dish" />
         </CardMedia>
         <CardTitle title={dish.name} titleColor="#757575" titleStyle={{ fontSize: '24px', fontWeight: '100' }} />
         <CardText color="#757575">
@@ -93,5 +89,7 @@ class DishCard extends React.PureComponent {
     );
   }
 }
+
+DishCard.propTypes = propTypes;
 
 export default DishCard;

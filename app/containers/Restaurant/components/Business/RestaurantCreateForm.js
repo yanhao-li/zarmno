@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextFieldGroup from 'components/TextFieldGroup';
-import { registerRes } from 'actions/RestaurantActions';
-import { connect } from 'react-redux';
+
+const propTypes = {
+  registerRes: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+};
 
 class RestaurantCreateForm extends React.PureComponent {
   constructor(props) {
@@ -54,12 +57,13 @@ class RestaurantCreateForm extends React.PureComponent {
         />
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>Close</button>
-          <button type="button" type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Submit</button>
         </div>
       </form>
     );
   }
 }
 
+RestaurantCreateForm.propTypes = propTypes;
 
 export default RestaurantCreateForm;
