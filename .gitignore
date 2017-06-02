@@ -5,6 +5,7 @@ node_modules
 stats.json
 
 # Classified
+server/config
 
 # Cruft
 .DS_Store
