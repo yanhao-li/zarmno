@@ -1,6 +1,6 @@
 Menu Plus is an online menu.
 
-##Demo
+## Demo
 The running example is deployed on AWS: [Menu Plus](http://menuplus.yanhaoli.com)
 
 
