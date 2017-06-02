@@ -5,7 +5,8 @@ node_modules
 stats.json
 
 # Classified
-server/config
+server/config/db.json
+server/config/secretKey.js
 
 # Cruft
 .DS_Store
