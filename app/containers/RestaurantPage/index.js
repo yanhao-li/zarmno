@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 // For Customer User
 import NotFound from 'containers/NotFoundPage';
 // For Business User
-import BusinessNotFound from 'containers/Restaurant/components/Business/BusinessNotFound';
+import BusinessNotFound from 'components/RestaurantPage/Business/BusinessNotFound';
 import { setCurrentRes } from 'actions/RestaurantActions';
-import Menu from './components/Common/Menu';
-import RestaurantHeader from './components/Common/RestaurantHeader';
+import Menu from 'components/RestaurantPage/Common/Menu';
+import RestaurantHeader from 'components/RestaurantPage/Common/RestaurantHeader';
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,

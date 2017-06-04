@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { getRestaurantsList } from 'actions/RestaurantActions';
 import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard from 'components/Card/RestaurantCard';
 
 
 const styles = {

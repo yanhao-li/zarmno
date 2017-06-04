@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Dialog from 'material-ui/Dialog';
-import DishPage from 'containers/Restaurant/DishPage';
-import DishDeleteButton from '../Business/DishDeleteButton';
+import DishPage from 'containers/DishPage';
+import DishDeleteButton from 'components/RestaurantPage/Business/DishDeleteButton';
 
 const propTypes = {
   dish: PropTypes.object.isRequired,

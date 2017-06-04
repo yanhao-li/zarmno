@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Subheader from 'material-ui/Subheader';
-import RestaurantCard from 'containers/Restaurant/components/Common/RestaurantCard';
+import RestaurantCard from 'components/Card/RestaurantCard';
 import Paper from 'material-ui/Paper';
 import PropTypes from 'prop-types';
 

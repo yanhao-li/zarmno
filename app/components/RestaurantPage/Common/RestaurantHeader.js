@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // material-ui
 import Paper from 'material-ui/Paper';
 // For Business User
-import RestaurantInfoEdit from 'containers/Restaurant/components/Business/RestaurantInfoEdit';
+import RestaurantInfoEdit from 'components/RestaurantPage/Business/RestaurantInfoEdit';
 // For Customer User
 import FavoriteButton from './FavoriteButton';
 import RestaurantInfo from './RestaurantInfo';

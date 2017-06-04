@@ -59,7 +59,7 @@ export default function createRoutes(store) {
       path: 'login',
       name: 'authentication',
       getComponent(nextState, cb) {
-        import('containers/Authentication/LoginForm')
+        import('containers/Auth')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -68,7 +68,7 @@ export default function createRoutes(store) {
       path: 'signup',
       name: 'authentication',
       getComponent(nextState, cb) {
-        import('containers/Authentication/SignUpForm')
+        import('containers/Auth')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -78,7 +78,7 @@ export default function createRoutes(store) {
       name: 'restaurantList',
       onEnter: requireAuth,
       getComponent(nextState, cb) {
-        import('containers/Restaurant/components/Common/RestaurantList')
+        import('containers/RestaurantsList')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -87,7 +87,7 @@ export default function createRoutes(store) {
       path: 'restaurant/:id',
       name: 'restaurantPage',
       getComponent(nextState, cb) {
-        import('containers/Restaurant/RestaurantPage')
+        import('containers/RestaurantPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -96,7 +96,7 @@ export default function createRoutes(store) {
       path: 'favorites',
       name: 'favorites',
       getComponent(nextState, cb) {
-        import('containers/Favorites/FavoritesPage')
+        import('containers/FavoritesPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
