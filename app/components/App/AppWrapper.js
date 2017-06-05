@@ -6,8 +6,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#1E88E5',
     accent1Color: '#EC407A',
-    textColor: "#000000",
-    alternateTextColor: "#ffffff",
+
   },
 });
 
