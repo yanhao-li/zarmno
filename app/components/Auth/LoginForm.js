@@ -20,30 +20,24 @@ class LoginForm extends React.PureComponent {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   onSubmit(e) {
     const {dispatch} = this.props;
+    const { errors, isValid } = validateInput(this.state);
     e.preventDefault();
-    if (this.isValid()) {
+    if (!isValid) {
+      this.setState({ errors });
+    } else{
       this.setState({ errors: {}, isLoading: true });
       dispatch(login(this.state)).then(
         () => { browserHistory.push('/'); },
         (err) => { this.setState({ errors: err.response.data.errors, isLoading: false }); }
       );
     }
-  }
-
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-    if (!isValid) {
-      this.setState({ errors });
-    }
-    return isValid;
-  }
+  };
 
   render() {
     const { errors, email, password, isLoading } = this.state;
@@ -54,7 +48,7 @@ class LoginForm extends React.PureComponent {
             name="email"
             floatingLabelText="Email"
             value={email}
-            error={errors.email}
+            errorText={errors.email}
             onChange={this.onChange}
             type="text"
             fullWidth={true}
@@ -63,7 +57,7 @@ class LoginForm extends React.PureComponent {
             name="password"
             floatingLabelText="Password"
             value={password}
-            error={errors.password}
+            errorText={errors.password}
             onChange={this.onChange}
             type="password"
             fullWidth={true}
@@ -77,7 +71,7 @@ class LoginForm extends React.PureComponent {
 }
 
 LoginForm.propTypes = {
-  login: React.PropTypes.func.isRequired,
+  dispatch: React.PropTypes.func.isRequired,
 };
 
 export default LoginForm;

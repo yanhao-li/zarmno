@@ -1,25 +1,16 @@
 import React from 'react';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import {Link} from 'react-router';
 
 class CustomerMenu extends React.PureComponent{
-  constructor(){
-    super();
-    this.logout = this.logout.bind(this);
-  }
-
-  logout(e) {
-    const { dispatch } = this.props;
-    e.preventDefault();
-    dispatch(logout);
-    browserHistory.push('/');
-  }
-
-
   render(){
+    const { logout } = this.props;
     return(
       <Menu>
         <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
         <Link to="/favorites"><MenuItem>My Favorites</MenuItem></Link>
-        <a href="/logout" onClick={this.logout}><MenuItem>Log out</MenuItem></a>
+        <a href="/logout" onClick={logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
     )
   }
