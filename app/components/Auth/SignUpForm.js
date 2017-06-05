@@ -1,14 +1,11 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButtonSm from 'components/Button/FlatButtonSm';
 import { userSignupRequest } from 'actions/AuthActions';
-import TextFieldGroup from 'components/TextFieldGroup';
-import styled from 'styled-components';
-import validateInput from '../../../server/shared/validations/signup';
-
-const AuthContainer = styled.div`
-    box-sizing: border-box;
-    padding-top: 50px;
-`;
+import SignUpFormUI from 'components/Auth/SignUpFormUI';
+import validateInput from 'components/Auth/utils/signupValidation';
 
 class SignUpForm extends React.PureComponent {
   constructor(props) {
@@ -23,92 +20,84 @@ class SignUpForm extends React.PureComponent {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onClick = this.onClick.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onClick(e) {
-    this.setState({ role: e.target.name });
-  }
-
   onSubmit(e) {
     e.preventDefault();
-    if (this.isValid()) {
+    this.setState({ role: e.target.name });
+    const { errors, isValid } = validateInput(this.state);
+    if (!isValid) {
+      this.setState({ errors })
+    } else {
       this.setState({ errors: {}, isLoading: true });
       userSignupRequest(this.state).then(
         () => {
           browserHistory.push('/');
-        }, (err) => this.setState({ errors: err.response.data.errors, isLoading: false })
+        },
+        (err) =>
+          this.setState({ errors: err.response.data.errors, isLoading: false })
       );
     }
   }
 
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-
-    if (!isValid) {
-      this.setState({ errors });
-    }
-    return isValid;
-  }
-
   render() {
-    const { errors } = this.state;
+    const { email, password, passwordConfirmation, errors } = this.state;
 
     return (
-      <AuthContainer className="row justify-content-md-center">
-        <form className="col-md-8" onSubmit={this.onSubmit}>
-          <TextFieldGroup
-            label="Email"
-            error={errors.email}
+      <SignUpFormUI >
+          <TextField
+            floatingLabelText="Email"
+            errorText={errors.email}
             onChange={this.onChange}
-            value={this.state.email}
+            value={email}
             name="email"
             type="text"
+            fullWidth={true}
           />
-          <TextFieldGroup
-            label="Password"
-            error={errors.password}
+          <TextField
+            floatingLabelText="Password"
+            errorText={errors.password}
             onChange={this.onChange}
-            value={this.state.password}
+            value={password}
             name="password"
             type="password"
+            fullWidth={true}
           />
-          <TextFieldGroup
-            label="Password Confirmation"
-            error={errors.passwordConfirmation}
+          <TextField
+            floatingLabelText="Password Confirmation"
+            errorText={errors.passwordConfirmation}
             onChange={this.onChange}
-            value={this.state.passwordConfirmation}
+            value={passwordConfirmation}
             name="passwordConfirmation"
             type="password"
+            fullWidth={true}
           />
-          <div className="form-group">
-            <button
-              disabled={this.state.isLoading}
-              type="submit"
-              className="btn btn-primary"
-              name="customer"
-              onClick={this.onClick}
-            >
-              Sign up as Customer
-            </button>
-          </div>
-          <div className="form-group">
-            <button
-              disabled={this.state.isLoading}
-              type="submit"
-              className="btn btn-secondary"
-              name="business"
-              onClick={this.onClick}
-            >
-              Sign up as Business Owner
-            </button>
-          </div>
-        </form>
-      </AuthContainer>
+
+          <FlatButtonSm label="Already have an account?" onClick={this.props.toggleAuthType} primary={true} style={{alignSelf: "flex-start", marginTop: 15}}/>
+
+          <RaisedButton
+            label="Sign up as Customer"
+            disabled={this.state.isLoading}
+            type="submit"
+            name="customer"
+            primary={true}
+            onClick={this.onSubmit}
+            style={{alignSelf: 'flex-end', marginTop: 15}}
+          />
+          <RaisedButton
+            label="Sign up as Business Owner"
+            disabled={this.state.isLoading}
+            type="submit"
+            name="business"
+            secondary={true}
+            onClick={this.onSubmit}
+            style={{alignSelf: 'flex-end', marginTop: 15}}
+          />
+      </SignUpFormUI>
     );
   }
 }

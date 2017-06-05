@@ -1,8 +1,9 @@
 import React from 'react';
 import Auth from 'containers/Auth';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
-
+import CloseIcon from 'material-ui/svg-icons/content/clear';
 class GuestNav extends React.PureComponent{
   constructor(){
     super();
@@ -13,7 +14,7 @@ class GuestNav extends React.PureComponent{
     this.onClickSignUp = this.onClickSignUp.bind(this);
     this.onClickLogin = this.onClickLogin.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.toggleType = this.toggleType.bind(this);
+    this.toggleAuthType = this.toggleAuthType.bind(this);
   }
 
   onClickSignUp(e) {
@@ -38,7 +39,7 @@ class GuestNav extends React.PureComponent{
     });
   }
 
-  toggleType() {
+  toggleAuthType() {
     if(this.state.authType === "Sign Up"){
       this.setState({
         authType: "Login"
@@ -60,12 +61,15 @@ class GuestNav extends React.PureComponent{
         </ul>
         <Dialog
           title={authType}
-          modal={false}
+          modal={true}
           open={modalIsOpen}
           onRequestClose={this.closeModal}
           contentStyle={{width: 500}}
         >
-          <Auth authType={authType} toggleType={this.toggleType}/>
+          <Auth authType={authType} toggleAuthType={this.toggleAuthType}/>
+          <IconButton onClick={this.closeModal} style={{position: "absolute", top: -10, right: -50}}>
+            <CloseIcon color="#ffffff"/>
+          </IconButton>
         </Dialog>
       </div>
     );

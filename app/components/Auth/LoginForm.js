@@ -63,7 +63,7 @@ class LoginForm extends React.PureComponent {
             fullWidth={true}
           />
           <FlatButtonSm label="Forget Password?" primary={true} style={{alignSelf: "flex-start", marginTop: 50}}/>
-          <FlatButtonSm label="Dont't have account?" onClick={this.props.toggleType} primary={true} style={{alignSelf: "flex-start", marginTop: 15}}/>
+          <FlatButtonSm label="Dont't have an account?" onClick={this.props.toggleAuthType} primary={true} style={{alignSelf: "flex-start", marginTop: 15}}/>
           <RaisedButton label="LOG IN" primary={true} onClick={this.onSubmit} disabled={this.state.isLoading} style={{alignSelf: 'flex-end'}}/>
       </LoginFormUI>
     );
@@ -72,6 +72,7 @@ class LoginForm extends React.PureComponent {
 
 LoginForm.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  toggleAuthType: React.PropTypes.func.isRequired
 };
 
 export default LoginForm;

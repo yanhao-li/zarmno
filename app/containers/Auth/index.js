@@ -8,13 +8,13 @@ class Auth extends React.PureComponent{
   constructor(props) {
     super(props);
   }
-  
+
   render(){
-    const { authType, toggleType, dispatch } = this.props;
+    const { authType, toggleAuthType, dispatch } = this.props;
     if (authType === "Login") {
-      return <LoginForm toggleType={toggleType} dispatch={dispatch} />
+      return <LoginForm toggleAuthType={toggleAuthType} dispatch={dispatch} />
     } else {
-      return <SignUpForm toggleType={toggleType} dispatch={dispatch}/>
+      return <SignUpForm toggleAuthType={toggleAuthType} dispatch={dispatch}/>
     }
   }
 }
