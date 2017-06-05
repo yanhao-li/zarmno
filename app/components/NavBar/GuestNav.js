@@ -1,8 +1,9 @@
 import React from 'react';
 import Auth from 'containers/Auth';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
+import AuthUl from 'components/NavBar/AuthUl';
 import CloseIcon from 'material-ui/svg-icons/content/clear';
 class GuestNav extends React.PureComponent{
   constructor(){
@@ -54,24 +55,22 @@ class GuestNav extends React.PureComponent{
   render() {
     const { modalIsOpen, authType } = this.state;
     return(
-      <div>
-        <ul className="nav">
-          <li className="nav-item"><FlatButton label="SIGN UP" onClick={this.onClickSignUp} backgroundColor="#1E88E5" hoverColor="#0D47A1" style={{color: "white"}} /></li>
-          <li className="nav-item"><FlatButton label="LOG IN" onClick={this.onClickLogin} backgroundColor="#EC407A" hoverColor="#AD1457" style={{color: "white"}} /></li>
-        </ul>
-        <Dialog
-          title={authType}
-          modal={true}
-          open={modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentStyle={{width: 500}}
-        >
-          <Auth authType={authType} toggleAuthType={this.toggleAuthType}/>
-          <IconButton onClick={this.closeModal} style={{position: "absolute", top: -10, right: -50}}>
-            <CloseIcon color="#ffffff"/>
-          </IconButton>
-        </Dialog>
-      </div>
+        <AuthUl>
+          <li><RaisedButton label="SIGN UP" onClick={this.onClickSignUp} primary={true} /></li>
+          <li style={{marginLeft: 20}}><RaisedButton label="LOG IN" onClick={this.onClickLogin} secondary={true} /></li>
+          <Dialog
+            title={authType}
+            modal={true}
+            open={modalIsOpen}
+            onRequestClose={this.closeModal}
+            contentStyle={{width: 500}}
+          >
+            <Auth authType={authType} toggleAuthType={this.toggleAuthType}/>
+            <IconButton onClick={this.closeModal} style={{position: "absolute", top: -10, right: -50}}>
+              <CloseIcon color="#ffffff"/>
+            </IconButton>
+          </Dialog>
+        </AuthUl>
     );
   }
 }
