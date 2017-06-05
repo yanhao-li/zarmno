@@ -12,7 +12,7 @@
  */
 
 import React from 'react';
-import NavBar from 'containers/NavBar';
+import NavBar from 'components/NavBar';
 import AppWrapper from 'components/App/AppWrapper';
 import { initAuth } from 'actions/AuthActions';
 import { connect } from 'react-redux';
@@ -34,7 +34,7 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
   render() {
     return (
       <AppWrapper>
-          <NavBar />
+          <NavBar {...this.props}/>
           {React.Children.toArray(this.props.children)}
       </AppWrapper>
     );
@@ -45,5 +45,10 @@ App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
 };
 
+function mapStateToProps(state) {
+  return {
+    auth: state.get('auth'),
+  };
+}
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);
