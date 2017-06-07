@@ -1,4 +1,4 @@
-const validateInput = require('../shared/validations/signup');
+const validateInput = require('../utils/validations/signupValidation');
 const bcrypt = require('bcryptjs');
 const db = require('../models');
 
