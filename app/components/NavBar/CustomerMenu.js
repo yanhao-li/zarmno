@@ -10,7 +10,7 @@ class CustomerMenu extends React.PureComponent{
       <Menu>
         <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
         <Link to="/favorites"><MenuItem>My Favorites</MenuItem></Link>
-        <a href="/logout" onClick={logout}><MenuItem>Log out</MenuItem></a>
+        <a onClick={logout}><MenuItem>Log out</MenuItem></a>
       </Menu>
     )
   }

@@ -12,3 +12,6 @@ server/config/secretKey.js
 .DS_Store
 npm-debug.log
 .idea
+
+# Unrelated
+sketch

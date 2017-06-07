@@ -19,7 +19,7 @@ class Menu extends React.PureComponent{
 
   render(){
     const { user } = this.props.auth;
-    if( user.role === "business" ) return <BusinessMenu {...this.props} logout={this.logout}/>;
+    if( user.role === "business" ) return <BusinessMenu {...this.props} logout={this.onClickLogout}/>;
     return <CustomerMenu {...this.props} logout={this.onClickLogout}/>;
   }
 }
