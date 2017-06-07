@@ -10,6 +10,59 @@ npm install
 npm start
 ```
 
+## Tech Stack
+React
+React Router
+Redux
+ImmutableJS
+Styled-Component
+
+### Unit Testing
+Jest
+Enzyme
+
+### Linting
+ESLint
+
+## Project Structure
+```
+menu-plus/
+  app/
+    components/
+      App/
+      Auth/
+      Button/
+      Card/
+      DishPage/
+      FavoritePage/
+      HomePage/
+      List/
+      NavBar/
+      NotFoundPage/
+      ProfilePage/
+      RestaurantPage/
+    containers/
+      App/
+      Auth/
+      DishPage/
+      FavoritePage/
+      HomePage/
+      NotFoundPage/
+      ProfilePage/
+      RestaurantPage/
+      RestaurantsList/
+  server/
+    api/
+    config/
+    middlewares/
+    migrations/
+    models/
+    shared/
+    utils/
+
+  README.md
+```
+
 ## Redux Store Structure
 ```javascript
 {
