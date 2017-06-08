@@ -59,7 +59,6 @@ menu-plus/
     models/
     shared/
     utils/
-
   README.md
 ```
 

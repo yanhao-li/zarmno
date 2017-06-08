@@ -12,9 +12,17 @@ const user = {
       const { email, password, role } = req.body;
       const passwordDigest = bcrypt.hashSync(password, 10);
 
-      db.User.build({ email, passwordDigest, role }).save()
-        .then(() => res.json({ success: true }))
-        .catch((err) => res.status(500).json({ errors: err }));
+      db.User.findOrCreate({where: {email}, defaults: {passwordDigest, role}}).then(
+        (result) => {
+          const created = result[1];
+          if(created){
+            res.json({ success: true })
+          } else {
+            res.status(400).json({ errors: {email: "This email already existed"} })
+          }
+        }).catch(
+          err => res.status(400).json({errors: {form: err}})
+        );
     } else {
       res.status(400).json(errors);
     }

@@ -17,6 +17,10 @@ function validateInput(data) {
     errors.passwordConfirmation = 'This field is required';
   }
 
+  if (!Validator.isLength(data.password, {min: 6, max: 70})) {
+    errors.password = 'the password characters must be more than 6';
+  }
+
   if (!Validator.equals(data.password, data.passwordConfirmation)) {
     errors.passwordConfirmation = 'Password must match';
   }

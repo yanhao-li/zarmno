@@ -32,8 +32,7 @@ class LoginForm extends React.PureComponent {
       this.setState({ errors });
     } else{
       this.setState({ errors: {}, isLoading: true });
-      dispatch(login(this.state)).then(
-        () => { browserHistory.push('/'); },
+      dispatch(login(this.state)).catch(
         (err) => { this.setState({ errors: err.response.data.errors, isLoading: false }); }
       );
     }

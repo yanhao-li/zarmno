@@ -64,6 +64,7 @@ class GuestNav extends React.PureComponent{
             open={modalIsOpen}
             onRequestClose={this.closeModal}
             contentStyle={{width: 500}}
+            autoScrollBodyContent={true}
           >
             <Auth authType={authType} toggleAuthType={this.toggleAuthType}/>
             <IconButton onClick={this.closeModal} style={{position: "absolute", top: -10, right: -50}}>
