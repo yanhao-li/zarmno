@@ -1,22 +1,26 @@
 import React from 'react';
 import LoginForm from 'components/Auth/LoginForm';
 import SignUpForm from 'components/Auth/SignUpForm';
-import Dialog from 'material-ui/Dialog';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class Auth extends React.PureComponent{
-  constructor(props) {
-    super(props);
-  }
+const propTypes = {
+  authType: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  toggleAuthType: PropTypes.func.isRequired,
+};
 
-  render(){
+class Auth extends React.PureComponent {
+
+  render() {
     const { authType, toggleAuthType, dispatch } = this.props;
-    if (authType === "Login") {
-      return <LoginForm toggleAuthType={toggleAuthType} dispatch={dispatch} />
-    } else {
-      return <SignUpForm toggleAuthType={toggleAuthType} dispatch={dispatch}/>
+    if (authType === 'Login') {
+      return <LoginForm toggleAuthType={toggleAuthType} dispatch={dispatch} />;
     }
+    return <SignUpForm toggleAuthType={toggleAuthType} dispatch={dispatch} />;
   }
 }
+
+Auth.propTypes = propTypes;
 
 export default connect()(Auth);

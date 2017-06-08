@@ -16,7 +16,7 @@ const session = {
           }, secretKey.jwtSecret);
           res.json({ token });
         } else {
-          res.status(401).json({ errors: { password: "Incorrect Password" }});
+          res.status(401).json({ errors: { password: 'Incorrect Password' } });
         }
       })
       .catch(

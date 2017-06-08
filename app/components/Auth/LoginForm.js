@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButtonSm from 'components/Button/FlatButtonSm';
@@ -22,48 +21,48 @@ class LoginForm extends React.PureComponent {
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
   onSubmit(e) {
-    const {dispatch} = this.props;
+    const { dispatch } = this.props;
     const { errors, isValid } = validateInput(this.state);
     e.preventDefault();
     if (!isValid) {
       this.setState({ errors });
-    } else{
+    } else {
       this.setState({ errors: {}, isLoading: true });
       dispatch(login(this.state)).catch(
         (err) => { this.setState({ errors: err.response.data.errors, isLoading: false }); }
       );
     }
-  };
+  }
 
   render() {
     const { errors, email, password, isLoading } = this.state;
 
     return (
       <LoginFormUI>
-          <TextField
-            name="email"
-            floatingLabelText="Email"
-            value={email}
-            errorText={errors.email}
-            onChange={this.onChange}
-            type="text"
-            fullWidth={true}
-          />
-          <TextField
-            name="password"
-            floatingLabelText="Password"
-            value={password}
-            errorText={errors.password}
-            onChange={this.onChange}
-            type="password"
-            fullWidth={true}
-          />
-          <FlatButtonSm label="Forget Password?" primary={true} style={{alignSelf: "flex-start", marginTop: 50}}/>
-          <FlatButtonSm label="Dont't have an account?" onClick={this.props.toggleAuthType} primary={true} style={{alignSelf: "flex-start", marginTop: 15}}/>
-          <RaisedButton label="LOG IN" primary={true} onClick={this.onSubmit} disabled={this.state.isLoading} style={{alignSelf: 'flex-end'}}/>
+        <TextField
+          name="email"
+          floatingLabelText="Email"
+          value={email}
+          errorText={errors.email}
+          onChange={this.onChange}
+          type="text"
+          fullWidth
+        />
+        <TextField
+          name="password"
+          floatingLabelText="Password"
+          value={password}
+          errorText={errors.password}
+          onChange={this.onChange}
+          type="password"
+          fullWidth
+        />
+        <FlatButtonSm label="Forget Password?" primary style={{ alignSelf: 'flex-start', marginTop: 50 }} />
+        <FlatButtonSm label="Dont't have an account?" onClick={this.props.toggleAuthType} primary style={{ alignSelf: 'flex-start', marginTop: 15 }} />
+        <RaisedButton label="LOG IN" primary onClick={this.onSubmit} disabled={isLoading} style={{ alignSelf: 'flex-end' }} />
       </LoginFormUI>
     );
   }
@@ -71,7 +70,7 @@ class LoginForm extends React.PureComponent {
 
 LoginForm.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  toggleAuthType: React.PropTypes.func.isRequired
+  toggleAuthType: React.PropTypes.func.isRequired,
 };
 
 export default LoginForm;

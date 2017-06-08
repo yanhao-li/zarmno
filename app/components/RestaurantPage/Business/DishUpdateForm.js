@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextFieldGroup from 'components/TextFieldGroup';
+import TextField from 'material-ui/TextField';
 import { updateDish, deleteDish } from 'actions/RestaurantActions';
 
 const propTypes = {
@@ -54,21 +54,21 @@ class DishUpdateForm extends React.PureComponent {
     const { dish, errors } = this.state;
     return (
       <form>
-        <TextFieldGroup
+        <TextField
           className="form-group"
           name="name"
           label="Dish name"
           value={dish.name}
-          error={errors}
+          errorText={errors}
           onChange={this.onChange}
           type="text"
         />
-        <TextFieldGroup
+        <TextField
           className="form-group"
           name="Description"
           label="Dish description"
           value={dish.description}
-          error={errors}
+          errorText={errors}
           onChange={this.onChange}
           type="text"
         />

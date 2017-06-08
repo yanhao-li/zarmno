@@ -4,8 +4,8 @@ import Avatar from 'material-ui/Avatar';
 import Popover from 'material-ui/Popover';
 import Menu from 'components/NavBar/Menu';
 
-class UserNav extends React.PureComponent{
-  constructor(){
+class UserNav extends React.PureComponent {
+  constructor() {
     super();
     this.state = {
       menuIsOpen: false,
@@ -13,6 +13,18 @@ class UserNav extends React.PureComponent{
     };
     this.handleTouchTap = this.handleTouchTap.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+  }
+
+  onMouseEnter = () => {
+    this.setState({
+      avatarShadow: 2,
+    });
+  }
+
+  onMouseLeave = () => {
+    this.setState({
+      avatarShadow: 1,
+    });
   }
 
   handleTouchTap = (e) => {
@@ -29,22 +41,10 @@ class UserNav extends React.PureComponent{
     });
   };
 
-  onMouseEnter = () => {
-    this.setState({
-      avatarShadow: 2,
-    });
-  }
-
-  onMouseLeave = () => {
-    this.setState({
-      avatarShadow: 1,
-    });
-  }
-
-  render(){
-
-    return(
-      <Paper circle
+  render() {
+    return (
+      <Paper
+        circle
         onTouchTap={this.handleTouchTap}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
@@ -58,11 +58,11 @@ class UserNav extends React.PureComponent{
           targetOrigin={{ horizontal: 'middle', vertical: 'top' }}
           onRequestClose={this.handleRequestClose}
         >
-          <Menu {...this.props}/>
+          <Menu {...this.props} />
         </Popover>
       </Paper>
-    )
+    );
   }
-};
+}
 
 export default UserNav;

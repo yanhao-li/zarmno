@@ -74,7 +74,7 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: 'restaurant',
+      path: 'restaurants',
       name: 'restaurantList',
       onEnter: requireAuth,
       getComponent(nextState, cb) {

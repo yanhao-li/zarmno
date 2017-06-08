@@ -2,10 +2,16 @@ import React from 'react';
 import CustomerMenu from 'components/NavBar/CustomerMenu';
 import BusinessMenu from 'components/NavBar/BusinessMenu';
 import { logout } from 'actions/AuthActions';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
-class Menu extends React.PureComponent{
-  constructor(){
+const propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+class Menu extends React.PureComponent {
+  constructor() {
     super();
     this.onClickLogout = this.onClickLogout.bind(this);
   }
@@ -17,11 +23,13 @@ class Menu extends React.PureComponent{
     browserHistory.push('/');
   }
 
-  render(){
+  render() {
     const { user } = this.props.auth;
-    if( user.role === "business" ) return <BusinessMenu {...this.props} logout={this.onClickLogout}/>;
-    return <CustomerMenu {...this.props} logout={this.onClickLogout}/>;
+    if (user.role === 'business') return <BusinessMenu {...this.props} logout={this.onClickLogout} />;
+    return <CustomerMenu {...this.props} logout={this.onClickLogout} />;
   }
 }
+
+Menu.propTypes = propTypes;
 
 export default Menu;

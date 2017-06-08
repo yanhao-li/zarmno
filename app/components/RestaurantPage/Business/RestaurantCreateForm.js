@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextFieldGroup from 'components/TextFieldGroup';
+import TextField from 'material-ui/TextField';
 
 const propTypes = {
   registerRes: PropTypes.func.isRequired,
@@ -37,21 +37,21 @@ class RestaurantCreateForm extends React.PureComponent {
     const { errors, restaurant } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <TextFieldGroup
+        <TextField
           className="form-group"
           name="name"
           label="Restaurant Name"
           value={restaurant.name}
-          error={errors}
+          errorText={errors}
           onChange={this.onChange}
           type="text"
         />
-        <TextFieldGroup
+        <TextField
           className="form-group"
           name="location"
           label="Location"
           value={restaurant.location}
-          error={errors}
+          errorText={errors}
           onChange={this.onChange}
           type="text"
         />
