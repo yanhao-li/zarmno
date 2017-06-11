@@ -20,22 +20,20 @@ class NavBar extends React.PureComponent {
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
-      <div>
-        <AppBar
-          title={<Link to="/" style={{ fontSize: 18, color: '#a7a7a7' }}>Menu Plus</Link>}
-          showMenuIconButton
-          iconElementLeft={
-            <img src={logo} width={40} alt="logo" />
-          }
-          iconElementRight={
-            isAuthenticated ?
-              <UserNav {...this.props} /> : <GuestNav {...this.props} />
-          }
-          iconStyleLeft={{ marginTop: 0 }}
-          iconStyleRight={{ margin: 0 }}
-          style={styles.navbar}
-        />
-      </div>
+      <AppBar
+        title={<Link to="/" style={{ fontSize: 18, color: '#a7a7a7' }}>Menu Plus</Link>}
+        showMenuIconButton
+        iconElementLeft={
+          <img src={logo} width={40} alt="logo" />
+        }
+        iconElementRight={
+          isAuthenticated ?
+            <UserNav {...this.props} /> : <GuestNav {...this.props} />
+        }
+        iconStyleLeft={{ marginTop: 0 }}
+        iconStyleRight={{ margin: 0 }}
+        style={styles.navbar}
+      />
     );
   }
 }
