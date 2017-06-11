@@ -9,7 +9,7 @@ const propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-class Auth extends React.PureComponent {
+export class Auth extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

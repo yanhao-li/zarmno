@@ -61,7 +61,7 @@ class LoginForm extends React.PureComponent {
           fullWidth
         />
         <FlatButtonSm label="Forget Password?" primary style={{ alignSelf: 'flex-start', marginTop: 50 }} />
-        <FlatButtonSm label="Dont't have an account?" onClick={this.props.toggleAuthType} primary style={{ alignSelf: 'flex-start', marginTop: 15 }} />
+        <FlatButtonSm name="toggleBtn" label="Dont't have an account?" onClick={this.props.toggleAuthType} primary style={{ alignSelf: 'flex-start', marginTop: 15 }} />
         <RaisedButton label="LOG IN" primary onClick={this.onSubmit} disabled={isLoading} style={{ alignSelf: 'flex-end' }} />
       </LoginFormUI>
     );
