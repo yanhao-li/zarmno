@@ -3,7 +3,7 @@ const secretKey = require('../config/secretKeys');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const session = {
+const authToken = {
   add: (req, res) => {
     const { email, password } = req.body;
     db.User.findOne({ where: { email } }).then(
@@ -27,4 +27,4 @@ const session = {
   },
 };
 
-module.exports = session;
+module.exports = authToken;

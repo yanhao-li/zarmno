@@ -10,6 +10,9 @@ npm install
 npm start
 ```
 
+## API
+The api docs could be found: [Menu Plus API](http://docs.menuplus.apiary.io)
+
 ## Tech Stack
 React
 React Router

@@ -59,7 +59,8 @@ export const logout = () => (dispatch) => {
 };
 
 export function getAuth() {
-  return (dispatch) => axios.get('/api/v1/session').then(
+  return (dispatch) =>
+    axios.get('/api/v1/session').then(
       (res) => {
         dispatch(setCurrentUser(res.data.user));
       }

@@ -6,8 +6,8 @@ const authenticate = require('../middlewares/authenticate');
 /*-------------- user --------------*/
 router.post('/user', api.user.add);
 
-/*-------------- session --------------*/
-router.post('/session', api.session.add);
+/*-------------- authToken --------------*/
+router.post('/auth_token', api.authToken.add);
 
 /*-------------- restaurant --------------*/
 

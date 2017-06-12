@@ -1,13 +1,13 @@
 const dish = require('./dish');
 const user = require('./user');
 const restaurant = require('./restaurant');
-const session = require('./session');
+const authToken = require('./authToken');
 const favorite = require('./favorite');
 
 module.exports = {
   dish,
   user,
   restaurant,
-  session,
+  authToken,
   favorite,
 };
