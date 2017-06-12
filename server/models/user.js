@@ -12,8 +12,10 @@ module.exports = function UserFunc(sequelize, DataTypes) {
     country: {type: DataTypes.STRING, allowNull: true},
     state: {type: DataTypes.STRING, allowNull: true},
     city: {type: DataTypes.STRING, allowNull: true},
+    street1: { type: DataTypes.STRING, allowNull: false },
+    street2: { type: DataTypes.STRING, allowNull: true },
     zipcode: {type: DataTypes.STRING, allowNull: true},
-    self_intro: {type: DataTypes.STRING, allowNull: true},
+    description: {type: DataTypes.STRING, allowNull: true},
   }, {
     timestamps: true,
     freezeTableName: true,
