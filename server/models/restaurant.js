@@ -1,6 +1,6 @@
 module.exports = function RestaurantFunc(sequelize, DataTypes) {
   const Restaurant = sequelize.define('Restaurant', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, unique: true, allowNull: false },
+    id: { type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
     cover_img_url: { type: DataTypes.STRING, allowNull: true },
     country: { type: DataTypes.STRING, allowNull: false },

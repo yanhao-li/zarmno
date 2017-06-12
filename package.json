@@ -258,6 +258,7 @@
     "sanitize.css": "4.1.0",
     "sequelize": "^3.30.4",
     "styled-components": "1.1.2",
+    "uuid": "^3.0.1",
     "validator": "^7.0.0",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.1"
