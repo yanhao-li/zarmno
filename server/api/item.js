@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const dish = {
+const item = {
   add: (req, res) => {
     const { name, description, resId } = req.body;
     db.Dish.build({ name, description, restaurantId: resId }).save()
@@ -15,13 +15,13 @@ const dish = {
         dishQueried.update({
           name,
           description,
-        }).then((dishUpdated) => res.status(200).json({ dishUpdated }));
+        }).then((itemUpdated) => res.status(200).json({ itemUpdated }));
       }
     );
   },
   destroy: (req, res) => {
     const id = req.params.id;
-    db.Dish.destroy(
+    db.Item.destroy(
       { where: {
         id,
       } }
@@ -30,4 +30,4 @@ const dish = {
 };
 
 
-module.exports = dish;
+module.exports = item;

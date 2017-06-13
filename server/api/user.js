@@ -14,18 +14,18 @@ const user = {
       const passwordDigest = bcrypt.hashSync(password, 10);
       db.User.findOrCreate({
         where: {
-          email: email
+          email: email,
         },
         defaults: {
           id: uuidV4(),
           passwordDigest: passwordDigest,
-          role: role
-        }
+          role: role,
+        },
       })
       .then(
         (result) => {
           const created = result[1];
-          //will be true if a new object was created.
+          // will be true if a new object was created.
           if (created) {
             res.json({ success: true });
           } else {
@@ -36,9 +36,8 @@ const user = {
       .catch(
           (err) => res.status(400).json({ errors: { form: err } })
       );
-    }
-    //the email and password is not valid.
-    else {
+    // the email and password is not valid.
+    } else {
       res.status(400).json(errors);
     }
   },

@@ -3,7 +3,7 @@ const { jwtSecret } = require('../config/secretKeys');
 const db = require('../models');
 
 const authenticate = {
-  authenticateUser: function authenticateUser(req, res, next) {
+  loginRequired: function loginRequired(req, res, next) {
     const authorizationHeader = req.headers.authorization;
     let token;
 
@@ -34,6 +34,17 @@ const authenticate = {
       });
     }
   },
+  // isBusinessAccount: function isBusinessAccount(req, res, next) {
+  //
+  // },
+  // isCustomerAccount: function isCustomerAccount(req, res, next) {
+  //
+  // },
+  // isBusinessOwner: function isBusinessOwner(req, res, next) {
+  //
+  // },
+
+
 };
 
 module.exports = authenticate;

@@ -14,15 +14,15 @@ npm start
 The api docs could be found: [Menu Plus API](http://docs.menuplus.apiary.io)
 
 ## Tech Stack
-React
-React Router
-Redux
-ImmutableJS
-Styled-Component
+- [ ] React
+- [ ] React Router
+- [ ] Redux
+- [ ] ImmutableJS
+- [ ] Styled-Component
 
 ### Unit Testing
-Jest
-Enzyme
+- [ ] Jest
+- [ ] Enzyme
 
 ### Linting
 ESLint
@@ -88,7 +88,8 @@ menu-plus/
       location:
     },
     menu: [], //all dish objects belongs to this restaurant
-    comments: []
+    comments: [],
+    savedItem: [], //
   },
 
   favorites: {
