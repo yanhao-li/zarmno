@@ -1,9 +1,9 @@
-module.exports = function CollectionFunc(sequelize, DataTypes) {
+module.exports = function UserCommentFunc(sequelize, DataTypes) {
   const UserComment = sequelize.define('UserComment', {
-    itemId: { type: DataTypes.UUID, allowNull: false, primaryKey: true },
-    commentId: { type: DataTypes.UUID, allowNull: false, primaryKey: true },
-    isLike: { type: DataTypes.BOLLEAN, defaultValue: false },
-    isDisLike: { type: DataTypes.BOLLEAN, defaultValue: false },
+    itemId: { type: DataTypes.BIGINT(8).ZEROFILL, allowNull: false, primaryKey: true },
+    commentId: { type: DataTypes.BIGINT(8).ZEROFILL, allowNull: false, primaryKey: true },
+    isLike: { type: DataTypes.BOOLEAN, defaultValue: false },
+    isDisLike: { type: DataTypes.BOOLEAN, defaultValue: false },
   }, {
     timestamps: true,
     freezeTableName: true,

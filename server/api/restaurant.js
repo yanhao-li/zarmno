@@ -57,6 +57,10 @@ const restaurant = {
       }
     );
   },
+
+  destroy: (req, res) => {
+
+  },
 };
 
 module.exports = restaurant;

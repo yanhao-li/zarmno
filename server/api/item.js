@@ -27,6 +27,14 @@ const item = {
       } }
     ).then(() => res.status(200).json({ success: true }), (err) => res.json({ errors: err }));
   },
+
+  browse: (req, res) => {
+
+  },
+
+  read: (req, res) => {
+
+  },
 };
 
 

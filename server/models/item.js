@@ -1,6 +1,6 @@
-module.exports = function DishFunc(sequelize, DataTypes) {
+module.exports = function ItemFunc(sequelize, DataTypes) {
   const Item = sequelize.define('Item', {
-    id: { type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false },
+    id: { type: DataTypes.BIGINT(8).ZEROFILL, autoIncrement: true, primaryKey: true, unique: true, allowNull: false },
     coverImgUrl: { type: DataTypes.STRING },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
     category: { type: DataTypes.STRING },

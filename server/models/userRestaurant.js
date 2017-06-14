@@ -1,10 +1,10 @@
-module.exports = function CollectionFunc(sequelize, DataTypes) {
+module.exports = function UserRestaurantFunc(sequelize, DataTypes) {
   const UserRestaurant = sequelize.define('UserRestaurant', {
-    userId: { type: DataTypes.UUID, allowNull: false, primaryKey: true },
-    restaurantId: { type: DataTypes.UUID, allowNull: false, primaryKey: true },
+    userId: { type: DataTypes.BIGINT(8).ZEROFILL, allowNull: false, primaryKey: true },
+    restaurantId: { type: DataTypes.BIGINT(8).ZEROFILL, allowNull: false, primaryKey: true },
     checkinCount: { type: DataTypes.INTEGER },
-    isFavorite: { type: DataTypes.BOLLEAN, defaultValue: false },
-    isDislike: { type: DataTypes.BOLLEAN, defaultValue: false },
+    isFavorite: { type: DataTypes.BOOLEAN, defaultValue: false },
+    isDislike: { type: DataTypes.BOOLEAN, defaultValue: false },
   }, {
     timestamps: true,
     freezeTableName: true,

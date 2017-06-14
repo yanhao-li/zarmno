@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secretKeys');
 const db = require('../models');
 
-const authenticate = {
+const auth = {
   loginRequired: function loginRequired(req, res, next) {
     const authorizationHeader = req.headers.authorization;
     let token;
@@ -47,4 +47,4 @@ const authenticate = {
 
 };
 
-module.exports = authenticate;
+module.exports = auth;

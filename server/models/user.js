@@ -1,7 +1,6 @@
-
 module.exports = function UserFunc(sequelize, DataTypes) {
   const User = sequelize.define('User', {
-    id: { type: DataTypes.UUID, primaryKey: true, unique: true, allowNull: false },
+    id: { type: DataTypes.BIGINT(8).ZEROFILL, autoIncrement: true, primaryKey: true, unique: true, allowNull: false },
     email: { type: DataTypes.STRING, unique: true, allowNull: false },
     passwordDigest: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.STRING, allowNull: false },

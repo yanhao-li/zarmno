@@ -41,6 +41,9 @@ const user = {
       res.status(400).json(errors);
     }
   },
+  read: (req, res) => {
+
+  },
 };
 
 module.exports = user;
