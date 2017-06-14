@@ -5,6 +5,7 @@ const authToken = require('./authToken');
 const favorite = require('./favorite');
 const rating = require('./rating');
 const comment = require('./comment');
+const search = require('./search');
 
 module.exports = {
   item,
@@ -14,4 +15,5 @@ module.exports = {
   favorite,
   rating,
   comment,
+  search
 };

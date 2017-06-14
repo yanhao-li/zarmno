@@ -33,6 +33,10 @@ const favorite = {
         },
       }).then(() => res.status(200).json({ success: true }), (err) => res.json({ errors: err }));
     },
+
+    read: (req, res) => {
+
+    },
   },
 
   item: {

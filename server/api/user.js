@@ -44,6 +44,15 @@ const user = {
   read: (req, res) => {
 
   },
+  browse: (req, res) => {
+
+  },
+  edit: (req, res) => {
+
+  },
+  destroy: (req, res) => {
+
+  },
 };
 
 module.exports = user;
