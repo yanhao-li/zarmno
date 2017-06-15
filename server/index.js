@@ -2,23 +2,16 @@
 
 const express = require('express');
 const logger = require('./logger');
-const bodyParser = require('body-parser');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
 const resolve = require('path').resolve;
-const models = require('./models');
-
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-
-app.use(bodyParser.json());
-
-app.use('/api/v1', require('./api/app'));
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
@@ -35,7 +28,6 @@ const prettyHost = customHost || 'localhost';
 const port = argv.port || process.env.PORT || 3000;
 
 // Start your app.
-models.sequelize.sync();
 
 app.listen(port, host, (err) => {
   if (err) {

@@ -1,9 +1,11 @@
 const api = {
-  root: 'api/v1',
-  host: process.env.HOST || 'localhost',
-  port: process.env.PORT || 3000
+  root: '/api/v1',
+  host: 'http://localhost',
+  port: 8080,
 }
 
+const apiPath = api.host + ':' + api.port.toString() + api.root
+
 export {
-  api
+  apiPath
 };

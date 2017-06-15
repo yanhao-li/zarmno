@@ -1,7 +1,7 @@
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { fetchFavorites } from './FavoritesActions';
-import { api } from 'utils/appPath';
+import { apiPath } from 'utils/appPath';
 import fetchStatusHandler from 'utils/fetchStatusHandler';
 
 export function setCurrentUser(user) {
@@ -43,7 +43,7 @@ export const initAuth = () => (dispatch) => {
 
 export const login = (loginData) =>
   (dispatch) => {
-    return fetch(api.root + '/authtoken',
+    return fetch(apiPath + '/authtoken',
       {
         method: 'post',
         body: loginData
