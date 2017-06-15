@@ -1,7 +1,6 @@
 const validateInput = require('../utils/validations/signupValidation');
 const bcrypt = require('bcryptjs');
 const db = require('../models');
-const uuidV4 = require('uuid/v4');
 
 
 // User Register: Create a user
@@ -17,7 +16,6 @@ const user = {
           email: email,
         },
         defaults: {
-          id: uuidV4(),
           passwordDigest: passwordDigest,
           role: role,
         },

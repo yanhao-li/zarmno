@@ -1,7 +1,8 @@
-import axios from 'axios';
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { fetchFavorites } from './FavoritesActions';
+import { api } from 'utils/appPath';
+import fetchStatusHandler from 'utils/fetchStatusHandler';
 
 export function setCurrentUser(user) {
   return {
@@ -41,16 +42,21 @@ export const initAuth = () => (dispatch) => {
 };
 
 export const login = (loginData) =>
-  (dispatch) =>
-      axios.post('/api/v1/session', loginData).then(
-        (res) => {
-          const token = res.data.token;
-          localStorage.setItem('jwtToken', token);
-          setAuthorizationToken(token);
-          const user = jwtDecode(token);
-          dispatch(setCurrentUser(user));
-        }
-      );
+  (dispatch) => {
+    return fetch(api.root + '/authtoken',
+      {
+        method: 'post',
+        body: loginData
+      })
+      .then(fetchStatusHandler)
+      .then(json => {
+        const token = json.token;
+        localStorage.setItem('jwtToken', token);
+        setAuthorizationToken(token);
+        const user = jwtDecode(token);
+        dispatch(setCurrentUser(user));
+      })
+  }
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('jwtToken');

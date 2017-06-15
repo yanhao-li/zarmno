@@ -6,7 +6,8 @@ const jwt = require('jsonwebtoken');
 const authToken = {
   add: (req, res) => {
     const { email, password } = req.body;
-    db.User.findOne({ where: { email } }).then(
+    db.User.findOne({ where: { email } })
+    .then(
       (user) => {
         if (bcrypt.compareSync(password, user.passwordDigest)) {
           const token = jwt.sign({

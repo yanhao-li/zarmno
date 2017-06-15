@@ -11,7 +11,7 @@ router.put('/user/:userId', api.user.edit);
 router.delete('/user/:userId', api.user.destroy);
 
 /* -------------- authToken -------------- */
-router.post('/auth_token', api.authToken.add);
+router.post('/authtoken', api.authToken.add);
 
 /* -------------- restaurant -------------- */
 // add new restaurant
