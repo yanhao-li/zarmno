@@ -7,11 +7,11 @@ const allowCrossDomain = require('./middlewares/allowCrossDomain');
 const app = express();
 app.use(bodyParser.json());
 app.use(allowCrossDomain);
-app.use('/api/v1', require('./api/app'));
+app.use('/v1', require('./api/app'));
 
 models.sequelize.sync();
 
-app.listen(8080, 'localhost', (err) => {
+app.listen(8080, (err) => {
   if (err) {
     return logger.error(err.message);
   }
