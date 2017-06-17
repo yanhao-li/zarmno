@@ -16,6 +16,7 @@ import NavBar from 'components/NavBar';
 import AppWrapper from 'components/App/AppWrapper';
 import { initAuth } from 'actions/AuthActions';
 import { connect } from 'react-redux';
+import Notification from 'components/Notification';
 
 
 class App extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -34,6 +35,7 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
       <AppWrapper>
         <NavBar {...this.props} />
         {React.Children.toArray(this.props.children)}
+        <Notification {...this.props} />
       </AppWrapper>
     );
   }
@@ -46,6 +48,7 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     auth: state.get('auth'),
+    notification: state.get('notification')
   };
 }
 

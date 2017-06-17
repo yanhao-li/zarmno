@@ -10,6 +10,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import authReducer from './auth';
 import restaurantReducer from './restaurant';
 import favoritesReducer from './favorites';
+import notificationReducer from './notification';
 
 /*
  * routeReducer
@@ -48,6 +49,7 @@ export default function createReducer(asyncReducers) {
     auth: authReducer,
     restaurant: restaurantReducer,
     favorites: favoritesReducer,
+    notification: notificationReducer,
     ...asyncReducers,
   });
 }

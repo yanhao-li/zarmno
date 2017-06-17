@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { fetchFavorites } from './FavoritesActions';
 import { apiPath } from 'utils/appPath';
 import fetchStatusHandler from 'utils/fetchStatusHandler';
+import { showNot } from 'actions/NotActions';
 
 export function setCurrentUser(user) {
   return {
@@ -60,12 +61,16 @@ export const login = (auth) =>
         const user = jwtDecode(token);
         dispatch(setCurrentUser(user));
       })
+      .then(
+        dispatch(showNot("Login Successful", "OK"))
+      )
   }
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('jwtToken');
   setAuthorizationToken(false);
   dispatch(setCurrentUser({}));
+  dispatch(showNot("Logged out", "OK"))
 };
 
 export const signup = (auth) =>
