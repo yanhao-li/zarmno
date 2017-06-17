@@ -41,12 +41,12 @@ export const initAuth = () => (dispatch) => {
   }
 };
 
-export const login = (loginData) =>
+export const login = (auth) =>
   (dispatch) => {
     return fetch(apiPath + '/authtoken',
       {
         method: 'post',
-        body: loginData
+        body: auth
       })
       .then(fetchStatusHandler)
       .then(json => {
@@ -64,15 +64,21 @@ export const logout = () => (dispatch) => {
   dispatch(setCurrentUser({}));
 };
 
-export function getAuth() {
-  return (dispatch) =>
-    axios.get('/api/v1/session').then(
-      (res) => {
-        dispatch(setCurrentUser(res.data.user));
-      }
-    );
-}
+export const signup = (auth) => (dispatch) =>
+{
+    return fetch(apiPath + '/user',
+      {
+        method: 'post',
+        body: auth
+      })
+      .then(fetchStatusHandler)
+      .then(
+        dispatch(login(auth))
+      )
+      .catch(
+        err => {
+          throw Error(err)
+        }
+      )
 
-export function userSignupRequest(userData) {
-  return axios.post('/api/v1/user', userData);
 }
