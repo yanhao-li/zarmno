@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButtonSm from 'components/Button/FlatButtonSm';
-import { userSignupRequest, login } from 'actions/AuthActions';
+import { signup, login } from 'actions/AuthActions';
 import SignUpFormUI from 'components/Auth/SignUpFormUI';
 import validateInput from 'components/Auth/utils/signupValidation';
 import PropTypes from 'prop-types';
@@ -43,15 +43,9 @@ class SignUpForm extends React.PureComponent {
       this.setState({ errors });
     } else {
       this.setState({ errors: {}, isLoading: true });
-      userSignupRequest(this.state).then(
-        () => {
-          dispatch(login(this.state)).catch(
-            (err) => { this.setState({ errors: err.response.data.errors, isLoading: false }); }
-          );
-        },
-        (err) =>
-          this.setState({ errors: err.response.data.errors, isLoading: false })
-      );
+      dispatch(signup(this.state)).catch(
+        json => this.setState({ errors: json.errors, isLoading: false})
+      )
     }
   }
 
@@ -112,6 +106,7 @@ class SignUpForm extends React.PureComponent {
           disabled={this.state.isLoading}
           secondary
           onClick={this.AsBusiness}
+          disabled={true}
           style={{ alignSelf: 'flex-end', marginTop: 15 }}
         />
       </SignUpFormUI>

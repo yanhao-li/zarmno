@@ -41,12 +41,16 @@ export const initAuth = () => (dispatch) => {
   }
 };
 
-export const login = (loginData) =>
+export const login = (auth) =>
   (dispatch) => {
     return fetch(apiPath + '/authtoken',
       {
         method: 'post',
-        body: loginData
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(auth)
       })
       .then(fetchStatusHandler)
       .then(json => {
@@ -64,15 +68,19 @@ export const logout = () => (dispatch) => {
   dispatch(setCurrentUser({}));
 };
 
-export function getAuth() {
-  return (dispatch) =>
-    axios.get('/api/v1/session').then(
-      (res) => {
-        dispatch(setCurrentUser(res.data.user));
-      }
-    );
-}
-
-export function userSignupRequest(userData) {
-  return axios.post('/api/v1/user', userData);
-}
+export const signup = (auth) =>
+  (dispatch) => {
+    return fetch(apiPath + '/user',
+      {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(auth)
+      })
+      .then(fetchStatusHandler)
+      .then(
+        dispatch(login(auth))
+      )
+  }
