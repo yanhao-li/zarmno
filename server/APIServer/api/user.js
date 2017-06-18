@@ -11,7 +11,7 @@ const user = {
     if (isValid) {
       const { email, password, role } = req.body;
       const passwordDigest = bcrypt.hashSync(password, 10);
-      db.User.findOrCreate({
+      return db.User.findOrCreate({
         where: {
           email: email,
         },

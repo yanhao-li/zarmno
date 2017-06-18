@@ -43,7 +43,8 @@ class SignUpForm extends React.PureComponent {
       this.setState({ errors });
     } else {
       this.setState({ errors: {}, isLoading: true });
-      dispatch(signup(this.state)).catch(
+      dispatch(signup(this.state))
+      .catch(
         json => this.setState({ errors: json.errors, isLoading: false})
       )
     }

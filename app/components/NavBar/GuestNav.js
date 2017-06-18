@@ -15,6 +15,7 @@ class GuestNav extends React.PureComponent {
     this.onClickSignUp = this.onClickSignUp.bind(this);
     this.onClickLogin = this.onClickLogin.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.toggleAuthType = this.toggleAuthType.bind(this);
   }
 
   onClickSignUp(e) {
@@ -39,6 +40,18 @@ class GuestNav extends React.PureComponent {
     });
   }
 
+  toggleAuthType() {
+    if (this.state.authType === 'Sign Up') {
+      this.setState({
+        authType: 'Login',
+      });
+    } else {
+      this.setState({
+        authType: 'Sign Up',
+      });
+    }
+  }
+
   render() {
     const { modalIsOpen, authType } = this.state;
     return (
@@ -53,7 +66,7 @@ class GuestNav extends React.PureComponent {
           contentStyle={{ width: 500 }}
           autoScrollBodyContent
         >
-          <Auth authType={authType} />
+          <Auth authType={authType} toggleAuthType={this.toggleAuthType}/>
           <IconButton onClick={this.closeModal} style={{ position: 'absolute', top: -10, right: -50 }}>
             <CloseIcon color="#ffffff" />
           </IconButton>

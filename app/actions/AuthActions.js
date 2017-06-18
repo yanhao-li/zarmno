@@ -60,10 +60,8 @@ export const login = (auth) =>
         setAuthorizationToken(token);
         const user = jwtDecode(token);
         dispatch(setCurrentUser(user));
+        dispatch(showNot("Login Successful", "OK"));
       })
-      .then(
-        dispatch(showNot("Login Successful", "OK"))
-      )
   }
 
 export const logout = () => (dispatch) => {
@@ -85,7 +83,5 @@ export const signup = (auth) =>
         body: JSON.stringify(auth)
       })
       .then(fetchStatusHandler)
-      .then(
-        dispatch(login(auth))
-      )
+      .then(() => dispatch(login(auth)))
   }
