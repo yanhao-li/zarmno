@@ -106,8 +106,8 @@ class SignUpForm extends React.PureComponent {
           label="Sign up as Business Owner"
           disabled={this.state.isLoading}
           secondary
-          onClick={this.AsBusiness}
           disabled={true}
+          onClick={this.AsBusiness}
           style={{ alignSelf: 'flex-end', marginTop: 15 }}
         />
       </SignUpFormUI>

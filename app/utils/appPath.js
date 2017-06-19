@@ -1,6 +1,6 @@
 const api = {
   root: '/v1',
-  host: 'http://10.250.184.12',
+  host: 'http://10.250.184.16',
   port: 8080,
 }
 
