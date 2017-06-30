@@ -1,10 +1,10 @@
 {
-  "name": "menu-plus",
+  "name": "Zarmno",
   "version": "1.0.0",
   "description": "Electronic Menu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maekks/menu-plus.git"
+    "url": "https://github.com/yanhao-li/Zarmno.git"
   },
   "engines": {
     "npm": ">=3",

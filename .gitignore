@@ -4,14 +4,15 @@ build
 node_modules
 stats.json
 
-# Classified
-server/config/db.json
-server/config/secretKey.js
+# ignores all custom json files for config
+.sequelizerc
+.editorconfig
+config.*.json
 
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
 
-# Unrelated
+# ignore all design files
 sketch

@@ -1,5 +1,5 @@
 const db = require('../models');
-const secretKey = require('../config/secretKeys');
+const secretKey = require('../config/config.secret.json');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { jwtSecret } = require('../config/secretKeys');
+const { jwtSecret } = require('../config/config.secret.json');
 const db = require('../models');
 
 const auth = {
