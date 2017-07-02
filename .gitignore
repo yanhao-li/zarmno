@@ -1,17 +1,16 @@
-# Don't check auto-generated stuff into git
+# don't check auto-generated stuff into git
 coverage
 build
 node_modules
 stats.json
 
-# Classified
-server/config/db.json
-server/config/secretKey.js
+# ignore all custom json files for config
+config.*.json
 
-# Cruft
+# cruft
 .DS_Store
 npm-debug.log
 .idea
 
-# Unrelated
-sketch
+# sketch files
+docs/sketch
