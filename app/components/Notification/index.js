@@ -1,17 +1,17 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import { closeNot } from 'actions/NotActions';
+import { closeNoti } from 'actions/NotiActions';
 
 class Notification extends React.PureComponent{
 
   handleActionTouchTap = () => {
     const {dispatch} = this.props;
-    dispatch(closeNot);
+    dispatch(closeNoti);
   };
 
   handleRequestClose = () => {
     const {dispatch} = this.props;
-    dispatch(closeNot);
+    dispatch(closeNoti);
   };
 
   render() {

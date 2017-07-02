@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { fetchFavorites } from './FavoritesActions';
 import apiPath from 'utils/apiPath';
 import fetchStatusHandler from 'utils/fetchStatusHandler';
-import { showNot } from 'actions/NotActions';
+import { showNoti } from 'actions/NotiActions';
 
 export function setCurrentUser(user) {
   return {
@@ -60,7 +60,7 @@ export const login = (auth) =>
         setAuthorizationToken(token);
         const user = jwtDecode(token);
         dispatch(setCurrentUser(user));
-        dispatch(showNot("Login Successful", "OK"));
+        dispatch(showNoti("Login Successful", "OK"));
       })
   }
 
@@ -68,7 +68,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('jwtToken');
   setAuthorizationToken(false);
   dispatch(setCurrentUser({}));
-  dispatch(showNot("Logged out", "OK"))
+  dispatch(showNoti("Logged out", "OK"))
 };
 
 export const signup = (auth) =>

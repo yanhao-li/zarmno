@@ -14,17 +14,18 @@ const authToken = {
             id: user.id,
             email: user.email,
             role: user.role,
-          }, secretKey.jwtSecret);
+          }, secretKey.jwt);
           res.json({ token });
         } else {
           res.status(401).json({ errors: { password: 'Incorrect Password' } });
         }
       })
-      .catch(
-        () => {
-          res.status(401).json({ errors: { email: "Email doestn't exist" } });
-        }
-      );
+    .catch(
+      (err) => {
+        console.log(err)
+        res.status(401).json({ errors: { email: "Email doestn't exist" } });
+      }
+    );
   },
 };
 

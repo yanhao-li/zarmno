@@ -7,6 +7,7 @@ const db = require('../models');
 
 const user = {
   add: (req, res) => {
+    console.log(req.body)
     const { errors, isValid } = validateInput(req.body);
     if (isValid) {
       const { email, password, role } = req.body;
