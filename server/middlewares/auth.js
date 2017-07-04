@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { jwtSecret } = require('../config/secretKeys');
+const { SecretKey } = require('../config/config.secret.json');
 const db = require('../models');
 
 const auth = {
@@ -12,7 +12,7 @@ const auth = {
     }
 
     if (token) {
-      jwt.verify(token, jwtSecret, (err, decoded) => {
+      jwt.verify(token, SecretKey.jwt, (err, decoded) => {
         if (err) {
           res.status(401).json({ error: 'Failed to authenticate' });
         } else {

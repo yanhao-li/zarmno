@@ -1,7 +1,7 @@
 import setAuthorizationToken from 'utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
 import { fetchFavorites } from './FavoritesActions';
-import { apiPath } from 'utils/appPath';
+import apiPath from 'utils/apiPath';
 import fetchStatusHandler from 'utils/fetchStatusHandler';
 import { showNot } from 'actions/NotActions';
 

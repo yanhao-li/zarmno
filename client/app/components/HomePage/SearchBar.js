@@ -6,10 +6,11 @@ import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   searchBtn: {
+    display: 'inline-block',
     color: 'white',
     height: 50,
     width: 100,
-  },
+  }
 };
 
 let restaurants;
@@ -41,6 +42,7 @@ const SearchForm = styled.form`
 const AutosuggestTheme = {
   container: {
     position: 'relative',
+    display: 'inline-block'
   },
   input: {
     width: 500,
@@ -142,7 +144,7 @@ export default class SearchBar extends React.Component {
       onChange: this.onChange,
     };
     return (
-      <SearchForm className="form-inline">
+      <SearchForm>
         <Autosuggest
           theme={AutosuggestTheme}
           suggestions={suggestions}

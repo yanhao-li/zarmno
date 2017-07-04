@@ -1,5 +1,5 @@
 const db = require('../models');
-const secretKey = require('../config/secretKeys');
+const secretKey = require('../config/config.secret.json');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -14,7 +14,7 @@ const authToken = {
             id: user.id,
             email: user.email,
             role: user.role,
-          }, secretKey.jwtSecret);
+          }, secretKey.jwt);
           res.json({ token });
         } else {
           res.status(401).json({ errors: { password: 'Incorrect Password' } });

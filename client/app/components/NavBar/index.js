@@ -21,7 +21,7 @@ class NavBar extends React.PureComponent {
     const { isAuthenticated } = this.props.auth;
     return (
       <AppBar
-        title={<Link to="/" style={{ fontSize: 18, color: '#a7a7a7' }}>Menu Plus</Link>}
+        title={<Link to="/" style={{ fontSize: 18, color: '#a7a7a7' }}>Zarmno</Link>}
         showMenuIconButton
         iconElementLeft={
           <img src={logo} width={40} alt="logo" />
