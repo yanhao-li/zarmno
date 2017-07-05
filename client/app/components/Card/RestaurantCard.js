@@ -48,7 +48,7 @@ class RestaurantCard extends React.PureComponent {
     return (
       <Card style={styles.card} zDepth={this.state.cardDepth} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
         <CardMedia style={styles.card.CardImg}>
-          <img src="https://s3-media4.fl.yelpcdn.com/bphoto/kYZOjS_Vd8R88qTYYU3aYQ/l.jpg" alt="The Restaurant" />
+          <img src={restaurant.coverImgUrl} alt="The Restaurant" />
         </CardMedia>
         <CardTitle title={restaurant.name} titleColor="#757575" titleStyle={{ fontSize: '24px', fontWeight: '100' }} />
         <CardText color="#757575">

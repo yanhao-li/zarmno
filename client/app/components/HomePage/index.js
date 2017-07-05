@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchBar from './SearchBar';
+import SearchBar from 'components/SearchBar';
 import video from './video-bg.mp4';
 import videobg from './bg.jpg';
 import videooverlay from './movie-overlay.png';
@@ -44,7 +44,7 @@ const MovieOverlay = styled.div`
 `;
 
 const Jumbotron = () => (
-  <JumbotronDiv className="jumbotron">
+  <JumbotronDiv>
     <MovieContainer>
       <Movie poster={videobg} preload="metadata" loop autoPlay muted>
         <source src={video} type="video/mp4" />

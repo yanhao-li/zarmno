@@ -1,0 +1,68 @@
+.searchBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.searchBtn {
+  display: inline-block !important;
+  color: #ffffff !important;
+  height: 50px !important;
+  width: 100px !important;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.input {
+  width: 500px;
+  height: 50px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.inputFocused {
+  outline: none;
+}
+
+.inputOpen {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.suggestionsContainer {
+  display: none;
+}
+
+.suggestionsContainerOpen {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 500px;
+  background-color: #ffffff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  z-index: 2;
+}
+
+.suggestionsList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.suggestionHighlighted {
+  background-color: #ddd;
+}

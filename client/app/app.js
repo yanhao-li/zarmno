@@ -16,7 +16,6 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
-import 'jquery';
 import injectTapEventPlugin from 'react-tap-event-plugin'; // Material-UI event listener
 // Import root app
 import App from 'containers/App';

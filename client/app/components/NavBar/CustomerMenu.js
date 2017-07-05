@@ -13,8 +13,8 @@ class CustomerMenu extends React.PureComponent {
     const { logout } = this.props;
     return (
       <Menu>
-        <Link to="/profile"><MenuItem>Profile</MenuItem></Link>
-        <Link to="/restaurants"><MenuItem>All Restaurants</MenuItem></Link>
+        {/* <Link to="/profile"><MenuItem disabled={true}>Profile</MenuItem></Link>
+        <Link to="/restaurants"><MenuItem disabled={true}>All Restaurants</MenuItem></Link> */}
         <Link to="/favorites"><MenuItem>My Favorites</MenuItem></Link>
         <Link onClick={logout}><MenuItem>Log out</MenuItem></Link>
       </Menu>

@@ -1,17 +1,8 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import styled from 'styled-components';
 import { getRestaurantsList } from 'actions/RestaurantsListActions';
 import FlatButton from 'material-ui/FlatButton';
-
-const styles = {
-  searchBtn: {
-    display: 'inline-block',
-    color: 'white',
-    height: 50,
-    width: 100,
-  }
-};
+import styles from './index.css';
 
 let restaurants;
 const getSuggestions = (value) => {
@@ -30,64 +21,6 @@ const renderSuggestion = (suggestion) => (
     {suggestion.name}
   </div>
 );
-
-// Style
-const SearchForm = styled.form`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const AutosuggestTheme = {
-  container: {
-    position: 'relative',
-    display: 'inline-block'
-  },
-  input: {
-    width: 500,
-    height: 50,
-    padding: '10px 20px',
-    fontFamily: 'Helvetica, sans-serif',
-    fontWeight: 300,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
-  inputFocused: {
-    outline: 'none',
-  },
-  inputOpen: {
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  suggestionsContainer: {
-    display: 'none',
-  },
-  suggestionsContainerOpen: {
-    display: 'block',
-    position: 'absolute',
-    top: 51,
-    width: 500,
-    backgroundColor: '#fff',
-    fontFamily: 'Helvetica, sans-serif',
-    fontWeight: 300,
-    fontSize: 16,
-    zIndex: 2,
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: 'none',
-  },
-  suggestion: {
-    cursor: 'pointer',
-    padding: '10px 20px',
-  },
-  suggestionHighlighted: {
-    backgroundColor: '#ddd',
-  },
-};
-
 
 export default class SearchBar extends React.Component {
   constructor() {
@@ -143,10 +76,11 @@ export default class SearchBar extends React.Component {
       value,
       onChange: this.onChange,
     };
+
     return (
-      <SearchForm>
+      <div className={styles.searchBar}>
         <Autosuggest
-          theme={AutosuggestTheme}
+          theme={styles}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -154,8 +88,8 @@ export default class SearchBar extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-        <FlatButton label="SEARCH" backgroundColor="#EC407A" hoverColor="#F06292" primary style={styles.searchBtn} />
-      </SearchForm>
+        <FlatButton label="SEARCH" backgroundColor="#EC407A" hoverColor="#F06292" primary className={styles.searchBtn} />
+      </div>
     );
   }
 }
