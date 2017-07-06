@@ -10,11 +10,14 @@
   color: #ffffff !important;
   height: 50px !important;
   width: 100px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .container {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .input {
@@ -22,7 +25,7 @@
   height: 50px;
   padding: 10px 20px;
   font-family: Helvetica, sans-serif;
-  font-weight: 300px;
+  font-weight: 300;
   font-size: 16px;
   background-color: #ffffff;
 }
@@ -65,4 +68,13 @@
 
 .suggestionHighlighted {
   background-color: #ddd;
+}
+
+.suggestionName{
+  display: inline-block;
+  padding-right: 40px;
+}
+
+.suggestionCode{
+  display: inline-block;
 }

@@ -72,6 +72,6 @@ router.post('/comment/item/:itemId', api.comment.item.add);
 router.get('/comment/item/:itemId', api.comment.item.browse);
 
 /* -------------- comment -------------- */
-router.get('/search', api.search.browse);
+router.get('/search', api.search.query);
 
 module.exports = router;
