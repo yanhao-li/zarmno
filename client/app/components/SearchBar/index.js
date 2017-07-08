@@ -64,6 +64,13 @@ export default class SearchBar extends React.Component {
     });
   };
 
+  renderInputComponent = (inputProps) => (
+    <div>
+      <input {...inputProps} />
+      {this.state.isLoading && <SpinKit />}
+    </div>
+  )
+
 
   render() {
     const { value, suggestions } = this.state;
@@ -85,6 +92,7 @@ export default class SearchBar extends React.Component {
           getSuggestionValue={this.getSuggestionValue}
           renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
+          renderInputComponent = {this.renderInputComponent}
         />
         <FlatButton label="SEARCH" backgroundColor="#EC407A" hoverColor="#F06292" primary className={styles.searchBtn} />
       </div>
