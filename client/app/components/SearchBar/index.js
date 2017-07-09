@@ -4,6 +4,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import {searchByNameOrId} from 'actions/searchActions';
 import SpinKit from 'components/SpinKit';
 import styles from './index.css';
+import {browserHistory} from 'react-router';
 
 export default class SearchBar extends React.Component {
   constructor() {
@@ -66,6 +67,11 @@ export default class SearchBar extends React.Component {
     this.getSuggestions(value);
   };
 
+  onSuggestionHighlighted = (suggetion) => {
+    id = suggestion.id;
+
+  };
+
       // Autosuggest will call this function every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
     this.setState({
@@ -81,6 +87,10 @@ export default class SearchBar extends React.Component {
       </div>
     </div>
   )
+
+  onSuggestionSelected = (event, { suggestion }) => {
+    browserHistory.push('/restaurant/' + suggestion.id);
+  }
 
   render() {
     const { value, suggestions } = this.state;
@@ -104,6 +114,7 @@ export default class SearchBar extends React.Component {
           renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
           renderInputComponent = {this.renderInputComponent}
+          onSuggestionSelected = {this.onSuggestionSelected}
         />
       </div>
     );
