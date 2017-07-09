@@ -1,6 +1,6 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import FlatButton from 'material-ui/FlatButton';
+import LinearProgress from 'material-ui/LinearProgress';
 import {searchByNameOrId} from 'actions/searchActions';
 import SpinKit from 'components/SpinKit';
 import styles from './index.css';
@@ -21,14 +21,23 @@ export default class SearchBar extends React.Component {
     this.setState({
         isLoading: true
     });
-    searchByNameOrId(inputValue).then(
-      restaurants => {
-        this.setState({
-          suggestions: restaurants,
-          isLoading: false
-        })
-      }
-    )
+    if(inputValue.length > 0){
+      searchByNameOrId(inputValue).then(
+        restaurants => {
+          if(restaurants.length > 0){
+            this.setState({
+              suggestions: restaurants,
+              isLoading: false
+            })
+          } else {
+            this.setState({
+              suggestions: [],
+              isLoading: false
+            })
+          }
+        }
+      )
+    }
   };
 
   getSuggestionValue = (suggestion) => suggestion.name;
@@ -67,10 +76,11 @@ export default class SearchBar extends React.Component {
   renderInputComponent = (inputProps) => (
     <div>
       <input {...inputProps} />
-      {this.state.isLoading && <SpinKit />}
+      <div className={styles.indicator}>
+        {!this.state.isLoading && this.state.value.length > 0 && this.state.suggestions.length == 0 && (<div className={styles['no-result']}>No result</div>)}
+      </div>
     </div>
   )
-
 
   render() {
     const { value, suggestions } = this.state;
@@ -84,6 +94,7 @@ export default class SearchBar extends React.Component {
 
     return (
       <div className={styles.searchBar}>
+        {this.state.isLoading && <LinearProgress mode="indeterminate" />}
         <Autosuggest
           theme={styles}
           suggestions={suggestions}
@@ -94,7 +105,6 @@ export default class SearchBar extends React.Component {
           inputProps={inputProps}
           renderInputComponent = {this.renderInputComponent}
         />
-        <FlatButton label="SEARCH" backgroundColor="#EC407A" hoverColor="#F06292" primary className={styles.searchBtn} />
       </div>
     );
   }
