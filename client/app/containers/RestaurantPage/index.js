@@ -19,13 +19,25 @@ const propTypes = {
 
 class RestaurantPage extends React.PureComponent {
 
+  constructor(){
+    super();
+    this.state = {
+      isFetching: false;
+    }
+  }
+
   componentDidMount() {
     const { dispatch, params } = this.props;
     const id = params.id;
+    this.setState({
+      isFetching: true;
+    })
+
     fetchRestaurantById(id).then(
       restaurant => {
-        dispatch(setCurrentRestaurant(restaurant))
-        document.title = restaurant.name;
+        this.setState({
+          isFetching: false;
+        })
       }
     )
   }
