@@ -1,4 +1,6 @@
 import React from 'react';
+import SpinKit from 'components/SpinKit';
+import RestaurantHeader from 'components/RestaurantPage/RestaurantHeader/index';
 import { fetchRestaurantById } from 'actions/RestaurantActions';
 
 class RestaurantPage extends React.PureComponent {
@@ -34,9 +36,15 @@ class RestaurantPage extends React.PureComponent {
   };
 
   render(){
+    const { isFetching, restaurant } = this.state;
+
+    if (isFetching) {
+      return <p>Loading</p>
+    }
+
     return(
       <div>
-        RestaurantPage
+        <RestaurantHeader restaurant={restaurant} />
       </div>
     )
   }
