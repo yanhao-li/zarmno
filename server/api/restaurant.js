@@ -18,25 +18,10 @@ const restaurant = {
   },
 
   read: (req, res) => {
-    const restaurantId = req.params.id;
-    let restaurantInfo;
-    let menu;
-    const fetchRestaurantInfo = db.Restaurant.findOne({ where: { id: restaurantId } }).then(
-      (rst) => {
-        restaurantInfo = rst;
-      }
-    );
-    const fetchDishes = db.Dish.findAll({ where: { restaurantId } }).then(
-      (dishes) => {
-        menu = dishes;
-      }
-    );
-    Promise.all([fetchRestaurantInfo, fetchDishes]).then(
-      () => {
-        res.json({ restaurant: {
-          info: restaurantInfo,
-          menu,
-        } });
+    const id = req.params.restaurantId;
+    db.Restaurant.findOne({ where: { id } })
+      .then((restaurant) => {
+        res.status(200).json({ restaurant: restaurant});
       }
     );
   },

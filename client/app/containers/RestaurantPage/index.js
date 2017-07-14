@@ -1,78 +1,45 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { isEmpty } from 'lodash';
-import PropTypes from 'prop-types';
-// For Customer User
-import NotFound from 'containers/NotFoundPage';
-// For Business User
-import BusinessNotFound from 'components/RestaurantPage/Business/BusinessNotFound';
-import { setCurrentRes } from 'actions/RestaurantActions';
-import Menu from 'components/RestaurantPage/Common/Menu';
-import RestaurantHeader from 'components/RestaurantPage/Common/RestaurantHeader';
-
-const propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  restaurant: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  params: PropTypes.object.isRequired,
-};
+import { fetchRestaurantById } from 'actions/RestaurantActions';
 
 class RestaurantPage extends React.PureComponent {
-
   constructor(){
     super();
     this.state = {
-      isFetching: false;
-    }
-  }
+      isFetching: false,
+      restaurant: [],
+      menu: [],
+    };
+    this.fetchRestaurant = this.fetchRestaurant.bind(this);
+  };
 
-  componentDidMount() {
-    const { dispatch, params } = this.props;
+  componentDidMount(){
+    this.fetchRestaurant();
+  };
+
+  fetchRestaurant(){
+    const { params } = this.props;
     const id = params.id;
     this.setState({
-      isFetching: true;
-    })
-
-    fetchRestaurantById(id).then(
+      isFetching: true,
+    });
+    fetchRestaurantById(id)
+    .then(
       restaurant => {
         this.setState({
-          isFetching: false;
+          isFetching: false,
+          restaurant: restaurant,
         })
       }
     )
-  }
+  };
 
-  render() {
-    const { auth, restaurant } = this.props;
-    const { isFetching, info } = restaurant;
-    const { user } = auth;
-
-    if (isFetching) {
-      return <p>Loading</p>;
-    }
-
-    if (isEmpty(info)) {
-      if (user.role === 'business') {
-        return <BusinessNotFound />;
-      }
-      return <NotFound />;
-    }
-
-    return (
+  render(){
+    return(
       <div>
-        <RestaurantHeader {...this.props} />
-        <Menu {...this.props} />
+        RestaurantPage
       </div>
-    );
+    )
   }
 }
 
-RestaurantPage.propTypes = propTypes;
-
-const mapStateToProps = (state) => ({
-  auth: state.get('auth'),
-  restaurant: state.get('restaurant'),
-  favorites: state.get('favorites'),
-});
-
-export default connect(mapStateToProps)(RestaurantPage);
+export default RestaurantPage;

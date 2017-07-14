@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { getRestaurantsList } from 'actions/RestaurantActions';
+import { getRestaurantsList } from 'actions/RestaurantsListActions';
 import Subheader from 'material-ui/Subheader';
 import Paper from 'material-ui/Paper';
 import RestaurantCard from 'components/Card/RestaurantCard';

@@ -1,43 +1,30 @@
-export const setCurrentResInfo = (info) => ({
-  type: 'SET_RESTAURANT_INFO',
-  info,
-});
+import apiPath from 'utils/apiPath';
+import fetchStatusHandler from 'utils/fetchStatusHandler';
 
-export const setCurrentResMenu = (menu) => ({
-  type: 'SET_RESTAURANT_MENU',
-  menu,
-});
-
-export const fetchRestaurantById = (id) => (dispatch) => {
-  dispatch({
-    type: 'FETCH_RESTAURANT_REQUEST',
-  });
-
-  return axios.get(`/api/v1/restaurant/${id}`)
-  .then(
-    (res) => {
-      dispatch({
-        type: 'FETCH_RESTAURANT_SUCCESS',
-        response: res.data.restaurant,
-      });
-      return res.data.restaurant;
+export const fetchRestaurantById = (id) => {
+  return fetch(apiPath + `/restaurant/${id}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }
-  )
-  .catch(
-    (err) => {
-      dispatch({
-        type: 'FETCH_RESTAURANT_FAILURE',
-        message: err,
-      });
-    }
-  );
+  })
+  .then(fetchStatusHandler)
+  .then(json => json.restaurant)
+}
+
+export const setCurrentRes = (id) => {
+
 };
 
-export const setCurrentRes = (id) => (dispatch) => {
-  dispatch(fetchRestaurantById(id)).then(
-      (restaurant) => {
-        dispatch(setCurrentResInfo(restaurant.info));
-        dispatch(setCurrentResMenu(restaurant.menu));
-      }
-    );
+export const updateResInfo = () => {
+
+};
+
+export const deleteDish = () => {
+
+};
+
+export const addDish = () => {
+
 };
