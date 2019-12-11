@@ -256,7 +256,7 @@
     "redux-thunk": "^2.2.0",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
-    "sequelize": "^3.30.4",
+    "sequelize": "^5.15.1",
     "styled-components": "1.1.2",
     "validator": "^7.0.0",
     "warning": "3.0.0",
