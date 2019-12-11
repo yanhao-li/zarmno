@@ -1,9 +1,3 @@
-Menu Plus is an online menu.
-
-## Demo
-The running example is deployed on AWS: [Menu Plus](http://menuplus.yanhaoli.com)
-
-
 ## Usage
 ```
 npm install
