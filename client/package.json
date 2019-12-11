@@ -217,7 +217,7 @@
     "testRegex": "tests/.*\\.test\\.js$"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "babel-polyfill": "6.20.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
@@ -283,7 +283,7 @@
     "coveralls": "2.11.15",
     "css-loader": "0.26.1",
     "enzyme": "2.6.0",
-    "eslint": "3.11.1",
+    "eslint": "4.18.2",
     "eslint-config-airbnb": "13.0.0",
     "eslint-config-airbnb-base": "10.0.1",
     "eslint-import-resolver-webpack": "0.8.0",
