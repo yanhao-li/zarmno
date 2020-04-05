@@ -236,7 +236,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "4.17.15",
     "material-ui": "^0.18.1",
-    "minimist": "1.2.0",
+    "minimist": "1.2.3",
     "mysql": "^2.13.0",
     "path-dirname": "^1.0.2",
     "prop-types": "^15.5.10",
