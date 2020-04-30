@@ -231,7 +231,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.2",
     "ip": "1.1.4",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^7.3.0",
     "jwt-decode": "^2.2.0",
     "lodash": "4.17.15",
